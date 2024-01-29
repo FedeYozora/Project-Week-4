@@ -13,7 +13,8 @@ public abstract class TravelDocument {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    private Integer sold_from;
+    @OneToOne
+    private Sellers sold_from;
     private LocalDate dateOfEmission;
     private Double price;
     @OneToOne(mappedBy = "travelDocument")
@@ -22,11 +23,10 @@ public abstract class TravelDocument {
     public TravelDocument() {
     }
 
-    public TravelDocument(Integer sold_from, LocalDate dateOfEmission, Double price, Card card) {
+    public TravelDocument(Sellers sold_from, LocalDate dateOfEmission, Double price) {
         this.sold_from = sold_from;
         this.dateOfEmission = dateOfEmission;
         this.price = price;
-        this.card = card;
     }
 
     public UUID getId() {
@@ -37,11 +37,11 @@ public abstract class TravelDocument {
         this.id = id;
     }
 
-    public Integer getSold_from() {
+    public Sellers getSold_from() {
         return sold_from;
     }
 
-    public void setSold_from(Integer sold_from) {
+    public void setSold_from(Sellers sold_from) {
         this.sold_from = sold_from;
     }
 

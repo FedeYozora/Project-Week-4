@@ -8,21 +8,16 @@ public class Routes {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "route_number", nullable = false)
     private Long routeNumber;
-
     private String routeStart;
-
     private String routeEnd;
-
     private Integer averageTravelTime;
-
     @ManyToOne
     private Vehicles vehicle;
 
     public Routes() {
     }
 
-    public Routes(Long routeNumber, String routeStart, String routeEnd, Integer averageTravelTime, Vehicles vehicle) {
-        this.routeNumber = routeNumber;
+    public Routes( String routeStart, String routeEnd, Integer averageTravelTime, Vehicles vehicle) {
         this.routeStart = routeStart;
         this.routeEnd = routeEnd;
         this.averageTravelTime = averageTravelTime;

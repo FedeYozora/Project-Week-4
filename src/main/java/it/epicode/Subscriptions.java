@@ -12,16 +12,17 @@ import java.util.UUID;
 public class Subscriptions extends TravelDocument{
     private LocalDate dateOfExpiration;
 
-
-@Enumerated(EnumType.STRING)
+    @Column(name = "subscription_type")
+    @Enumerated(EnumType.STRING)
     private SubType subType;
 
     public Subscriptions() {
     }
 
-    public Subscriptions(Integer sold_from, LocalDate dateOfEmission, Double price, Card card, LocalDate dateOfExpiration,SubType subType) {
-        super(sold_from, dateOfEmission, price, card);
+    public Subscriptions(Sellers sold_from, LocalDate dateOfEmission, Double price, SubType subType) {
+        super(sold_from, dateOfEmission, price);
         this.dateOfExpiration = (subType == SubType.WEEKLY)?dateOfEmission.plusDays(7):dateOfEmission.plusDays(30);
+        this.subType = subType;
     }
 
 

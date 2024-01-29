@@ -1,6 +1,7 @@
 package it.epicode;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,10 +16,9 @@ public class Card {
     @JoinColumn(name = "user_id")
     private User user;
     @Column(name = "date_of_emission",nullable = false)
-    private Date dateOfEmission;
+    private LocalDate dateOfEmission;
     @Column(name = "date_of_expiration",nullable = false)
-    private Date dateOfExpiration;
-
+    private LocalDate dateOfExpiration;
     @OneToOne
     @JoinColumn(name = "travel_document_id")
     private TravelDocument travelDocument;
@@ -26,12 +26,16 @@ public class Card {
     public Card() {
     }
 
-    public Card(User user, Date dateOfEmission, Date dateOfExpiration, TravelDocument travelDocument) {
+    public Card(User user, LocalDate dateOfEmission, TravelDocument travelDocument) {
         this.user = user;
         this.dateOfEmission = dateOfEmission;
-        this.dateOfExpiration = dateOfExpiration;
-        this.travelDocument = travelDocument;
-    }
+        this.dateOfExpiration = dateOfEmission.plusDays(365);
+        if(travelDocument instanceof Subscriptions){
+            this.travelDocument = travelDocument;
+        }else{
+            System.out.println("errore");
+        }
+        }
 
     public UUID getId_tessera() {
         return id_tessera;
@@ -49,19 +53,19 @@ public class Card {
         this.user = user;
     }
 
-    public Date getDateOfEmission() {
+    public LocalDate getDateOfEmission() {
         return dateOfEmission;
     }
 
-    public void setDateOfEmission(Date dateOfEmission) {
+    public void setDateOfEmission(LocalDate dateOfEmission) {
         this.dateOfEmission = dateOfEmission;
     }
 
-    public Date getDateOfExpiration() {
+    public LocalDate getDateOfExpiration() {
         return dateOfExpiration;
     }
 
-    public void setDateOfExpiration(Date dateOfExpiration) {
+    public void setDateOfExpiration(LocalDate dateOfExpiration) {
         this.dateOfExpiration = dateOfExpiration;
     }
 

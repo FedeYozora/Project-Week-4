@@ -18,12 +18,14 @@ public class Sellers {
     @Column(name = "selling_machine_in_service",nullable = false)
     private boolean inService;
 
+    @OneToOne
+    private TravelDocument travelDocument;
+
     public Sellers() {
     }
-
-    public Sellers(SellerType sellerType, boolean inService) {
+    public Sellers(SellerType sellerType) {
         this.sellerType = sellerType;
-        this.inService = inService;
+
     }
 
     public UUID getSellerId() {

@@ -30,7 +30,7 @@ public class Vehicles {
         this.vehicleNumber = vehicleNumber;
         this.vehicleType = vehicleType;
         this.capacity = capacity;
-        this.inMaintenance = inMaintenance;
+        this.inMaintenance = false;
     }
 
     public Long getVehicleNumber() {

@@ -16,9 +16,8 @@ public class Tickets extends TravelDocument{
     public Tickets() {
     }
 
-    public Tickets(Integer sold_from, LocalDate dateOfEmission, Double price, Card card, boolean validated) {
-        super(sold_from, dateOfEmission, price, card);
-        this.validated = validated;
+    public Tickets(Sellers sold_from, LocalDate dateOfEmission, Double price) {
+        super(sold_from, dateOfEmission, price);
     }
 
     public boolean isValidated() {
