@@ -8,17 +8,21 @@ public class Routes {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "route_number", nullable = false)
     private Long routeNumber;
+
     private String routeStart;
+
     private String routeEnd;
+
     private Integer averageTravelTime;
+
     @ManyToOne
-    @JoinTable(name = "vehicle_number")
-    private Long vehicle;
+    private Vehicles vehicle;
 
     public Routes() {
     }
 
-    public Routes(String routeStart, String routeEnd, Integer averageTravelTime, Long vehicle) {
+    public Routes(Long routeNumber, String routeStart, String routeEnd, Integer averageTravelTime, Vehicles vehicle) {
+        this.routeNumber = routeNumber;
         this.routeStart = routeStart;
         this.routeEnd = routeEnd;
         this.averageTravelTime = averageTravelTime;
@@ -57,11 +61,11 @@ public class Routes {
         this.averageTravelTime = averageTravelTime;
     }
 
-    public Long getVehicle() {
+    public Vehicles getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Long vehicle) {
+    public void setVehicle(Vehicles vehicle) {
         this.vehicle = vehicle;
     }
 

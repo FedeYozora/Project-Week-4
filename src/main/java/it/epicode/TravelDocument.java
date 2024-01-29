@@ -1,6 +1,7 @@
 package it.epicode;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -13,16 +14,15 @@ public abstract class TravelDocument {
     private UUID id;
 
     private Integer sold_from;
-    private Date dateOfEmission;
+    private LocalDate dateOfEmission;
     private Double price;
-
     @OneToOne(mappedBy = "travelDocument")
     private Card card;
 
     public TravelDocument() {
     }
 
-    public TravelDocument(Integer sold_from, Date dateOfEmission, Double price, Card card) {
+    public TravelDocument(Integer sold_from, LocalDate dateOfEmission, Double price, Card card) {
         this.sold_from = sold_from;
         this.dateOfEmission = dateOfEmission;
         this.price = price;
@@ -45,11 +45,11 @@ public abstract class TravelDocument {
         this.sold_from = sold_from;
     }
 
-    public Date getDateOfEmission() {
+    public LocalDate getDateOfEmission() {
         return dateOfEmission;
     }
 
-    public void setDateOfEmission(Date dateOfEmission) {
+    public void setDateOfEmission(LocalDate dateOfEmission) {
         this.dateOfEmission = dateOfEmission;
     }
 

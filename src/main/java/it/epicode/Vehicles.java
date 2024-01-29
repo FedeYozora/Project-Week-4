@@ -6,18 +6,20 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table (name = "vehicles")
+
 public class Vehicles {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "vehicle_number",nullable = false)
-    @OneToMany
     private Long vehicleNumber;
+
     @Column(name = "type_of_vehicle",nullable = false)
     @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
+
     @Column(nullable = false)
     private int capacity;
+
     @Column(name = "in_maintenance",nullable = false)
     private boolean inMaintenance;
 

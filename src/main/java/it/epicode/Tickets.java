@@ -1,23 +1,24 @@
 package it.epicode;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
 @Entity
 public class Tickets extends TravelDocument{
     private boolean validated;
+
     private UUID validatedOn;
-    private Date validationDate;
+    private LocalDate validationDate;
 
     public Tickets() {
     }
 
-    public Tickets(Integer sold_from, Date dateOfEmission, Double price, Card card, boolean validated, UUID validatedOn, Date validationDate) {
+    public Tickets(Integer sold_from, LocalDate dateOfEmission, Double price, Card card, boolean validated) {
         super(sold_from, dateOfEmission, price, card);
         this.validated = validated;
-        this.validatedOn = validatedOn;
-        this.validationDate = validationDate;
     }
 
     public boolean isValidated() {
@@ -28,21 +29,6 @@ public class Tickets extends TravelDocument{
         this.validated = validated;
     }
 
-    public UUID getValidatedOn() {
-        return validatedOn;
-    }
-
-    public void setValidatedOn(UUID validatedOn) {
-        this.validatedOn = validatedOn;
-    }
-
-    public Date getValidationDate() {
-        return validationDate;
-    }
-
-    public void setValidationDate(Date validationDate) {
-        this.validationDate = validationDate;
-    }
 
     @Override
     public String toString() {

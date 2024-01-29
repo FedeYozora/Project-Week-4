@@ -1,45 +1,46 @@
 package it.epicode;
 
-import javax.persistence.Entity;
+import it.epicode.enums.SubType;
+
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 public class Subscriptions extends TravelDocument{
-    private Date dateOfExpiration;
-    private List<UUID> validatedOn;
+    private LocalDate dateOfExpiration;
+
+
+@Enumerated(EnumType.STRING)
+    private SubType subType;
 
     public Subscriptions() {
     }
 
-    public Subscriptions(Integer sold_from, Date dateOfEmission, Double price, Card card, Date dateOfExpiration, List<UUID> validatedOn) {
+    public Subscriptions(Integer sold_from, LocalDate dateOfEmission, Double price, Card card, LocalDate dateOfExpiration,SubType subType) {
         super(sold_from, dateOfEmission, price, card);
-        this.dateOfExpiration = dateOfExpiration;
-        this.validatedOn = validatedOn;
+        this.dateOfExpiration = (subType == SubType.WEEKLY)?dateOfEmission.plusDays(7):dateOfEmission.plusDays(30);
     }
 
-    public Date getDateOfExpiration() {
+
+
+    public LocalDate getDateOfExpiration() {
         return dateOfExpiration;
     }
 
-    public void setDateOfExpiration(Date dateOfExpiration) {
+    public void setDateOfExpiration(LocalDate dateOfExpiration) {
         this.dateOfExpiration = dateOfExpiration;
     }
 
-    public List<UUID> getValidatedOn() {
-        return validatedOn;
-    }
 
-    public void setValidatedOn(List<UUID> validatedOn) {
-        this.validatedOn = validatedOn;
-    }
 
     @Override
     public String toString() {
         return "Subscriptions{" +
                 "dateOfExpiration=" + dateOfExpiration +
-                ", validatedOn=" + validatedOn +
+
                 '}';
     }
 }
