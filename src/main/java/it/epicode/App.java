@@ -328,11 +328,13 @@ public class App {
 
 
                                 }
+                                break;
                             default:
                                 System.out.println("Hai selezionato un carattere sbagliato...");
                                 break;
 
                         }
+                        break;
                     default:
                         System.out.println("Hai selezionato un carattere sbagliato...");
                         break;
@@ -365,7 +367,7 @@ public class App {
                         "|            +----------------+         | \n" +
                         "|            |   3. Acquista  |         |\n" +
                         "|            |   Biglietto    |         |\n" +
-                        "|            +----------------+         |                  |\n" +
+                        "|            +----------------+         |\n" +
                         "|                                       |\n" +
                         "|                                       |\n" +
                         "|            +----------------+         |\n" +
@@ -373,6 +375,173 @@ public class App {
                         "|            +----------------+         |     \n" +
                         "|                                       |\n" +
                         "|_______________________________________|");
+                int scanSelection10 = scan.nextInt();
+                switch (scanSelection10) {
+                    case 1:
+                        System.out.println(" ________________________________________\n" +
+                                "|                                       |\n" +
+                                "|                                       |\n" +
+                                "|        Quale abbonamento vuoi         |\n" +
+                                "|               acquistare?             |\n" +
+                                "|                                       |\n" +
+                                "|            +----------------+         |\n" +
+                                "|            |   1. Acquista  |         |\n" +
+                                "|            |   Settimanale  |         |\n" +
+                                "|            +----------------+         |\n" +
+                                "|                                       |\n" +
+                                "|                                       |\n" +
+                                "|            +----------------+         | \n" +
+                                "|            |   2. Acquista  |         |\n" +
+                                "|            |      Mensile   |         |\n" +
+                                "|            +----------------+         |\n" +
+                                "|                                       |\n" +
+                                "|                                       |\n" +
+                                "|            +----------------+         |\n" +
+                                "|            |    0.Annulla   |         |\n" +
+                                "|            +----------------+         |\n" +
+                                "|                                       |\n" +
+                                "|_______________________________________|");
+                        int scanSelection11 = scan.nextInt();
+                        switch (scanSelection11) {
+                            case 1:
+                            case 2:
+                                System.out.println(" _______________________________________\n" +
+                                        "|                                       |\n" +
+                                        "|            Crea la tua card           |\n" +
+                                        "|                personale              |\n" +
+                                        "|                                       |                  \n" +
+                                        "|                                       |\n" +
+                                        "|            +----------------+         |\n" +
+                                        "|            |   1. Nome      |         |\n" +
+                                        "|            +----------------+         |\n" +
+                                        "|                                       |\n" +
+                                        "|                                       |\n" +
+                                        "|            +----------------+         | \n" +
+                                        "|            |   2. Cognome   |         |   \n" +
+                                        "|            +----------------+         |\n" +
+                                        "|                                       |\n" +
+                                        "|                                       |\n" +
+                                        "|            +----------------+         |\n" +
+                                        "|            |    0.Annulla   |         |\n" +
+                                        "|            +----------------+         |     \n" +
+                                        "|                                       |\n" +
+                                        "|_______________________________________|\n" +
+                                        "\n");
+                                scan.nextLine();
+                                System.out.println("Inserisci il tuo nome");
+                                String scanSelection12 = scan.nextLine();
+                                System.out.println("Inserisci il tuo cognome");
+                                String scanSelection13 = scan.nextLine();
+                                System.out.println("          ||ECCO LA TUA CARD||\n" +
+                                        "\n" +
+                                        " _______________________________________\n" +
+                                        "|                                       |\n" +
+                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
+                                        "|                                       |\n" +
+                                        "|                                       |\n" +
+                                        "|          || TIPOABBONAMENTO           |\n" +
+                                        "|                                       |\n" +
+                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
+                                        "|                                       |\n" +
+                                        "|                                       |\n" +
+                                        "|                     #numeromacchinetta|\n" +
+                                        "|_______________________________________|");
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                System.out.println("Hai selezionato un carattere sbagliato.. ");
+                        }
+                        break;
+
+                    case 2:
+                        System.out.println(" ________________________________________\n" +
+                                "|                                       |\n" +
+                                "|                                       |\n" +
+                                "|          Quale abbonamento vuoi       |\n" +
+                                "|                rinnovare?             |\n" +
+                                "|                                       |\n" +
+                                "|            +----------------+         |\n" +
+                                "|            |   1. Rinnova   |         |\n" +
+                                "|            |   Settimanale  |         |\n" +
+                                "|            +----------------+         |\n" +
+                                "|                                       |\n" +
+                                "|                                       |\n" +
+                                "|            +----------------+         | \n" +
+                                "|            |   2. Rinnova   |         |\n" +
+                                "|            |      Mensile   |         |\n" +
+                                "|            +----------------+         |\n" +
+                                "|                                       |\n" +
+                                "|                                       |\n" +
+                                "|            +----------------+         |\n" +
+                                "|            |    0.Annulla   |         |\n" +
+                                "|            +----------------+         |     \n" +
+                                "|                                       |\n" +
+                                "|_______________________________________|\n");
+                        int scanSelection14 = scan.nextInt();
+                        switch (scanSelection14) {
+                            case 1:
+                            case 2:
+                                System.out.println("________________________________________\n" +
+                                        "|                                       |\n" +
+                                        "|                                       |\n" +
+                                        "|           Inserisci il codice         |\n" +
+                                        "|              della tua card           |\n" +
+                                        "|                                       |\n" +
+                                        "|            +----------------+         |\n" +
+                                        "|                  . . . .              |\n" +
+                                        "|            +----------------+         |\n" +
+                                        "|                                       |\n" +
+                                        "|                                       |                  \n" +
+                                        "|                                       |\n" +
+                                        "|                                       |\n" +
+                                        "|            +----------------+         |\n" +
+                                        "|            |    0.Annulla   |         |\n" +
+                                        "|            +----------------+         |     \n" +
+                                        "|                                       |\n" +
+                                        "|_______________________________________|");
+                                scan.nextLine();
+                                String scanSelection15 = scan.nextLine();
+                                System.out.println("     ||CARD AGGIORNATA CON SUCCESSO||\n" +
+                                        "\n" +
+                                        " _______________________________________\n" +
+                                        "|                                       |\n" +
+                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
+                                        "|                                       |\n" +
+                                        "|                                       |\n" +
+                                        "|          || TIPOABBONAMENTO           |\n" +
+                                        "|                                       |\n" +
+                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
+                                        "|                                       |\n" +
+                                        "|                                       |\n" +
+                                        "|                     #numeromacchinetta|\n" +
+                                        "|_______________________________________|\n");
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                System.out.println("Hai selezionato un carattere sbagliato..");
+                        }
+                        break;
+                    case 3:
+                        System.out.println(" _______________________________________\n" +
+                                "(                                       )\n" +
+                                "(  JAVAUTOBUS                           )\n" +
+                                "(                                       )\n" +
+                                "(                                       )\n" +
+                                "(           .DATAEMISSIONE              )\n" +
+                                "(                                       )\n" +
+                                "(                                       )\n" +
+                                "(                    #numeromacchinetta )\n" +
+                                "(_______________________________________)");
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Hai selezionato un carattere sbagliato.. ");
+                }
+
+
                 break;
             default:
                 System.out.println("Hai selezionato un carattere sbagliato.. ");
