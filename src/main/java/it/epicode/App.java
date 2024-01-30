@@ -502,6 +502,8 @@ public class App {
                                         "|_______________________________________|");
                                 scan.nextLine();
                                 String scanSelection15 = scan.nextLine();
+
+                                
                                 System.out.println("     ||CARD AGGIORNATA CON SUCCESSO||\n" +
                                         "\n" +
                                         " _______________________________________\n" +
