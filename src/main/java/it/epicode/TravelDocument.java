@@ -1,5 +1,7 @@
 package it.epicode;
 
+import org.hibernate.mapping.ToOne;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,6 +21,7 @@ public abstract class TravelDocument {
     private Double price;
     @OneToOne(mappedBy = "travelDocument")
     private Card card;
+
 
     public TravelDocument() {
     }

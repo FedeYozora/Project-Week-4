@@ -4,6 +4,7 @@ import it.epicode.enums.SellerType;
 import it.epicode.enums.VehicleType;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -12,17 +13,16 @@ public class Sellers {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "seller_id", nullable = false)
     private UUID sellerId;
-    @Column(name = "type_of_seller",nullable = false)
+    @Column(name = "type_of_seller", nullable = false)
     @Enumerated(EnumType.STRING)
     private SellerType sellerType;
-    @Column(name = "selling_machine_in_service",nullable = false)
+    @Column(name = "selling_machine_in_service", nullable = false)
     private boolean inService;
 
-    @OneToOne
-    private TravelDocument travelDocument;
 
     public Sellers() {
     }
+
     public Sellers(SellerType sellerType) {
         this.sellerType = sellerType;
 

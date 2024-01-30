@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table (name = "users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,6 +13,7 @@ public class User {
     private UUID id;
     private String name;
     private String surname;
+
     private Integer card;
 
     public User() {
