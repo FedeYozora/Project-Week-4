@@ -41,25 +41,29 @@ public class App {
         User federico = new User("Federico", "Bonfiglio", 12345);
         User personaggio;
 
-
-            if (scelta == 1) {
-                personaggio = gianni;
-                userDAO.save(gianni);
-            } else if (scelta == 2) {
-                personaggio = daniele;
-                userDAO.save(daniele);
-            } else if (scelta == 3) {
-                personaggio = federico;
-                userDAO.save(federico);
-            } else {
-                System.out.println("Scelta non valida");
-                personaggio = null;
-            }
+try{
+    switch (scelta) {
+        case 1:
+            personaggio = gianni;
+            userDAO.save(gianni);
+            break;
+        case 2:
+            personaggio = daniele;
+            userDAO.save(daniele);
+            break;
+        case 3:
+            personaggio = federico;
+            userDAO.save(federico);
+            break;
+        default:
+            System.out.println("Scelta non valida");
+            personaggio = null;
+    }
             if (personaggio != null) {
-                System.out.println("Hai scelto " + personaggio + ".");
+                System.out.println("Hai scelto " + personaggio.getName() + ".");
                 while (true) {
                 System.out.println(" ");
-                System.out.println("Vuoi usare un bus o un tram? \n1. Bus \n2. Tram \n");
+                System.out.println("Ciao " + personaggio.getName() +" desideri prendere un bus o un tram? \n1. Bus \n2. Tram \n");
                 int sceltaTrasporto = scan.nextInt();
                 switch (sceltaTrasporto) {
                     case 1:
@@ -72,8 +76,7 @@ public class App {
                                 "       =-(( `))-----------(( `))==\n" +
                                 "   javabus`--'     ");
                         System.out.println(" ");
-                        System.out.println("Quale bus vuoi prendere? \n1. Bus \n2. Bus \n3. Bus \n");
-
+                        System.out.println("Quale bus vuoi prendere "+ personaggio.getName() +" ? \n1. Bus \n2. Bus \n3. Bus \n");
                         int sceltaBus = scan.nextInt();
                         switch (sceltaBus) {
                             case 1:
@@ -113,8 +116,6 @@ public class App {
                                         "       =-(( `))-----------(( `))==\n" +
                                         "   javabus`--'     ");
                                 break;
-                            default:
-                                System.out.println("Scelta non valida.");
                         }
                         break;
                     case 2:
@@ -169,20 +170,23 @@ public class App {
                                 System.out.println("Scelta non valida.");
                         }
                 }
+                System.out.println("");
                 System.out.println("C'è il controllore a bordo? \n1. Sì \n2. No \n");
-                    System.out.println("  " +
-                            "      _.-\"` `'-.\n" +
-                            "       '._ __{}_(\n" +
-                            "         |'--.__\\\n" +
-                            "        (   ^_\\^\n" +
-                            "         |   _ |\n" +
-                            "         )\\___/\n" +
-                            "     .--'`:._]\n" +
-                            "    /  \\      '-.");
+
                 int presenzaControllore = scan.nextInt();
                 switch (presenzaControllore) {
                     case 1:
-                        System.out.println("Hai il biglietto o l'abbonamento? \n1. Sì \n2. No \n");
+                        System.out.println("  " +
+                                "      _.-\"` `'-.\n" +
+                                "       '._ __{}_(\n" +
+                                "         |'--.__\\\n" +
+                                "        (   ^_\\^\n" +
+                                "         |   o |\n" +
+                                "         )\\___/\n" +
+                                "     .--'`:._]\n" +
+                                "    /  \\      '-."+
+                                personaggio.getName()+ " " +personaggio.getSurname() + " hai il biglietto o l'abbonamento? \n1. Biglietto \n2 Abbonamento  \n3. No \n"
+                        );
                         int presenzaBiglietto = scan.nextInt();
                         switch (presenzaBiglietto) {
                             case 1:
@@ -195,11 +199,25 @@ public class App {
                                         "         )\\___/\n" +
                                         "     .--'`:._]\n" +
                                         "    /  \\      '-." +
-                                        "La tua corsa è valida."
+                                        "Biglietto convalidato."
                                 );
                                 System.out.println(" ");
                                 break;
                             case 2:
+                                System.out.println("  " +
+                                        "      _.-\"` `'-.\n" +
+                                        "       '._ __{}_(\n" +
+                                        "         |'--.__\\\n" +
+                                        "        (   ^_\\^\n" +
+                                        "         |   o |\n" +
+                                        "         )\\___/\n" +
+                                        "     .--'`:._]\n" +
+                                        "    /  \\      '-." +
+                                        "Abbonamento controllato."
+                                );
+                                System.out.println(" ");
+                                break;
+                            case 3:
                                 System.out.println("  " +
                                         "      _.-\"` `'-.\n" +
                                         "       '._ __{}_(\n" +
@@ -214,16 +232,29 @@ public class App {
                                 );
 
                                 System.out.println("");
-                                System.out.println("   ");
                                 break;
+                            default:
+                                System.out.println("Scelta non valida.");
                         }
                         break;
                     case 2:
-                        System.out.println(" ");
-                        System.out.println("Pagherò prima che salga il controllore.");
-                        break;
+                        System.out.println("");
+                        System.out.println("Cosa vuoi fare "+ personaggio.getName() + "?"+"\n1. Onesto \n2. Furbetto \n");
+                        int giustoSbagliato = scan.nextInt();
+                        switch (giustoSbagliato){
+                            case 1:
+                                System.out.println(" ");
+                                System.out.println("Timbro il ticket lo stesso.");
+                                break;
+                            case 2:
+                                System.out.println(" ");
+                                System.out.println("Timbrerò prima che salga il controllore.");
+                        }
                 }
             }
         }
+    }catch (Exception e){
+    System.out.println(e.getMessage());
     }
+}
 }
