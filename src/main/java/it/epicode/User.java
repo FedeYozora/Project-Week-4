@@ -1,5 +1,7 @@
 package it.epicode;
 
+import org.hibernate.mapping.ToOne;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -14,15 +16,16 @@ public class User {
     private String name;
     private String surname;
 
-    private Integer card;
+    @OneToOne
+    @JoinColumn(name = "card_id")
+    private Card card;
 
     public User() {
     }
 
-    public User(String name, String surname, Integer card) {
+    public User(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        this.card = card;
     }
 
     public UUID getId() {
@@ -49,11 +52,11 @@ public class User {
         this.surname = surname;
     }
 
-    public Integer getCard() {
+    public Card getCard() {
         return card;
     }
 
-    public void setCard(Integer card) {
+    public void setCard(Card card) {
         this.card = card;
     }
 
@@ -63,7 +66,6 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", card=" + card +
                 '}';
     }
 }

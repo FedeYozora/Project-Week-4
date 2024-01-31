@@ -23,7 +23,7 @@ public class UserDAO {
             transaction.begin();
             em.persist(user);
             transaction.commit();
-            System.out.println(user + "salvato correttamente");
+//            System.out.println(user + "salvato correttamente");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

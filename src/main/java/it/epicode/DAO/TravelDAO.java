@@ -54,7 +54,7 @@ public class TravelDAO {
 
     public void findUserByCardId(UUID cardId) {
         Card card = em.find(Card.class, cardId);
-        User user = em.createQuery("SELECT u FROM User u WHERE u.Card = :cardId", User.class).setParameter("cardId", card).getResultList().stream().findFirst().orElse(null);
+        User user = em.createQuery("SELECT u FROM User u WHERE u.card = :cardId", User.class).setParameter("cardId", card).getResultList().stream().findFirst().orElse(null);
         if (user != null) {
             System.out.println("Utente trovato: " + user.getName() + " " + user.getSurname());
         } else {
