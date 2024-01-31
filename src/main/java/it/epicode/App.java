@@ -46,11 +46,13 @@ public class App {
         Vehicles bus = new Vehicles(23L, VehicleType.BUS,30,false);
         Vehicles bus2 = new Vehicles(123L, VehicleType.BUS,80,false);
         Vehicles bus3 = new Vehicles(289L, VehicleType.BUS,70,false);
-        Vehicles tram = new Vehicles(23L, VehicleType.BUS,120,false);
+        Vehicles tram = new Vehicles(111L, VehicleType.TRAM,120,false);
+        Vehicles tram2 = new Vehicles(122L, VehicleType.TRAM,120,false);
+        Vehicles tram3 = new Vehicles(133L, VehicleType.TRAM,120,false);
+        
 
 
-
-            if (scelta == 1) {
+        if (scelta == 1) {
                 personaggio = gianni;
                 userDAO.save(gianni);
             } else if (scelta == 2) {
@@ -80,7 +82,7 @@ public class App {
                                 "       =-(( `))-----------(( `))==\n" +
                                 "   javabus`--'     ");
                         System.out.println(" ");
-                        System.out.println("Quale bus vuoi prendere? \n1. Bus \n2. Bus \n3. Bus \n");
+                        System.out.println("Quale bus vuoi prendere? \n1."+ bus.getVehicleNumber() + "\n2."+ bus2.getVehicleNumber() + "\n3."+ bus3.getVehicleNumber() + "\n");
 
                         int sceltaBus = scan.nextInt();
                         switch (sceltaBus) {
@@ -134,8 +136,7 @@ public class App {
                                 " ,_    ______           ______     |=-=,_    ______           ______  jg |\n" +
                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
                         System.out.println(" ");
-                        System.out.println("Quale tram vuoi prendere? \n1. Tram \n2. Tram \n3. Tram \n");
-
+                        System.out.println("Quale tram vuoi prendere? \n1."+ tram.getVehicleNumber() + "\n2."+ tram2.getVehicleNumber() + "\n3."+ tram3.getVehicleNumber() + "\n");
                         int sceltaTram = scan.nextInt();
                         switch (sceltaTram) {
                             case 1:
@@ -196,7 +197,7 @@ public class App {
                                 "       '._ __{}_(\n" +
                                 "         |'--.__\\\n" +
                                 "        (   ^_\\^\n" +
-                                "         |   _ |\n" +
+                                "         |   * |\n" +
                                 "         )\\___/\n" +
                                 "     .--'`:._]\n" +
                                 "    /  \\      '-."+
@@ -253,7 +254,8 @@ public class App {
                         break;
                     case 2:
                         System.out.println(" ");
-                        System.out.println("Pagherò prima che salga il controllore.");
+                        System.out.println("Pagherò prima che salga il controllore.  " +
+                                        " ");
                         break;
                 }
             }
