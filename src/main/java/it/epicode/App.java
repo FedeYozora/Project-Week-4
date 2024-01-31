@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.SortedMap;
 
@@ -32,353 +33,196 @@ public class App {
         SellerDAO sellerDAO = new SellerDAO(em);
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Dove vuoi andare?");
-        System.out.println("1. Rivenditore autorizzato");
-        System.out.println("2. Distributore automatico");
 
-        int scanSelection = scan.nextInt();
-        switch (scanSelection) {
-            case 1:
-                System.out.println("\n" +
-                        "                    ------------- \n" +
-                        "      ////\\\\\\\\     /              \\\n" +
-                        "      |      |    <  Buongiorno!   |\n" +
-                        "     @  O  O  @    \\              /\n" +
-                        "      |  ~   |      -------------    \n" +
-                        "       \\ -- /          | p |\n" +
-                        "     ___|  |___        | o |\n" +
-                        "    /          \\      /|_s_|\n" +
-                        "   /            \\    / /\\ /\n" +
-                        "  /  /|      |\\  \\  / /  \n" +
-                        " /  / |      | \\  \\/ /\n" +
-                        "-------------------------------\n" +
-                        "\n" +
-                        "1.Vorrei acquistare un biglietto!\n" +
-                        "\n" +
-                        "2.Vorrei acquistare un abbonamento!\n" +
-                        "\n" +
-                        "3.Mi è scaduto l'abbonamento, \n" +
-                        "vorrei caricarne un altro sulla mia card!");
+        System.out.println("Scegli un personaggio: \n1. Gianni \n2. Daniele \n3. Federico \n");
+        int scelta = scan.nextInt();
+        User gianni = new User("Gianni", "Cabiddu", 123);
+        User daniele = new User("Daniele", "Cagnoni", 1234);
+        User federico = new User("Federico", "Bonfiglio", 12345);
+        User personaggio;
 
 
-                int scanSelection2 = scan.nextInt();
-                switch (scanSelection2) {
+            if (scelta == 1) {
+                personaggio = gianni;
+                userDAO.save(gianni);
+            } else if (scelta == 2) {
+                personaggio = daniele;
+                userDAO.save(daniele);
+            } else if (scelta == 3) {
+                personaggio = federico;
+                userDAO.save(federico);
+            } else {
+                System.out.println("Scelta non valida");
+                personaggio = null;
+            }
+            if (personaggio != null) {
+                System.out.println("Hai scelto " + personaggio + ".");
+                while (true) {
+                System.out.println(" ");
+                System.out.println("Vuoi usare un bus o un tram? \n1. Bus \n2. Tram \n");
+                int sceltaTrasporto = scan.nextInt();
+                switch (sceltaTrasporto) {
                     case 1:
-                        System.out.println("                    ------------- \n" +
-                                "      ////\\\\\\\\     /             \n" +
-                                "      |      |    <   Certo! Ecco a te il biglietto \n" +
-                                "     @  ^  ^  @    \\              \n" +
-                                "      |  ~   |      -------------\n" +
-                                "       \\ -- /          | p |\n" +
-                                "     ___|  |___        | o |\n" +
-                                "    /          \\      /|_s_|\n" +
-                                "   /            \\    / /\\ /\n" +
-                                "  /  /|      |\\  \\  / /  \n" +
-                                " /  / |      | \\  \\/ /\n" +
-                                "-------------------------------\n" +
-                                "\n" +
-                                "\n" +
-                                " _______________________________________               \n" +
-                                "(                                       )\n" +
-                                "(  JAVAUTOBUS                           )\n" +
-                                "(                                       ) \n" +
-                                "(                                       ) \n" +
-                                "(           .DATAEMISSIONE              )\n" +
-                                "(                                       )\n" +
-                                "(                                       )\n" +
-                                "(                    #numeromacchinetta )\n" +
-                                "(_______________________________________)");
-                        // FINE TICKET ONE USE
-                        break;
+                        System.out.println("        ______________________\n" +
+                                "       |,----.,----.,----.,--.\\\n" +
+                                "       ||    ||    ||    ||   \\\\\n" +
+                                "       |`----'`----'|----||----\\`.\n" +
+                                "       [            |   -||- __|(|\n" +
+                                "       [  ,--.      |____||.--.  |\n" +
+                                "       =-(( `))-----------(( `))==\n" +
+                                "   javabus`--'     ");
+                        System.out.println(" ");
+                        System.out.println("Quale bus vuoi prendere? \n1. Bus \n2. Bus \n3. Bus \n");
 
-                    case 2:
-                        System.out.println("                    -------------\n" +
-                                "      ////\\\\\\\\     /             \n" +
-                                "      |      |    <   Non potevi andare al distributore automatico..?\n" +
-                                "     @  -  -  @    \\              \n" +
-                                "      |  ~   |      -------------\n" +
-                                "       \\ -- /          | p |\n" +
-                                "     ___|  |___        | o |\n" +
-                                "    /          \\      /|_s_|\n" +
-                                "   /            \\    / /\\ /\n" +
-                                "  /  /|      |\\  \\  / /  \n" +
-                                " /  / |      | \\  \\/ /\n" +
-                                "-------------------------------\n" +
-                                "\n" +
-                                "\n" +
-                                "1. No..\n" +
-                                "\n" +
-                                "2. C'era troppa fila e non sono bravo con i computer\n" +
-                                "\n" +
-                                "3. Zitto e fai il tuo lavoro");
-                        int scanSelection3 = scan.nextInt();
-                        switch (scanSelection3) {
+                        int sceltaBus = scan.nextInt();
+                        switch (sceltaBus) {
                             case 1:
-                            case 2:
-                            case 3:
-                                System.out.println("\n" +
-                                        "                    -------------\n" +
-                                        "      ////\\\\\\\\     /             \n" +
-                                        "      |      |    <   Va beh.. Hai gia una card? \n" +
-                                        "     @  o  o  @    \\              \n" +
-                                        "      |  ~   |      -------------\n" +
-                                        "       \\ -- /          | p |\n" +
-                                        "     ___|  |___        | o |\n" +
-                                        "    /          \\      /|_s_|\n" +
-                                        "   /            \\    / /\\ /\n" +
-                                        "  /  /|      |\\  \\  / /  \n" +
-                                        " /  / |      | \\  \\/ /\n" +
-                                        "-------------------------------\n" +
-                                        "\n" +
-                                        "1.Si!\n" +
-                                        "\n" +
-                                        "2.No..");
-                                int scanSelection4 = scan.nextInt();
-                                switch (scanSelection4) {
-                                    case 1:
-                                        System.out.println("                    -------------\n" +
-                                                "      ////\\\\\\\\     /             \n" +
-                                                "      |      |    <   Ok, dammi il numero della card\n" +
-                                                "     @  o  o  @    \\              \n" +
-                                                "      |  ~   |      -------------\n" +
-                                                "       \\ -- /          | p |\n" +
-                                                "     ___|  |___        | o |\n" +
-                                                "    /          \\      /|_s_|\n" +
-                                                "   /            \\    / /\\ /\n" +
-                                                "  /  /|      |\\  \\  / /  \n" +
-                                                " /  / |      | \\  \\/ /\n" +
-                                                "-------------------------------");
-                                        String scanSelection5 = scan.nextLine();
-                                        // salvare il valore di questo scan
-                                        System.out.println("                   -------------\n" +
-                                                "      ////\\\\\\\\     /             \n" +
-                                                "      |      |    <   Ok, quale abbonamento vuoi caricare?\n" +
-                                                "     @  ^  ^  @    \\              \n" +
-                                                "      |  ~   |      -------------\n" +
-                                                "       \\ -- /          | p |\n" +
-                                                "     ___|  |___        | o |\n" +
-                                                "    /          \\      /|_s_|\n" +
-                                                "   /            \\    / /\\ /\n" +
-                                                "  /  /|      |\\  \\  / /  \n" +
-                                                " /  / |      | \\  \\/ /\n" +
-                                                "-------------------------------\n" +
-                                                "\n" +
-                                                "1. Settimanale\n" +
-                                                "\n" +
-                                                "2. Mensile\n");
-                                        int scanSelection6 = scan.nextInt();
-                                        switch (scanSelection6) {
-                                            case 1:
-                                                System.out.println("                    -------------\n" +
-                                                        "      ////\\\\\\\\     /             \n" +
-                                                        "      |      |    <  Perfetto, ecco a te la card aggiornata\n" +
-                                                        "     @  ^  ^  @    \\              \n" +
-                                                        "      |  ~   |      -------------\n" +
-                                                        "       \\ -- /          | p |\n" +
-                                                        "     ___|  |___        | o |\n" +
-                                                        "    /          \\      /|_s_|\n" +
-                                                        "   /            \\    / /\\ /\n" +
-                                                        "  /  /|      |\\  \\  / /  \n" +
-                                                        " /  / |      | \\  \\/ /\n" +
-                                                        "-------------------------------\n" +
-                                                        "\n" +
-                                                        " _______________________________________\n" +
-                                                        "|                                       |\n" +
-                                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|       || ABBONAMENTO SETTIMANALE      |\n" +
-                                                        "|                                       |\n" +
-                                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                     #numeromacchinetta|\n" +
-                                                        "|_______________________________________|");
-                                                // FINE ABBONAMENTO SETTIMANALE CARD AGGIORNATA
-                                                break;
-
-
-                                            case 2:
-                                                System.out.println("                    -------------\n" +
-                                                        "      ////\\\\\\\\     /             \n" +
-                                                        "      |      |    <  Perfetto, ecco a te la card aggiornata\n" +
-                                                        "     @  ^  ^  @    \\              \n" +
-                                                        "      |  ~   |      -------------\n" +
-                                                        "       \\ -- /          | p |\n" +
-                                                        "     ___|  |___        | o |\n" +
-                                                        "    /          \\      /|_s_|\n" +
-                                                        "   /            \\    / /\\ /\n" +
-                                                        "  /  /|      |\\  \\  / /  \n" +
-                                                        " /  / |      | \\  \\/ /\n" +
-                                                        "-------------------------------\n" +
-                                                        "\n" +
-                                                        " _______________________________________\n" +
-                                                        "|                                       |\n" +
-                                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|          || ABBONAMENTO MENSILE       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                     #numeromacchinetta|\n" +
-                                                        "|_______________________________________|");
-                                                // FINE ABBONAMENTO MENSILE CARD AGGIORNATA
-                                                break;
-                                        }
-
-                                    case 2:
-                                        System.out.println("                    -------------\n" +
-                                                "      ////\\\\\\\\     /             \n" +
-                                                "      |      |    <   Okay, dimmi nome e cognome e te la creo io..\n" +
-                                                "     @  T  T  @    \\              \n" +
-                                                "      |  ~   |      -------------\n" +
-                                                "       \\ O  /          | p |\n" +
-                                                "     ___|  |___        | o |\n" +
-                                                "    /          \\      /|_s_|\n" +
-                                                "   /            \\    / /\\ /\n" +
-                                                "  /  /|      |\\  \\  / /  \n" +
-                                                " /  / |      | \\  \\/ /\n" +
-                                                "-------------------------------");
-                                        scan.nextLine();
-                                        System.out.println("Inserisci il tuo nome");
-                                        String scanSelection7 = scan.nextLine();
-                                        System.out.println("Inserisci il tuo cognome");
-                                        String scanSelection8 = scan.nextLine();
-                                        System.out.println("                    -------------\n" +
-                                                "      ////\\\\\\\\     /             \n" +
-                                                "      |      |    <   Ok, quale abbonamento vuoi caricare?\n" +
-                                                "     @  -  -  @    \\              \n" +
-                                                "      |  ~   |      -------------\n" +
-                                                "       \\ -- /          | p |\n" +
-                                                "     ___|  |___        | o |\n" +
-                                                "    /          \\      /|_s_|\n" +
-                                                "   /            \\    / /\\ /\n" +
-                                                "  /  /|      |\\  \\  / /  \n" +
-                                                " /  / |      | \\  \\/ /\n" +
-                                                "-------------------------------\n" +
-                                                "\n" +
-                                                "1. Settimanale\n" +
-                                                "\n" +
-                                                "2. Mensile");
-                                        int scanSelection9 = scan.nextInt();
-                                        switch (scanSelection9) {
-                                            case 1:
-                                                System.out.println("                     -------------\n" +
-                                                        "      ////\\\\\\\\     /             \n" +
-                                                        "      |      |    <  Perfetto, ecco la tua nuova card\n" +
-                                                        "     @  ^  ^  @    \\              \n" +
-                                                        "      |  ~   |      -------------\n" +
-                                                        "       \\ -- /          | p |\n" +
-                                                        "     ___|  |___        | o |\n" +
-                                                        "    /          \\      /|_s_|\n" +
-                                                        "   /            \\    / /\\ /\n" +
-                                                        "  /  /|      |\\  \\  / /  \n" +
-                                                        " /  / |      | \\  \\/ /\n" +
-                                                        "-------------------------------\n" +
-                                                        "\n" +
-                                                        " _______________________________________\n" +
-                                                        "|                                       |\n" +
-                                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|        ||ABBONAMENTO SETTIMANALE      |\n" +
-                                                        "|                                       |\n" +
-                                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                     #numeromacchinetta|\n" +
-                                                        "|_______________________________________|");
-                                                break;
-                                            // FINE ABBONAMENTO SETTIMANALE CARD CREATA
-                                            case 2:
-                                                System.out.println("                     -------------\n" +
-                                                        "      ////\\\\\\\\     /             \n" +
-                                                        "      |      |    <  Perfetto, ecco la tua nuova card\n" +
-                                                        "     @  ^  ^  @    \\              \n" +
-                                                        "      |  ~   |      -------------\n" +
-                                                        "       \\ -- /          | p |\n" +
-                                                        "     ___|  |___        | o |\n" +
-                                                        "    /          \\      /|_s_|\n" +
-                                                        "   /            \\    / /\\ /\n" +
-                                                        "  /  /|      |\\  \\  / /  \n" +
-                                                        " /  / |      | \\  \\/ /\n" +
-                                                        "-------------------------------\n" +
-                                                        "\n" +
-                                                        " _______________________________________\n" +
-                                                        "|                                       |\n" +
-                                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|          ||ABBONAMENTO MENSILE        |\n" +
-                                                        "|                                       |\n" +
-                                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                                       |\n" +
-                                                        "|                     #numeromacchinetta|\n" +
-                                                        "|_______________________________________|");
-                                                break;
-                                            // FINE ABBONAMENTO MENSILE CARD CREATA
-                                        }
-                                        break;
-                                    default:
-                                        System.out.println("Hai selezionato un carattere sbagliato...");
-                                        break;
-
-
-                                }
-                            default:
-                                System.out.println("Hai selezionato un carattere sbagliato...");
+                                System.out.println("Hai scelto il bus 1. La tua tratta è:");
+                                System.out.println("Piramide - Stazione Termini");
+                                System.out.println("          ______________________\n" +
+                                        "       |,----.,----.,----.,--.\\\n" +
+                                        "       ||    ||    ||    ||   \\\\\n" +
+                                        "       |`----'`----'|----||----\\`.\n" +
+                                        "       [            |   -||- __|(|\n" +
+                                        "       [  ,--.      |____||.--.  |\n" +
+                                        "       =-(( `))-----------(( `))==\n" +
+                                        "   javabus`--'     ");
                                 break;
+                            case 2:
+                                System.out.println("Hai scelto il bus 2. La tua tratta è:");
+                                System.out.println("Aeroporto Ciampino - stazione Tiburtina");
+                                System.out.println("        ______________________\n" +
+                                        "       |,----.,----.,----.,--.\\\n" +
+                                        "       ||    ||    ||    ||   \\\\\n" +
+                                        "       |`----'`----'|----||----\\`.\n" +
+                                        "       [            |   -||- __|(|\n" +
+                                        "       [  ,--.      |____||.--.  |\n" +
+                                        "       =-(( `))-----------(( `))==\n" +
+                                        "   javabus`--'     ");
 
+                                break;
+                            case 3:
+                                System.out.println("Hai scelto il bus 3. La tua tratta è:");
+                                System.out.println("Tivoli - Stazione Termini+");
+                                System.out.println("         ______________________\n" +
+                                        "       |,----.,----.,----.,--.\\\n" +
+                                        "       ||    ||    ||    ||   \\\\\n" +
+                                        "       |`----'`----'|----||----\\`.\n" +
+                                        "       [            |   -||- __|(|\n" +
+                                        "       [  ,--.      |____||.--.  |\n" +
+                                        "       =-(( `))-----------(( `))==\n" +
+                                        "   javabus`--'     ");
+                                break;
+                            default:
+                                System.out.println("Scelta non valida.");
                         }
-                    default:
-                        System.out.println("Hai selezionato un carattere sbagliato...");
+                        break;
+                    case 2:
+                        System.out.println("   ,',                                   ,',\n" +
+                                "     ', ,'                                 ', ,'\n" +
+                                "  ,----'--------------------------.     ,----'--------------------------.\n" +
+                                "  /''|```|```|```|```|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                " ,_    ______           ______     |=-=,_    ______           ______  jg |\n" +
+                                "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+                        System.out.println(" ");
+                        System.out.println("Quale tram vuoi prendere? \n1. Tram \n2. Tram \n3. Tram \n");
+
+                        int sceltaTram = scan.nextInt();
+                        switch (sceltaTram) {
+                            case 1:
+                                System.out.println("Hai scelto il FakerTaxy La tua tratta è:");
+                                System.out.println("Duomo - Stazione Centrale");
+                                System.out.println("   ,',                                   ,',\n" +
+                                        "     ', ,'                                 ', ,'\n" +
+                                        "  ,----'--------------------------.     ,----'--------------------------.\n" +
+                                        "  /''|```|```|```|```|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                        " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                        " ,_    ______ FakerTaxi ______     |=-=,_    ______           ______  jg |\n" +
+                                        "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+                                break;
+                            case 2:
+                                System.out.println("Hai scelto il Tram.Random La tua tratta è:");
+                                System.out.println("Viale Bligny - San Siro");
+                                System.out.println("   ,',                                   ,',\n" +
+                                        "     ', ,'                                 ', ,'\n" +
+                                        "  ,----'--------------------------.     ,----'--------------------------.\n" +
+                                        "  /''|```|```|```|```|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                        " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                        " ,_    ______Tram.Random______     |=-=,_    ______           ______  jg |\n" +
+                                        "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+
+                                break;
+                            case 3:
+                                System.out.println("Hai scelto il SwitchTram La tua tratta è:");
+                                System.out.println("Piazza Castello - Ospedale maggiore");
+                                System.out.println("   ,',                                   ,',\n" +
+                                        "     ', ,'                                 ', ,'\n" +
+                                        "  ,----'--------------------------.     ,----'--------------------------.\n" +
+                                        "  /''|```|```|```|```|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                        " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                        " ,_    ______SwitchTram ______     |=-=,_    ______           ______  jg |\n" +
+                                        "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+
+                                break;
+                            default:
+                                System.out.println("Scelta non valida.");
+                        }
+                }
+                System.out.println("C'è il controllore a bordo? \n1. Sì \n2. No \n");
+                    System.out.println("  " +
+                            "      _.-\"` `'-.\n" +
+                            "       '._ __{}_(\n" +
+                            "         |'--.__\\\n" +
+                            "        (   ^_\\^\n" +
+                            "         |   _ |\n" +
+                            "         )\\___/\n" +
+                            "     .--'`:._]\n" +
+                            "    /  \\      '-.");
+                int presenzaControllore = scan.nextInt();
+                switch (presenzaControllore) {
+                    case 1:
+                        System.out.println("Hai il biglietto o l'abbonamento? \n1. Sì \n2. No \n");
+                        int presenzaBiglietto = scan.nextInt();
+                        switch (presenzaBiglietto) {
+                            case 1:
+                                System.out.println("  " +
+                                        "      _.-\"` `'-.\n" +
+                                        "       '._ __{}_(\n" +
+                                        "         |'--.__\\\n" +
+                                        "        (   ^_\\^\n" +
+                                        "         |   o |\n" +
+                                        "         )\\___/\n" +
+                                        "     .--'`:._]\n" +
+                                        "    /  \\      '-." +
+                                        "La tua corsa è valida."
+                                );
+                                System.out.println(" ");
+                                break;
+                            case 2:
+                                System.out.println("  " +
+                                        "      _.-\"` `'-.\n" +
+                                        "       '._ __{}_(\n" +
+                                        "         |'--.__\\\n" +
+                                        "        (   ^_\\^\n" +
+                                        "         |   0 |\n" +
+                                        "         )\\___/\n" +
+                                        "     .--'`:._]\n" +
+                                        "    /  \\      '-.  " +
+
+                                        "Hai ricevuto una multa di 60 euro."
+                                );
+
+                                System.out.println("");
+                                break;
+                        }
+                        break;
+                    case 2:
+                        System.out.println(" ");
+                        System.out.println("Pagherò prima che salga il controllore.");
                         break;
                 }
-
-                break;
-
-
-            case 2:
-                System.out.println(" ________________________________________\n" +
-                        "|                                       |\n" +
-                        "|          Benvenuto! Automat n#        |\n" +
-                        "|              @sellerid                |\n" +
-                        "|                                       |\n" +
-                        "|                                       |\n" +
-                        "|            +----------------+         |\n" +
-                        "|            |   1. Acquista  |         |\n" +
-                        "|            |   Abbonamento  |         |\n" +
-                        "|            +----------------+         |\n" +
-                        "|                                       |\n" +
-                        "|                                       |\n" +
-                        "|                                       |\n" +
-                        "|            +----------------+         | \n" +
-                        "|            |   2.Rinnova    |         |\n" +
-                        "|            |   Abbonamento  |         |\n" +
-                        "|            +----------------+         |\n" +
-                        "|                                       |\n" +
-                        "|                                       |\n" +
-                        "|                                       |\n" +
-                        "|            +----------------+         | \n" +
-                        "|            |   3. Acquista  |         |\n" +
-                        "|            |   Biglietto    |         |\n" +
-                        "|            +----------------+         |                  |\n" +
-                        "|                                       |\n" +
-                        "|                                       |\n" +
-                        "|            +----------------+         |\n" +
-                        "|            |    0.Indietro  |         |\n" +
-                        "|            +----------------+         |     \n" +
-                        "|                                       |\n" +
-                        "|_______________________________________|");
-                break;
-            default:
-                System.out.println("Hai selezionato un carattere sbagliato.. ");
-                break;
+            }
         }
-
-
     }
 }
