@@ -152,7 +152,7 @@ public class App {
                                         " ,_    ______Tram.Random______     |=-=,_    ______           ______  jg |\n" +
                                         "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
 
-                                break;
+                               break;
                             case 3:
                                 System.out.println("Hai scelto il SwitchTram La tua tratta è:");
                                 System.out.println("Piazza Castello - Ospedale maggiore");
@@ -214,6 +214,7 @@ public class App {
                                 );
 
                                 System.out.println("");
+                                System.out.println("   ");
                                 break;
                         }
                         break;
