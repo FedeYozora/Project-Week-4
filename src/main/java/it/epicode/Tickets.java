@@ -1,17 +1,29 @@
 package it.epicode;
 
+import org.hibernate.mapping.ToOne;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.UUID;
 
 @Entity
-public class Tickets extends TravelDocument{
+public class Tickets extends TravelDocument {
     private boolean validated;
 
-    private UUID validatedOn;
     private LocalDate validationDate;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_number")
+    private Vehicles vehicles;
+
+    public Vehicles getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Vehicles vehicles) {
+        this.vehicles = vehicles;
+    }
 
     public Tickets() {
     }
@@ -28,12 +40,18 @@ public class Tickets extends TravelDocument{
         this.validated = validated;
     }
 
+    public LocalDate getValidationDate() {
+        return validationDate;
+    }
+
+    public void setValidationDate(LocalDate validationDate) {
+        this.validationDate = validationDate;
+    }
 
     @Override
     public String toString() {
         return "Tickets{" +
                 "validated=" + validated +
-                ", validatedOn=" + validatedOn +
                 ", validationDate=" + validationDate +
                 '}';
     }

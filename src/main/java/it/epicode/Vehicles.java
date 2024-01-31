@@ -3,6 +3,9 @@ package it.epicode;
 import it.epicode.enums.VehicleType;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -10,24 +13,41 @@ import javax.persistence.*;
 public class Vehicles {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "vehicle_number",nullable = false)
+    @Column(name = "vehicle_number", nullable = false)
     private Long vehicleNumber;
 
-    @Column(name = "type_of_vehicle",nullable = false)
+    @Column(name = "type_of_vehicle", nullable = false)
     @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
 
     @Column(nullable = false)
     private int capacity;
 
-    @Column(name = "in_maintenance",nullable = false)
+    @Column(name = "in_maintenance", nullable = false)
     private boolean inMaintenance;
+
+    private int routesCompleted;
+
+    @OneToMany(mappedBy = "vehicles", orphanRemoval = true)
+
+    private Set<Tickets> tickets = new LinkedHashSet<>();
+
+    public Set<Tickets> getTickets() {
+        return tickets;
+    }
+
+
+    public void setTickets(Tickets tickets) {
+        tickets.setValidated(true);
+        tickets.setValidationDate(LocalDate.now());
+        tickets.setVehicles(this);
+        this.tickets.add(tickets);
+    }
 
     public Vehicles() {
     }
 
-    public Vehicles(Long vehicleNumber, VehicleType vehicleType, int capacity, boolean inMaintenance) {
-        this.vehicleNumber = vehicleNumber;
+    public Vehicles(VehicleType vehicleType, int capacity, boolean inMaintenance) {
         this.vehicleType = vehicleType;
         this.capacity = capacity;
         this.inMaintenance = false;
@@ -63,6 +83,14 @@ public class Vehicles {
 
     public void setInMaintenance(boolean inMaintenance) {
         this.inMaintenance = inMaintenance;
+    }
+
+    public int getRoutesCompleted() {
+        return routesCompleted;
+    }
+
+    public void setRoutesCompleted(int routesCompleted) {
+        this.routesCompleted = routesCompleted;
     }
 
     @Override

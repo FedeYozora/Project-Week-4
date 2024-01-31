@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table (name = "card")
+@Table(name = "card")
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,12 +15,12 @@ public class Card {
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private User user;
-    @Column(name = "date_of_emission",nullable = false)
+    @Column(name = "date_of_emission", nullable = false)
     private LocalDate dateOfEmission;
-    @Column(name = "date_of_expiration",nullable = false)
+    @Column(name = "date_of_expiration", nullable = false)
     private LocalDate dateOfExpiration;
     @OneToOne
-    @JoinColumn(name = "travel_document_id")
+    @JoinColumn(name = "subscription_id")
     private TravelDocument travelDocument;
 
     public Card() {
@@ -30,12 +30,12 @@ public class Card {
         this.user = user;
         this.dateOfEmission = dateOfEmission;
         this.dateOfExpiration = dateOfEmission.plusDays(365);
-        if(travelDocument instanceof Subscriptions){
+        if (travelDocument instanceof Subscriptions) {
             this.travelDocument = travelDocument;
-        }else{
+        } else {
             System.out.println("errore");
         }
-        }
+    }
 
     public UUID getId_tessera() {
         return id_tessera;

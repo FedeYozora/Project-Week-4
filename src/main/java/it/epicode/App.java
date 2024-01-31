@@ -1,11 +1,9 @@
 package it.epicode;
 
-import it.epicode.DAO.CardDAO;
-import it.epicode.DAO.SellerDAO;
-import it.epicode.DAO.TravelDAO;
-import it.epicode.DAO.UserDAO;
+import it.epicode.DAO.*;
 import it.epicode.enums.SellerType;
 import it.epicode.enums.SubType;
+import it.epicode.enums.VehicleType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,6 +12,7 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.SortedMap;
+import java.util.UUID;
 
 /**
  * Hello world!
@@ -30,7 +29,33 @@ public class App {
         CardDAO cardDAO = new CardDAO(em);
         TravelDAO travelDAO = new TravelDAO(em);
         SellerDAO sellerDAO = new SellerDAO(em);
+        VehicleDAO vehicleDAO = new VehicleDAO(em);
         Scanner scan = new Scanner(System.in);
+
+//        User user = new User("gianni", "cabiddu", 1234);
+//        userDAO.save(user);
+//
+//        Sellers seller = new Sellers(SellerType.AUTHORIZED);
+//        sellerDAO.save(seller);
+//
+//        Subscriptions subscription = new Subscriptions(seller, LocalDate.of(2024, 1, 31), 150.00, SubType.WEEKLY);
+//        travelDAO.save(subscription);
+//
+//        Tickets tickets = new Tickets(seller, LocalDate.now(), 2.00);
+//        travelDAO.save(tickets);
+//
+//        Card card = new Card(user, LocalDate.now(), subscription);
+//        cardDAO.save(card);
+//
+//        Vehicles vehicles = new Vehicles(VehicleType.BUS, 30, false);
+//        vehicles.setTickets(tickets);
+//        vehicleDAO.save(vehicles);
+
+        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a"));
+        System.out.println();
+        travelDAO.findSubByUserId(UUID.fromString("e523079c-7656-434f-a8ba-9de5ff74af05"));
+        vehicleDAO.findByVehicleType(VehicleType.BUS);
+        vehicleDAO.findByVehicleType(VehicleType.TRAM);
 
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
