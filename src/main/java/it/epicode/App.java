@@ -32,30 +32,33 @@ public class App {
         VehicleDAO vehicleDAO = new VehicleDAO(em);
         Scanner scan = new Scanner(System.in);
 
-//        User user = new User("gianni", "cabiddu", 1234);
-//        userDAO.save(user);
-//
-//        Sellers seller = new Sellers(SellerType.AUTHORIZED);
-//        sellerDAO.save(seller);
-//
-//        Subscriptions subscription = new Subscriptions(seller, LocalDate.of(2024, 1, 31), 150.00, SubType.WEEKLY);
-//        travelDAO.save(subscription);
-//
-//        Tickets tickets = new Tickets(seller, LocalDate.now(), 2.00);
-//        travelDAO.save(tickets);
-//
-//        Card card = new Card(user, LocalDate.now(), subscription);
-//        cardDAO.save(card);
-//
-//        Vehicles vehicles = new Vehicles(VehicleType.BUS, 30, false);
-//        vehicles.setTickets(tickets);
-//        vehicleDAO.save(vehicles);
+        User user = new User("gianni", "cabiddu", 1234);
+        userDAO.save(user);
 
-        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a"));
-        System.out.println();
-        travelDAO.findSubByUserId(UUID.fromString("e523079c-7656-434f-a8ba-9de5ff74af05"));
-        vehicleDAO.findByVehicleType(VehicleType.BUS);
-        vehicleDAO.findByVehicleType(VehicleType.TRAM);
+        Sellers seller = new Sellers(SellerType.AUTOMATIC);
+        seller.setInService(true);
+        sellerDAO.save(seller);
+
+        Subscriptions subscription = new Subscriptions(seller, LocalDate.of(2024, 1, 31), 150.00, SubType.WEEKLY);
+        travelDAO.save(subscription);
+
+        Tickets tickets = new Tickets(seller, LocalDate.now(), 2.00);
+        travelDAO.save(tickets);
+
+        Card card = new Card(user, LocalDate.now(), subscription);
+        cardDAO.save(card);
+
+        Vehicles vehicles = new Vehicles(VehicleType.BUS, 30, false);
+        vehicles.setTickets(tickets);
+        vehicleDAO.save(vehicles);
+
+        sellerDAO.filterByService(SellerType.AUTOMATIC);
+//        cardDAO.delete(card);
+//        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a"));
+//        System.out.println();
+//        travelDAO.findSubByUserId(UUID.fromString("e523079c-7656-434f-a8ba-9de5ff74af05"));
+//        vehicleDAO.findByVehicleType(VehicleType.BUS);
+//        vehicleDAO.findByVehicleType(VehicleType.TRAM);
 
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");

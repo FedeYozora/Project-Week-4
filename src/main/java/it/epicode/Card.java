@@ -1,8 +1,10 @@
 package it.epicode;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -12,15 +14,17 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_tessera", nullable = false)
     private UUID id_tessera;
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
     @Column(name = "date_of_emission", nullable = false)
     private LocalDate dateOfEmission;
     @Column(name = "date_of_expiration", nullable = false)
     private LocalDate dateOfExpiration;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "subscription_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private TravelDocument travelDocument;
 
     public Card() {
