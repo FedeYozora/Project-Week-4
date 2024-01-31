@@ -51,4 +51,14 @@ public class TravelDAO {
             System.out.printf("L'utente %s non ha abbonamenti", userId);
         }
     }
+
+    public void findUserByCardId(UUID cardId) {
+        Card card = em.find(Card.class, cardId);
+        User user = em.createQuery("SELECT u FROM User u WHERE u.Card = :cardId", User.class).setParameter("cardId", card).getResultList().stream().findFirst().orElse(null);
+        if (user != null) {
+            System.out.println("Utente trovato: " + user.getName() + " " + user.getSurname());
+        } else {
+            System.out.printf("L'utente con tessera %s non é stato trovato", cardId);
+        }
+    }
 }

@@ -39,8 +39,15 @@ public class App {
         seller.setInService(true);
         sellerDAO.save(seller);
 
-        Subscriptions subscription = new Subscriptions(seller, LocalDate.of(2024, 1, 31), 150.00, SubType.WEEKLY);
+        Sellers seller2 = new Sellers(SellerType.AUTHORIZED);
+        seller2.setInService(true);
+        sellerDAO.save(seller2);
+
+        Subscriptions subscription = new Subscriptions(seller, LocalDate.now(), 150.00, SubType.WEEKLY);
         travelDAO.save(subscription);
+
+        Subscriptions subscription2 = new Subscriptions(seller, LocalDate.now(), 150.00, SubType.MONTHLY);
+        travelDAO.save(subscription2);
 
         Tickets tickets = new Tickets(seller, LocalDate.now(), 2.00);
         travelDAO.save(tickets);
@@ -111,10 +118,10 @@ public class App {
                                 "(  JAVAUTOBUS                           )\n" +
                                 "(                                       ) \n" +
                                 "(                                       ) \n" +
-                                "(           .DATAEMISSIONE              )\n" +
+                                "(          " + tickets.getDateOfEmission() + "                   )\n" +
                                 "(                                       )\n" +
-                                "(                                       )\n" +
-                                "(                    #numeromacchinetta )\n" +
+                                "(   ID Venditore:                       )\n" +
+                                "(  " + seller2.getSellerId() + " )\n" +
                                 "(_______________________________________)");
                         // FINE TICKET ONE USE
                         break;
@@ -220,7 +227,7 @@ public class App {
                                                         "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
-                                                        "|                     #numeromacchinetta|\n" +
+                                                        "(  " + seller2.getSellerId() + " )\n" +
                                                         "|_______________________________________|");
                                                 // FINE ABBONAMENTO SETTIMANALE CARD AGGIORNATA
                                                 break;
@@ -250,7 +257,7 @@ public class App {
                                                         "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
-                                                        "|                     #numeromacchinetta|\n" +
+                                                        "(  " + seller2.getSellerId() + " )\n" +
                                                         "|_______________________________________|");
                                                 // FINE ABBONAMENTO MENSILE CARD AGGIORNATA
                                                 break;
@@ -308,7 +315,7 @@ public class App {
                                                         "\n" +
                                                         " _______________________________________\n" +
                                                         "|                                       |\n" +
-                                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
+                                                        "|   ||" + scanSelection7 + "  ||" + scanSelection8 + "  |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
                                                         "|        ||ABBONAMENTO SETTIMANALE      |\n" +
@@ -316,7 +323,7 @@ public class App {
                                                         "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
-                                                        "|                     #numeromacchinetta|\n" +
+                                                        "(  " + seller2.getSellerId() + " )\n" +
                                                         "|_______________________________________|");
                                                 break;
                                             // FINE ABBONAMENTO SETTIMANALE CARD CREATA
@@ -336,7 +343,7 @@ public class App {
                                                         "\n" +
                                                         " _______________________________________\n" +
                                                         "|                                       |\n" +
-                                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
+                                                        "|   ||" + scanSelection7 + "  ||" + scanSelection8 + "  |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
                                                         "|          ||ABBONAMENTO MENSILE        |\n" +
@@ -344,7 +351,7 @@ public class App {
                                                         "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
-                                                        "|                     #numeromacchinetta|\n" +
+                                                        "(  " + seller2.getSellerId() + " )\n" +
                                                         "|_______________________________________|");
                                                 break;
                                             // FINE ABBONAMENTO MENSILE CARD CREATA
@@ -363,6 +370,7 @@ public class App {
 
                         }
                         break;
+                    case 3:
                     default:
                         System.out.println("Hai selezionato un carattere sbagliato...");
                         break;
@@ -385,14 +393,14 @@ public class App {
                         "|                                       |\n" +
                         "|                                       |\n" +
                         "|                                       |\n" +
-                        "|            +----------------+         | \n" +
+                        "|            +----------------+         |\n" +
                         "|            |   2.Rinnova    |         |\n" +
                         "|            |   Abbonamento  |         |\n" +
                         "|            +----------------+         |\n" +
                         "|                                       |\n" +
                         "|                                       |\n" +
                         "|                                       |\n" +
-                        "|            +----------------+         | \n" +
+                        "|            +----------------+         |\n" +
                         "|            |   3. Acquista  |         |\n" +
                         "|            |   Biglietto    |         |\n" +
                         "|            +----------------+         |\n" +
@@ -400,7 +408,7 @@ public class App {
                         "|                                       |\n" +
                         "|            +----------------+         |\n" +
                         "|            |    0.Indietro  |         |\n" +
-                        "|            +----------------+         |     \n" +
+                        "|            +----------------+         |\n" +
                         "|                                       |\n" +
                         "|_______________________________________|");
                 int scanSelection10 = scan.nextInt();
@@ -418,7 +426,7 @@ public class App {
                                 "|            +----------------+         |\n" +
                                 "|                                       |\n" +
                                 "|                                       |\n" +
-                                "|            +----------------+         | \n" +
+                                "|            +----------------+         |\n" +
                                 "|            |   2. Acquista  |         |\n" +
                                 "|            |      Mensile   |         |\n" +
                                 "|            +----------------+         |\n" +
@@ -437,21 +445,21 @@ public class App {
                                         "|                                       |\n" +
                                         "|            Crea la tua card           |\n" +
                                         "|                personale              |\n" +
-                                        "|                                       |                  \n" +
+                                        "|                                       |\n" +
                                         "|                                       |\n" +
                                         "|            +----------------+         |\n" +
-                                        "|            |   1. Nome      |         |\n" +
+                                        "|            |      Nome      |         |\n" +
                                         "|            +----------------+         |\n" +
                                         "|                                       |\n" +
                                         "|                                       |\n" +
-                                        "|            +----------------+         | \n" +
-                                        "|            |   2. Cognome   |         |   \n" +
+                                        "|            +----------------+         |\n" +
+                                        "|            |     Cognome    |         |\n" +
                                         "|            +----------------+         |\n" +
                                         "|                                       |\n" +
                                         "|                                       |\n" +
                                         "|            +----------------+         |\n" +
                                         "|            |    0.Annulla   |         |\n" +
-                                        "|            +----------------+         |     \n" +
+                                        "|            +----------------+         |\n" +
                                         "|                                       |\n" +
                                         "|_______________________________________|\n" +
                                         "\n");
@@ -464,15 +472,15 @@ public class App {
                                         "\n" +
                                         " _______________________________________\n" +
                                         "|                                       |\n" +
-                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
+                                        "|  || " + scanSelection12 + "  ||" + scanSelection13 + "  |\n" +
+                                        "|                                       |\n" +
+                                        "|          || ABBONAMENTO               |\n" +
+                                        "|          || " + subscription2.getSubType() + "          |\n" +
+                                        "|                                       |\n" +
+                                        "| " + subscription2.getDateOfEmission() + " / " + subscription2.getDateOfExpiration() + "   |\n" +
                                         "|                                       |\n" +
                                         "|                                       |\n" +
-                                        "|          || TIPOABBONAMENTO           |\n" +
-                                        "|                                       |\n" +
-                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
-                                        "|                                       |\n" +
-                                        "|                                       |\n" +
-                                        "|                     #numeromacchinetta|\n" +
+                                        "(  " + seller.getSellerId() + " )\n" +
                                         "|_______________________________________|");
                                 break;
                             case 0:
@@ -495,7 +503,7 @@ public class App {
                                 "|            +----------------+         |\n" +
                                 "|                                       |\n" +
                                 "|                                       |\n" +
-                                "|            +----------------+         | \n" +
+                                "|            +----------------+         |\n" +
                                 "|            |   2. Rinnova   |         |\n" +
                                 "|            |      Mensile   |         |\n" +
                                 "|            +----------------+         |\n" +
@@ -503,7 +511,7 @@ public class App {
                                 "|                                       |\n" +
                                 "|            +----------------+         |\n" +
                                 "|            |    0.Annulla   |         |\n" +
-                                "|            +----------------+         |     \n" +
+                                "|            +----------------+         |\n" +
                                 "|                                       |\n" +
                                 "|_______________________________________|\n");
                         int scanSelection14 = scan.nextInt();
@@ -520,12 +528,12 @@ public class App {
                                         "|                  . . . .              |\n" +
                                         "|            +----------------+         |\n" +
                                         "|                                       |\n" +
-                                        "|                                       |                  \n" +
+                                        "|                                       |\n" +
                                         "|                                       |\n" +
                                         "|                                       |\n" +
                                         "|            +----------------+         |\n" +
                                         "|            |    0.Annulla   |         |\n" +
-                                        "|            +----------------+         |     \n" +
+                                        "|            +----------------+         |\n" +
                                         "|                                       |\n" +
                                         "|_______________________________________|");
                                 scan.nextLine();
@@ -542,7 +550,7 @@ public class App {
                                         "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
                                         "|                                       |\n" +
                                         "|                                       |\n" +
-                                        "|                     #numeromacchinetta|\n" +
+                                        "(  " + seller.getSellerId() + " )\n" +
                                         "|_______________________________________|\n");
                                 break;
                             case 0:
@@ -557,10 +565,10 @@ public class App {
                                 "(  JAVAUTOBUS                           )\n" +
                                 "(                                       )\n" +
                                 "(                                       )\n" +
-                                "(           .DATAEMISSIONE              )\n" +
+                                "(          " + tickets.getDateOfEmission() + "                   )\n" +
                                 "(                                       )\n" +
                                 "(                                       )\n" +
-                                "(                    #numeromacchinetta )\n" +
+                                "(  " + seller.getSellerId() + " )\n" +
                                 "(_______________________________________)");
                         break;
                     case 0:

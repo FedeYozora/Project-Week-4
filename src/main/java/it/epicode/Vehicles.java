@@ -5,6 +5,7 @@ import it.epicode.enums.VehicleType;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,20 @@ public class Vehicles {
 
     @Column(nullable = false)
     private int capacity;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "maintenance_records",
+            joinColumns = @JoinColumn(name = "transport_means_id")
+    )
+    @OrderColumn(name = "maintenance_order")
+    private List<MaintenanceRecord> maintenanceRecords;
+
+
+    @Column(name = "service_start_date")
+    private LocalDate serviceStartDate;
+    @Column(name = "service_end_date")
+    private LocalDate serviceEndDate;
 
     @Column(name = "in_maintenance", nullable = false)
     private boolean inMaintenance;
@@ -51,6 +66,14 @@ public class Vehicles {
         this.vehicleType = vehicleType;
         this.capacity = capacity;
         this.inMaintenance = false;
+    }
+
+    public Vehicles(VehicleType vehicleType, int capacity, LocalDate serviceStartDate, LocalDate serviceEndDate, boolean inMaintenance) {
+        this.vehicleType = vehicleType;
+        this.capacity = capacity;
+        this.serviceStartDate = serviceStartDate;
+        this.serviceEndDate = serviceEndDate;
+        this.inMaintenance = inMaintenance;
     }
 
     public Long getVehicleNumber() {
