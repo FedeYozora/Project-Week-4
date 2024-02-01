@@ -71,9 +71,9 @@ public class VehicleDAO {
         }
     }
 
-    public void doRoute(Routes route, Vehicles vehicle) {
-        vehicle.setRoutesCompleted(vehicle.getRoutesCompleted() + 1);
-        Random random = new Random();
-        int travelTime = random.nextInt(route.getAverageTravelTime() - 20, route.getAverageTravelTime() + 20);
-    }
+//    public void doRoute(Routes route, Vehicles vehicle) {
+//        vehicle.setRoutesCompleted(vehicle.getRoutesCompleted() + 1);
+//        Random random = new Random();
+//        int travelTime = random.nextInt(route.getAverageTravelTime() - 20, route.getAverageTravelTime() + 20);
+//    }
 }
