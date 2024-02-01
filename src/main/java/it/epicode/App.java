@@ -60,11 +60,11 @@ public class App {
         vehicle.setInMaintenance(true);
         vehicleDAO.save(vehicle);
 
-
-        Routes route = new Routes("Roma", "Milano", 30, vehicle);
-        Routes route2 = new Routes("Roma", "Napoli", 20, vehicle);
-        routesDAO.save(route);
-        routesDAO.save(route2);
+        Routes routes = new Routes("Roma", "Milano", 30, vehicles);
+        Routes routesDue = new Routes("Roma", "Napoli", 20, vehicles);
+        routesDAO.save(routes);
+        routesDAO.save(routesDue);
+        
 //        sellerDAO.filterByService(SellerType.AUTOMATIC);
 //        cardDAO.delete(card);
 //        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a"));
@@ -677,12 +677,29 @@ public class App {
                 User federico = new User("Federico", "Bonfiglio");
                 User personaggio;
 
-                Vehicles bus = new Vehicles(VehicleType.BUS, 30);
-                Vehicles bus2 = new Vehicles(VehicleType.BUS, 80);
-                Vehicles bus3 = new Vehicles(VehicleType.BUS, 70);
-                Vehicles tram = new Vehicles(VehicleType.TRAM, 120);
-                Vehicles tram2 = new Vehicles(VehicleType.TRAM, 120);
-                Vehicles tram3 = new Vehicles(VehicleType.TRAM, 120);
+                Vehicles vehicle1 = new Vehicles(VehicleType.BUS,50);
+                Vehicles vehicles2 = new Vehicles(VehicleType.BUS,60);
+                Vehicles vehicles3 = new Vehicles(VehicleType.BUS,75);
+                Vehicles vehicles4 = new Vehicles(VehicleType.TRAM,130);
+                Vehicles vehicles5 = new Vehicles(VehicleType.TRAM,130);
+                Vehicles vehicles6 = new Vehicles(VehicleType.TRAM,130);
+                vehicles.setTickets(tickets);
+                vehicleDAO.save(vehicle1);
+                vehicleDAO.save(vehicles2);
+                vehicleDAO.save(vehicles3);
+                vehicleDAO.save(vehicles4);
+                vehicleDAO.save(vehicles5);
+                vehicleDAO.save(vehicles6);
+
+
+                Routes routes1= new Routes("Piramide","stazione Termini",2,vehicle1);
+                Routes routes2 = new Routes("Aeroporto Ciampino","stazione Tiburtina",6,vehicles2);
+                Routes routes3 = new Routes("Tivoli","stazione Termini",5,vehicles3);
+                Routes routes4 = new Routes("Stazione Centrale","Viale Bligny",2,vehicles4);
+                Routes routes5 = new Routes("Duomo","SanSiro",2,vehicles5);
+                Routes routes6 = new Routes("Piazza Castello","Ospedale Maggiore",4,vehicles6);
+
+
 
 
                 if (scelta == 1) {
@@ -720,16 +737,34 @@ public class App {
                                 int sceltaBus = scan.nextInt();
                                 switch (sceltaBus) {
                                     case 1:
-                                        System.out.println("Hai scelto il " + "bus 1" + " La tua tratta è:");
-                                        System.out.println("Piramide - Stazione Termini");
+                                        System.out.println("Hai scelto il " + vehicle1.getVehicleNumber() + " La tua tratta è:");
+                                        System.out.println(routes1.getRouteStart() + " - " + routes1.getRouteEnd()) ;
                                         System.out.println("          ______________________\n" +
                                                 "       |,----.,----.,----.,--.\\\n" +
                                                 "       ||    ||    ||    ||   \\\\\n" +
                                                 "       |`----'`----'|----||----\\`.\n" +
-                                                "       [     23     |   -||- __|(|\n" +
+                                                "       [            |   -||- __|(|\n" +
                                                 "       [  ,--.      |____||.--.  |\n" +
                                                 "       =-(( `))-----------(( `))==\n" +
-                                                "          `--'     ");
+                                                "          `--'             `--   ");
+
+                                        System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
+                                        int sceltatimbro = scan.nextInt();
+                                        switch (sceltatimbro)  {
+
+                                            case 1:
+                                                System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                break;
+                                            case 2:
+                                                System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
+                                                break;
+                                            case 3:
+                                                System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
+
+                                            default:
+                                                System.out.println("Scelta non valida.");
+                                                break;
+                                        }
                                         try {
                                             Thread.sleep(1000);
                                         } catch (InterruptedException e) {
@@ -739,10 +774,11 @@ public class App {
                                                 "                 |,----.,----.,----.,--.\\\n" +
                                                 "                 ||    ||    ||    ||   \\\\\n" +
                                                 "                 |`----'`----'|----||----\\`.\n" +
-                                                "                 [     23     |   -||- __|(|\n" +
+                                                "                 [            |   -||- __|(|\n" +
                                                 "                 [  ,--.      |____||.--.  |\n" +
                                                 "                 =-(( `))-----------(( `))==\n" +
-                                                "                    `--'     ");
+                                                "                    `--'             `--'      ");
+
                                         try {
                                             Thread.sleep(1000);
                                         } catch (InterruptedException e) {
@@ -752,10 +788,10 @@ public class App {
                                                 "                           |,----.,----.,----.,--.\\\n" +
                                                 "                           ||    ||    ||    ||   \\\\\n" +
                                                 "                           |`----'`----'|----||----\\`.\n" +
-                                                "                           [     23     |   -||- __|(|\n" +
+                                                "                           [            |   -||- __|(|\n" +
                                                 "                           [  ,--.      |____||.--.  |\n" +
                                                 "                           =-(( `))-----------(( `))==\n" +
-                                                "                              `--'     ");
+                                                "                              `--'             `--'    ");
                                         try {
                                             Thread.sleep(1000);
                                         } catch (InterruptedException e) {
@@ -765,35 +801,146 @@ public class App {
                                                 "                                     |,----.,----.,--- |\n" +
                                                 "                                     ||    ||    ||     ||\n" +
                                                 "                     ----            |`----'`----'|----|||\n" +
-                                                "                            -----    [     23     |   -||\n" +
+                                                "                            -----    [            |   -||\n" +
                                                 "                ----                 [  ,--.      |____||\n" +
                                                 "                          ---       =-(( `))-----------|\n" +
                                                 "                                        `--'     ");
                                         break;
                                     case 2:
-                                        System.out.println("Hai scelto il " + "bus 2" + " La tua tratta è:");
-                                        System.out.println("Aeroporto Ciampino - stazione Tiburtina");
-                                        System.out.println("        ______________________\n" +
+                                        System.out.println("Hai scelto il " + vehicles2.getVehicleNumber() + " La tua tratta è:");
+                                        System.out.println(routes2.getRouteStart() + " - " + routes2.getRouteEnd());
+                                        System.out.println("          ______________________\n" +
                                                 "       |,----.,----.,----.,--.\\\n" +
                                                 "       ||    ||    ||    ||   \\\\\n" +
                                                 "       |`----'`----'|----||----\\`.\n" +
-                                                "       [    123     |   -||- __|(|\n" +
+                                                "       [            |   -||- __|(|\n" +
                                                 "       [  ,--.      |____||.--.  |\n" +
                                                 "       =-(( `))-----------(( `))==\n" +
-                                                "          `--'     ");
+                                                "          `--'             `--'    ");
+                                        System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
+                                        int sceltatimbro2 = scan.nextInt();
+                                        switch (sceltatimbro2)  {
 
+                                            case 1:
+                                                System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                break;
+                                            case 2:
+                                                System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
+                                                break;
+                                            case 3:
+                                                System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
+
+                                            default:
+                                                System.out.println("Scelta non valida.");
+                                                break;
+                                        }
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("                    ______________________\n" +
+                                                "                 |,----.,----.,----.,--.\\\n" +
+                                                "                 ||    ||    ||    ||   \\\\\n" +
+                                                "                 |`----'`----'|----||----\\`.\n" +
+                                                "                 [            |   -||- __|(|\n" +
+                                                "                 [  ,--.      |____||.--.  |\n" +
+                                                "                 =-(( `))-----------(( `))==\n" +
+                                                "                    `--'             `--'   ");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("                              ______________________\n" +
+                                                "                           |,----.,----.,----.,--.\\\n" +
+                                                "                           ||    ||    ||    ||   \\\\\n" +
+                                                "                           |`----'`----'|----||----\\`.\n" +
+                                                "                           [            |   -||- __|(|\n" +
+                                                "                           [  ,--.      |____||.--.  |\n" +
+                                                "                           =-(( `))-----------(( `))==\n" +
+                                                "                              `--'             `--'       ");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("                                        ______________|\n" +
+                                                "                                     |,----.,----.,--- |\n" +
+                                                "                                     ||    ||    ||     ||\n" +
+                                                "                     ----            |`----'`----'|----|||\n" +
+                                                "                            -----    [            |   -||\n" +
+                                                "                ----                 [  ,--.      |____||\n" +
+                                                "                          ---       =-(( `))-----------|\n" +
+                                                "                                       `--'     ");
                                         break;
                                     case 3:
-                                        System.out.println("Hai scelto il  " + bus3.getVehicleNumber() + "  La tua tratta è:");
-                                        System.out.println("Tivoli - Stazione Termini+");
-                                        System.out.println("         ______________________\n" +
+                                        System.out.println("Hai scelto il  " + vehicles3.getVehicleNumber() + "  La tua tratta è:");
+                                        System.out.println(routes3.getRouteStart() + " - " + routes3.getRouteEnd());
+                                        System.out.println("          ______________________\n" +
                                                 "       |,----.,----.,----.,--.\\\n" +
                                                 "       ||    ||    ||    ||   \\\\\n" +
                                                 "       |`----'`----'|----||----\\`.\n" +
-                                                "       [   289      |   -||- __|(|\n" +
+                                                "       [            |   -||- __|(|\n" +
                                                 "       [  ,--.      |____||.--.  |\n" +
                                                 "       =-(( `))-----------(( `))==\n" +
-                                                "          `--'     ");
+                                                "          `--'             `--'       ");
+                                        System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
+                                        int sceltatimbro3 = scan.nextInt();
+                                        switch (sceltatimbro3)  {
+
+                                            case 1:
+                                                System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                break;
+                                            case 2:
+                                                System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
+                                                break;
+                                            case 3:
+                                                System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
+
+                                            default:
+                                                System.out.println("Scelta non valida.");
+                                                break;
+                                        }
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("                    ______________________\n" +
+                                                "                 |,----.,----.,----.,--.\\\n" +
+                                                "                 ||    ||    ||    ||   \\\\\n" +
+                                                "                 |`----'`----'|----||----\\`.\n" +
+                                                "                 [            |   -||- __|(|\n" +
+                                                "                 [  ,--.      |____||.--.  |\n" +
+                                                "                 =-(( `))-----------(( `))==\n" +
+                                                "                    `--'              `--'   ");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("                              ______________________\n" +
+                                                "                           |,----.,----.,----.,--.\\\n" +
+                                                "                           ||    ||    ||    ||   \\\\\n" +
+                                                "                           |`----'`----'|----||----\\`.\n" +
+                                                "                           [            |   -||- __|(|\n" +
+                                                "                           [  ,--.      |____||.--.  |\n" +
+                                                "                           =-(( `))-----------(( `))==\n" +
+                                                "                              `--'             `--'      ");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("                                        ______________|\n" +
+                                                "                                     |,----.,----.,--- |\n" +
+                                                "                                     ||    ||    ||     ||\n" +
+                                                "                     ----            |`----'`----'|----|||\n" +
+                                                "                            -----    [            |   -||\n" +
+                                                "                ----                 [  ,--.      |____||\n" +
+                                                "                          ---       =-(( `))-----------|\n" +
+                                                "                                        `--'     ");
                                         break;
                                     default:
                                         System.out.println("Scelta non valida.");
@@ -813,7 +960,7 @@ public class App {
                                 switch (sceltaTram) {
                                     case 1:
                                         System.out.println("Hai scelto il FakerTaxi La tua tratta è:");
-                                        System.out.println("Duomo - Stazione Centrale");
+                                        System.out.println(routes4.getRouteStart() + " - " + routes4.getRouteEnd());
                                         System.out.println("   ,',                                   ,',\n" +
                                                 "     ', ,'                                 ', ,'\n" +
                                                 "  ,----'--------------------------.     ,----'--------------------------.\n" +
@@ -821,10 +968,27 @@ public class App {
                                                 " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
                                                 " ,_    ______ FakerTaxi ______     |=-=,_    ______           ______  jg |\n" +
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+                                        System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
+                                        int sceltatimbro4 = scan.nextInt();
+                                        switch (sceltatimbro4)  {
+
+                                            case 1:
+                                                System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                break;
+                                            case 2:
+                                                System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
+                                                break;
+                                            case 3:
+                                                System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
+
+                                            default:
+                                                System.out.println("Scelta non valida.");
+                                                break;
+                                        }
                                         break;
                                     case 2:
                                         System.out.println("Hai scelto il Tram.Random La tua tratta è:");
-                                        System.out.println("Viale Bligny - San Siro");
+                                        System.out.println(routes5.getRouteStart() + " - " + routes5.getRouteEnd());
                                         System.out.println("   ,',                                   ,',\n" +
                                                 "     ', ,'                                 ', ,'\n" +
                                                 "  ,----'--------------------------.     ,----'--------------------------.\n" +
@@ -832,11 +996,26 @@ public class App {
                                                 " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
                                                 " ,_    ______TramDom______         |=-=,_    ______           ______  jg |\n" +
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+                                        System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
+                                        int sceltatimbro5 = scan.nextInt();
+                                        switch (sceltatimbro5)  {
 
+                                            case 1:
+                                                System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                break;
+                                            case 2:
+                                                System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
+                                                break;
+                                            case 3:
+                                                System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
+                                            default:
+                                                System.out.println("Scelta non valida.");
+                                                break;
+                                        }
                                         break;
                                     case 3:
                                         System.out.println("Hai scelto il SwitchTram La tua tratta è:");
-                                        System.out.println("Piazza Castello - Ospedale maggiore");
+                                        System.out.println(routes6.getRouteStart() + " - " + routes6.getRouteEnd());
                                         System.out.println("   ,',                                   ,',\n" +
                                                 "     ', ,'                                 ', ,'\n" +
                                                 "  ,----'--------------------------.     ,----'--------------------------.\n" +
@@ -844,82 +1023,93 @@ public class App {
                                                 " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
                                                 " ,_    ______SwitchTram ______     |=-=,_    ______           ______  jg |\n" +
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+                                        System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
+                                        int sceltatimbro6 = scan.nextInt();
+                                        switch (sceltatimbro6)  {
 
+                                            case 1:
+                                                System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                break;
+                                            case 2:
+                                                System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
+                                                break;
+                                            case 3:
+                                                System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
+
+                                            default:
+                                                System.out.println("Scelta non valida.");
+                                                break;
+                                        }
                                         break;
                                     default:
                                         System.out.println("Scelta non valida.");
                                 }
                         }
                         System.out.println(" ");
-                        System.out.println("C'è il controllore a bordo? \n1. Sì \n2. No \n");
-                        int presenzaControllore = scan.nextInt();
-                        switch (presenzaControllore) {
-                            case 1:
-                                System.out.println("  " +
-                                        "      _.-\"` `'-.\n" +
-                                        "       '._ __{}_(\n" +
-                                        "         |'--.__\\\n" +
-                                        "        (   ^_\\^\n" +
-                                        "         |   * |\n" +
-                                        "         )\\___/\n" +
-                                        "     .--'`:._]\n" +
-                                        "    /  \\      '-." +
-                                        "\nSalve ha il biglietto o l'abbonamento? \n1. Mostra biglietto \n2. Mostra abbonamento \n3. *Prova a scappare*"
-                                );
+                      if(userDAO.isThereTicketChecker() ) {
+                          System.out.println("  " +
+                                  "      _.-\"` `'-.\n" +
+                                  "       '._ __{}_(\n" +
+                                  "         |'--.__\\\n" +
+                                  "        (   -_\\-\n" +
+                                  "         |  __ |\n" +
+                                  "         )\\___/\n" +
+                                  "     .--'`:._]\n" +
+                                  "    /  \\      '-." +
+                                  "\nSalve ha il biglietto o l'abbonamento? \n1. Mostra biglietto \n2. Mostra abbonamento \n3. *Prova a scappare*"
+                          );
 
-                                System.out.println();
-                                int presenzaBiglietto = scan.nextInt();
-                                switch (presenzaBiglietto) {
-                                    case 1:
-                                        System.out.println("  " +
-                                                "      _.-\"` `'-.\n" +
-                                                "       '._ __{}_(\n" +
-                                                "         |'--.__\\\n" +
-                                                "        (   ^_\\^\n" +
-                                                "         |   o |\n" +
-                                                "         )\\___/\n" +
-                                                "     .--'`:._]\n" +
-                                                "    /  \\      '-." +
-                                                "\nIl tuo biglietto è valido."
-                                        );
-                                        System.out.println(" ");
-                                        break;
-                                    case 2:
-                                        System.out.println("  " +
-                                                "      _.-\"` `'-.\n" +
-                                                "       '._ __{}_(\n" +
-                                                "         |'--.__\\\n" +
-                                                "        (   ^_\\^\n" +
-                                                "         |   o |\n" +
-                                                "         )\\___/\n" +
-                                                "     .--'`:._]\n" +
-                                                "    /  \\      '-." +
-                                                "\nL'abbonamento risulta attivo."
-                                        );
-                                        System.out.println(" ");
-                                        break;
-                                    case 3:
-                                        System.out.println("  " +
-                                                "      _.-\"` `'-.\n" +
-                                                "       '._ __{}_(\n" +
-                                                "         |'--.__\\\n" +
-                                                "        (   ^_\\^\n" +
-                                                "         |   0 |\n" +
-                                                "         )\\___/\n" +
-                                                "     .--'`:._]\n" +
-                                                "    /  \\      '-.  " +
+                          System.out.println();
+                          int presenzaBiglietto = scan.nextInt();
+                          switch (presenzaBiglietto) {
+                              case 1:
+                                  System.out.println("  " +
+                                          "      _.-\"` `'-.\n" +
+                                          "       '._ __{}_(\n" +
+                                          "         |'--.__\\\n" +
+                                          "        (   ^_\\^\n" +
+                                          "         |   o |\n" +
+                                          "         )\\___/\n" +
+                                          "     .--'`:._]\n" +
+                                          "    /  \\      '-." +
+                                          "\nIl tuo biglietto " + tickets.getId() + " è valido."
+                                  );
+                                  System.out.println(" ");
+                                  break;
+                              case 2:
+                                  System.out.println("  " +
+                                          "      _.-\"` `'-.\n" +
+                                          "       '._ __{}_(\n" +
+                                          "         |'--.__\\\n" +
+                                          "        (   ^_\\^\n" +
+                                          "         |   o |\n" +
+                                          "         )\\___/\n" +
+                                          "     .--'`:._]\n" +
+                                          "    /  \\      '-." +
+                                          "\nL'abbonamento " + card.getId_tessera() + " risulta attivo."
+                                  );
+                                  System.out.println(" ");
+                                  break;
+                              case 3:
+                                  System.out.println("  " +
+                                          "      _.-\"` `'-.\n" +
+                                          "       '._ __{}_(\n" +
+                                          "         |'--.__\\\n" +
+                                          "        (   -_\\-\n" +
+                                          "         |   0 |\n" +
+                                          "         )\\___/\n" +
+                                          "     .--'`:._]\n" +
+                                          "    /  \\      '-.  "
 
-                                                "\n*provi a scappare ma il controllore ti acciuffa con il lungo braccio della legge*.\n Dove credi di andare giovanotto?\n*Sei stato multato per 60$*"
-                                        );
-                                        System.out.println("   ");
-                                        break;
-                                }
-                                break;
-                            case 2:
+                                  );
+                                  userDAO.attemptEscape();
+                                  System.out.println("   ");
+                                  break;
+                          }
+                      }else{
                                 System.out.println(" ");
-                                System.out.println("Pagherò prima che salga il controllore.  " +
-                                        " ");
-                                break;
+                                System.out.println("Che fortuna non devo timbrare il biglietto!"
+                                         );
                         }
                     }
                 }
@@ -927,7 +1117,6 @@ public class App {
                 System.out.println("Hai selezionato un carattere sbagliato.. ");
                 break;
         }
-
 
     }
 }

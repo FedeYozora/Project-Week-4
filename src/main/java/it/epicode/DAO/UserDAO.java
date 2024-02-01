@@ -38,4 +38,29 @@ public class UserDAO {
             System.out.println(e.getMessage());
         }
     }
+
+    public double generateRandom() {
+        return Math.random();
+    }
+
+    public void attemptEscape() {
+        double escapeSuccessRate = generateRandom();
+        if (escapeSuccessRate >= 0.5) {
+            System.out.println("**Hai evaso con successo il controllore!**");
+        } else {
+            System.out.println("*Il controllore ti ha acciuffato con il lungo braccio della legge!*.\n*Dove credi di andare giovanotto?\n*Sei stato multato per 60$*");
+        }
+    }
+
+
+    public boolean isThereTicketChecker() {
+        double ticketCheckerRate = generateRandom();
+        if (ticketCheckerRate >= 0.5) {
+            System.out.println("**Il controllore è a bordo!**");
+            return true;
+        } else {
+            System.out.println("**Il controllore non c'è! L'hai scampata bella!**");
+            return false;
+        }
+    }
 }
