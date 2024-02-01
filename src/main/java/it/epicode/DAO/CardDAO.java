@@ -1,11 +1,12 @@
 package it.epicode.DAO;
 
-import it.epicode.Card;
-import it.epicode.User;
+import it.epicode.*;
 
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.time.LocalDate;
+import java.util.UUID;
 
 public class CardDAO {
     private static EntityManager em;
@@ -39,4 +40,22 @@ public class CardDAO {
             System.out.println(e.getMessage());
         }
     }
+
+
+    public void updateCardSub(UUID cardID, Subscriptions newSub) {
+        try {
+            EntityTransaction transaction = em.getTransaction();
+            TravelDAO travelDAO = new TravelDAO(em);
+            transaction.begin();
+            Card card = em.find(Card.class, cardID);
+            travelDAO.delete(card.getTravelDocument());
+            card.setTravelDocument(newSub);
+
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 }

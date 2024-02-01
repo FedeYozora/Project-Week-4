@@ -10,14 +10,14 @@ public class Routes {
     private Long routeNumber;
     private String routeStart;
     private String routeEnd;
-    private Integer averageTravelTime;
+    private int averageTravelTime;
     @ManyToOne
     private Vehicles vehicle;
 
     public Routes() {
     }
 
-    public Routes( String routeStart, String routeEnd, Integer averageTravelTime, Vehicles vehicle) {
+    public Routes(String routeStart, String routeEnd, Integer averageTravelTime, Vehicles vehicle) {
         this.routeStart = routeStart;
         this.routeEnd = routeEnd;
         this.averageTravelTime = averageTravelTime;
@@ -48,11 +48,11 @@ public class Routes {
         this.routeEnd = routeEnd;
     }
 
-    public Integer getAverageTravelTime() {
+    public int getAverageTravelTime() {
         return averageTravelTime;
     }
 
-    public void setAverageTravelTime(Integer averageTravelTime) {
+    public void setAverageTravelTime(int averageTravelTime) {
         this.averageTravelTime = averageTravelTime;
     }
 
