@@ -26,6 +26,7 @@ public class App {
         TravelDAO travelDAO = new TravelDAO(em);
         SellerDAO sellerDAO = new SellerDAO(em);
         VehicleDAO vehicleDAO = new VehicleDAO(em);
+        RoutesDAO routesDAO = new RoutesDAO(em);
         Scanner scan = new Scanner(System.in);
 
         User user = new User("gianni", "cabiddu");
@@ -45,24 +46,27 @@ public class App {
         Subscriptions subscription2 = new Subscriptions(seller, LocalDate.now(), 150.00, SubType.MONTHLY);
         travelDAO.save(subscription2);
 
-        Tickets tickets = new Tickets(seller, LocalDate.now(), 2.00);
-        travelDAO.save(tickets);
+        Tickets ticket = new Tickets(seller, LocalDate.now(), 2.00);
+        travelDAO.save(ticket);
 
         Card card = new Card(user, LocalDate.now(), subscription);
         cardDAO.save(card);
         user.setCard(card);
 
-        Vehicles vehicles = new Vehicles(VehicleType.BUS, 30);
-        vehicles.setTickets(tickets);
-        vehicles.setMaintenanceStartDate(LocalDate.of(2024, 1, 15));
-        vehicles.setMaintenanceEndDate(LocalDate.of(2024, 1, 25));
-        vehicles.setInMaintenance(true);
-        vehicleDAO.save(vehicles);
 
-        Routes routes = new Routes("Roma", "Milano", 30, vehicles);
-        Routes routes2 = new Routes("Roma", "Napoli", 20, vehicles);
-        routesDAO.save(routes);
-        routesDAO.save(routes2);
+        Vehicles vehicle = new Vehicles(VehicleType.BUS, 30);
+        vehicle.setTickets(ticket);
+        vehicle.setTickets(tickets);
+        vehicle.setMaintenanceStartDate(LocalDate.of(2024, 1, 15));
+        vehicle.setMaintenanceEndDate(LocalDate.of(2024, 1, 25));
+        vehicle.setInMaintenance(true);
+        vehicleDAO.save(vehicle);
+
+
+        Routes route = new Routes("Roma", "Milano", 30, vehicle);
+        Routes route2 = new Routes("Roma", "Napoli", 20, vehicle);
+        routesDAO.save(route);
+        routesDAO.save(route2);
 //        sellerDAO.filterByService(SellerType.AUTOMATIC);
 //        cardDAO.delete(card);
 //        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a"));
@@ -71,6 +75,13 @@ public class App {
 //        vehicleDAO.findByVehicleType(VehicleType.BUS);
 //        vehicleDAO.findByVehicleType(VehicleType.TRAM);
         vehicleDAO.findVehiclesInMaintenanceDuringPeriod(LocalDate.of(2024, 1, 1), LocalDate.of(2024, 2, 1));
+
+        //  vehicleDAO.sendVehicleToMaintenance(1L);
+        // vehicleDAO.returnVehicleFromMaintenance(1L, 7);
+
+        vehicleDAO.doRoute(route, 1L);
+
+
         travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e"));
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
@@ -124,7 +135,7 @@ public class App {
                                 "(  JAVAUTOBUS                           )\n" +
                                 "(                                       ) \n" +
                                 "(                                       ) \n" +
-                                "(          " + tickets.getDateOfEmission() + "                   )\n" +
+                                "(          " + ticket.getDateOfEmission() + "                   )\n" +
                                 "(                                       )\n" +
                                 "(   ID Venditore:                       )\n" +
                                 "(  " + seller2.getSellerId() + " )\n" +
@@ -189,7 +200,17 @@ public class App {
                                                 "  /  /|      |\\  \\  / /  \n" +
                                                 " /  / |      | \\  \\/ /\n" +
                                                 "-------------------------------");
+                                        scan.nextLine();
                                         String scanSelection5 = scan.nextLine();
+                                        if (!travelDAO.checkUserByCardId(UUID.fromString(scanSelection5))) {
+                                            System.out.println("Hai inserito un numero di carta invalido o inesistente," +
+                                                    "devi ricominciare d'accapo x.x");
+                                            System.exit(0);
+                                        }
+                                        User fu1 = travelDAO.findUserByCardId(UUID.fromString(scanSelection5));
+                                        Subscriptions fs1 = travelDAO.findSubByUserId(fu1.getId());
+
+
                                         // salvare il valore di questo scan
                                         System.out.println("                   -------------\n" +
                                                 "      ////\\\\\\\\     /             \n" +
@@ -225,21 +246,32 @@ public class App {
                                                         "\n" +
                                                         " _______________________________________\n" +
                                                         "|                                       |\n" +
-                                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
+                                                        "|   ||" + fu1.getName() + "      ||" + fu1.getSurname() + "  |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
                                                         "|       || ABBONAMENTO SETTIMANALE      |\n" +
                                                         "|                                       |\n" +
-                                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
+                                                        "|      ." + fs1.getDateOfEmission() + " / ." + fs1.getDateOfExpiration() + "   |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
                                                         "(  " + seller2.getSellerId() + " )\n" +
                                                         "|_______________________________________|");
+
+
+                                                Subscriptions subscriptionUser = new Subscriptions(seller2, LocalDate.now(),
+                                                        24.99, SubType.WEEKLY);
+                                                cardDAO.updateCardSub(UUID.fromString(scanSelection5), subscriptionUser);
+
+
                                                 // FINE ABBONAMENTO SETTIMANALE CARD AGGIORNATA
                                                 break;
 
 
                                             case 2:
+
+                                                Subscriptions subscriptionUser2 = new Subscriptions(seller2, LocalDate.now(),
+                                                        49.99, SubType.MONTHLY);
+                                                cardDAO.updateCardSub(UUID.fromString(scanSelection5), subscriptionUser2);
                                                 System.out.println("                    -------------\n" +
                                                         "      ////\\\\\\\\     /             \n" +
                                                         "      |      |    <  Perfetto, ecco a te la card aggiornata\n" +
@@ -255,20 +287,22 @@ public class App {
                                                         "\n" +
                                                         " _______________________________________\n" +
                                                         "|                                       |\n" +
-                                                        "|   || NOMEMAIUSC      ||COGNOMEMAIUSC  |\n" +
+                                                        "|   || " + fu1.getName() + "      ||" + fu1.getSurname() + "  |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
                                                         "|          || ABBONAMENTO MENSILE       |\n" +
                                                         "|                                       |\n" +
-                                                        "|      .DATAEMISSIONE / .DATASCADENZA   |\n" +
+                                                        "|      ." + subscriptionUser2.getDateOfEmission() + " / ." + subscriptionUser2.getDateOfExpiration() + "   |\n" +
                                                         "|                                       |\n" +
                                                         "|                                       |\n" +
                                                         "(  " + seller2.getSellerId() + " )\n" +
                                                         "|_______________________________________|");
+
+
                                                 // FINE ABBONAMENTO MENSILE CARD AGGIORNATA
                                                 break;
                                         }
-
+                                        break;
                                     case 2:
                                         System.out.println("                    -------------\n" +
                                                 "      ////\\\\\\\\     /             \n" +
@@ -544,6 +578,8 @@ public class App {
                                         "|_______________________________________|");
                                 scan.nextLine();
                                 String scanSelection15 = scan.nextLine();
+
+
                                 System.out.println("     ||CARD AGGIORNATA CON SUCCESSO||\n" +
                                         "\n" +
                                         " _______________________________________\n" +
@@ -571,7 +607,7 @@ public class App {
                                 "(  JAVAUTOBUS                           )\n" +
                                 "(                                       )\n" +
                                 "(                                       )\n" +
-                                "(          " + tickets.getDateOfEmission() + "                   )\n" +
+                                "(          " + ticket.getDateOfEmission() + "                   )\n" +
                                 "(                                       )\n" +
                                 "(                                       )\n" +
                                 "(  " + seller.getSellerId() + " )\n" +
@@ -746,7 +782,7 @@ public class App {
                                                 "  ,----'--------------------------.     ,----'--------------------------.\n" +
                                                 "  /''|```|```|```|```|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
                                                 " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
-                                                " ,_    ______Tram.Random______     |=-=,_    ______           ______  jg |\n" +
+                                                " ,_    ______TramDom______         |=-=,_    ______           ______  jg |\n" +
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
 
                                         break;

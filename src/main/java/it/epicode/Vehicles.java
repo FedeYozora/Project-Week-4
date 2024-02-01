@@ -24,10 +24,6 @@ public class Vehicles {
     @Column(nullable = false)
     private int capacity;
 
-    @Column(name = "maintenance_start_date")
-    private LocalDate maintenanceStartDate;
-    @Column(name = "maintenance_end_date")
-    private LocalDate maintenanceEndDate;
 
     @Column(name = "in_maintenance", nullable = false)
     private boolean inMaintenance;
@@ -37,6 +33,14 @@ public class Vehicles {
     @OneToMany(mappedBy = "vehicles", orphanRemoval = true)
 
     private Set<Tickets> tickets = new LinkedHashSet<>();
+
+
+    @Column(name = "maintenance_start_date")
+    private LocalDate maintenanceStartDate;
+
+    @Column(name = "maintenance_end_date")
+    private LocalDate maintenanceEndDate;
+
 
     public Set<Tickets> getTickets() {
         return tickets;
