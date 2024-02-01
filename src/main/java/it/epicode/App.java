@@ -28,7 +28,7 @@ public class App {
         VehicleDAO vehicleDAO = new VehicleDAO(em);
         Scanner scan = new Scanner(System.in);
 
-        User user = new User("gianni", "cabiddu");
+        User user = new User("Gianni", "Cabiddu");
         userDAO.save(user);
 
         Sellers seller = new Sellers(SellerType.AUTOMATIC);
@@ -60,27 +60,22 @@ public class App {
         vehicle.setInMaintenance(true);
         vehicleDAO.save(vehicle);
 
-        Routes routes = new Routes("Roma", "Milano", 30, vehicles);
-        Routes routesDue = new Routes("Roma", "Napoli", 20, vehicles);
+        Routes routes = new Routes("Roma", "Milano", 30, vehicle);
+        Routes routesDue = new Routes("Roma", "Napoli", 20, vehicle);
         routesDAO.save(routes);
         routesDAO.save(routesDue);
-        
-//        sellerDAO.filterByService(SellerType.AUTOMATIC);
-//        cardDAO.delete(card);
-//        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a"));
-//        System.out.println();
-//        travelDAO.findSubByUserId(UUID.fromString("e523079c-7656-434f-a8ba-9de5ff74af05"));
-//        vehicleDAO.findByVehicleType(VehicleType.BUS);
-//        vehicleDAO.findByVehicleType(VehicleType.TRAM);
-        vehicleDAO.findVehiclesInMaintenanceDuringPeriod(LocalDate.of(2024, 1, 1), LocalDate.of(2024, 2, 1));
 
-        //  vehicleDAO.sendVehicleToMaintenance(1L);
-        // vehicleDAO.returnVehicleFromMaintenance(1L, 7);
+//        sellerDAO.filterByService(SellerType.AUTOMATIC); //FILTRO DEI VENDITORI SE SONO DISTRIBUTORI AUTOMATICI E MOSTRA UNA LISTA DI SOLO QUELLI IN SERVIZIO
+//        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a")); //CONTROLLO ABBONAMENTO SE VALIDO IN BASE A CODICE TESSERA DELL'UTENTE
+//        travelDAO.findSubByUserId(UUID.fromString("e523079c-7656-434f-a8ba-9de5ff74af05")); //RICERCA DI ABBONAMENTO TRAMITE USER ID
+//        vehicleDAO.findByVehicleType(VehicleType.BUS); // FILTRO VEICOLI PER TIPO BUS
+//        vehicleDAO.findByVehicleType(VehicleType.TRAM); // FILTRO VEICOLI PER TIPO TRAM
+//        vehicleDAO.findVehiclesInMaintenanceDuringPeriod(LocalDate.of(2024, 1, 1), LocalDate.of(2024, 2, 1)); // RICERCA DI VEICOLI IN MANUTENZIONE DATO UN PERIODO DI TEMPO DEFINITO
+//        vehicleDAO.sendVehicleToMaintenance(1L); // SET DI UN VEICOLO IN MANUTENZIONE A TEMPO INDETERMINATO
+//        vehicleDAO.returnVehicleFromMaintenance(1L, 7); // RITORNO IN SERVIZIO DEL VEICOLO
+//        vehicleDAO.doRoute(route, 1L); // COUNTER INCREMENTALE DI UNA ROUTE EFFETTUATA DA UN VEICOLO
+//        travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e")); // RICERCA DI UN UTENTE UTILIZZANDO IL SUO ID TESSERA
 
-        vehicleDAO.doRoute(route, 1L);
-
-
-        travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e"));
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
         System.out.println("2. Distributore automatico");
@@ -677,13 +672,13 @@ public class App {
                 User federico = new User("Federico", "Bonfiglio");
                 User personaggio;
 
-                Vehicles vehicle1 = new Vehicles(VehicleType.BUS,50);
-                Vehicles vehicles2 = new Vehicles(VehicleType.BUS,60);
-                Vehicles vehicles3 = new Vehicles(VehicleType.BUS,75);
-                Vehicles vehicles4 = new Vehicles(VehicleType.TRAM,130);
-                Vehicles vehicles5 = new Vehicles(VehicleType.TRAM,130);
-                Vehicles vehicles6 = new Vehicles(VehicleType.TRAM,130);
-                vehicles.setTickets(tickets);
+                Vehicles vehicle1 = new Vehicles(VehicleType.BUS, 50);
+                Vehicles vehicles2 = new Vehicles(VehicleType.BUS, 60);
+                Vehicles vehicles3 = new Vehicles(VehicleType.BUS, 75);
+                Vehicles vehicles4 = new Vehicles(VehicleType.TRAM, 130);
+                Vehicles vehicles5 = new Vehicles(VehicleType.TRAM, 130);
+                Vehicles vehicles6 = new Vehicles(VehicleType.TRAM, 130);
+                vehicle1.setTickets(ticket);
                 vehicleDAO.save(vehicle1);
                 vehicleDAO.save(vehicles2);
                 vehicleDAO.save(vehicles3);
@@ -692,14 +687,12 @@ public class App {
                 vehicleDAO.save(vehicles6);
 
 
-                Routes routes1= new Routes("Piramide","stazione Termini",2,vehicle1);
-                Routes routes2 = new Routes("Aeroporto Ciampino","stazione Tiburtina",6,vehicles2);
-                Routes routes3 = new Routes("Tivoli","stazione Termini",5,vehicles3);
-                Routes routes4 = new Routes("Stazione Centrale","Viale Bligny",2,vehicles4);
-                Routes routes5 = new Routes("Duomo","SanSiro",2,vehicles5);
-                Routes routes6 = new Routes("Piazza Castello","Ospedale Maggiore",4,vehicles6);
-
-
+                Routes routes1 = new Routes("Piramide", "stazione Termini", 2, vehicle1);
+                Routes routes2 = new Routes("Aeroporto Ciampino", "stazione Tiburtina", 6, vehicles2);
+                Routes routes3 = new Routes("Tivoli", "stazione Termini", 5, vehicles3);
+                Routes routes4 = new Routes("Stazione Centrale", "Viale Bligny", 2, vehicles4);
+                Routes routes5 = new Routes("Duomo", "SanSiro", 2, vehicles5);
+                Routes routes6 = new Routes("Piazza Castello", "Ospedale Maggiore", 4, vehicles6);
 
 
                 if (scelta == 1) {
@@ -738,7 +731,7 @@ public class App {
                                 switch (sceltaBus) {
                                     case 1:
                                         System.out.println("Hai scelto il " + vehicle1.getVehicleNumber() + " La tua tratta è:");
-                                        System.out.println(routes1.getRouteStart() + " - " + routes1.getRouteEnd()) ;
+                                        System.out.println(routes1.getRouteStart() + " - " + routes1.getRouteEnd());
                                         System.out.println("          ______________________\n" +
                                                 "       |,----.,----.,----.,--.\\\n" +
                                                 "       ||    ||    ||    ||   \\\\\n" +
@@ -750,7 +743,7 @@ public class App {
 
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro = scan.nextInt();
-                                        switch (sceltatimbro)  {
+                                        switch (sceltatimbro) {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
@@ -819,7 +812,7 @@ public class App {
                                                 "          `--'             `--'    ");
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro2 = scan.nextInt();
-                                        switch (sceltatimbro2)  {
+                                        switch (sceltatimbro2) {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
@@ -887,7 +880,7 @@ public class App {
                                                 "          `--'             `--'       ");
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro3 = scan.nextInt();
-                                        switch (sceltatimbro3)  {
+                                        switch (sceltatimbro3) {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
@@ -970,7 +963,7 @@ public class App {
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro4 = scan.nextInt();
-                                        switch (sceltatimbro4)  {
+                                        switch (sceltatimbro4) {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
@@ -998,7 +991,7 @@ public class App {
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro5 = scan.nextInt();
-                                        switch (sceltatimbro5)  {
+                                        switch (sceltatimbro5) {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
@@ -1025,7 +1018,7 @@ public class App {
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro6 = scan.nextInt();
-                                        switch (sceltatimbro6)  {
+                                        switch (sceltatimbro6) {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
@@ -1046,70 +1039,70 @@ public class App {
                                 }
                         }
                         System.out.println(" ");
-                      if(userDAO.isThereTicketChecker() ) {
-                          System.out.println("  " +
-                                  "      _.-\"` `'-.\n" +
-                                  "       '._ __{}_(\n" +
-                                  "         |'--.__\\\n" +
-                                  "        (   -_\\-\n" +
-                                  "         |  __ |\n" +
-                                  "         )\\___/\n" +
-                                  "     .--'`:._]\n" +
-                                  "    /  \\      '-." +
-                                  "\nSalve ha il biglietto o l'abbonamento? \n1. Mostra biglietto \n2. Mostra abbonamento \n3. *Prova a scappare*"
-                          );
+                        if (userDAO.isThereTicketChecker()) {
+                            System.out.println("  " +
+                                    "      _.-\"` `'-.\n" +
+                                    "       '._ __{}_(\n" +
+                                    "         |'--.__\\\n" +
+                                    "        (   -_\\-\n" +
+                                    "         |  __ |\n" +
+                                    "         )\\___/\n" +
+                                    "     .--'`:._]\n" +
+                                    "    /  \\      '-." +
+                                    "\nSalve ha il biglietto o l'abbonamento? \n1. Mostra biglietto \n2. Mostra abbonamento \n3. *Prova a scappare*"
+                            );
 
-                          System.out.println();
-                          int presenzaBiglietto = scan.nextInt();
-                          switch (presenzaBiglietto) {
-                              case 1:
-                                  System.out.println("  " +
-                                          "      _.-\"` `'-.\n" +
-                                          "       '._ __{}_(\n" +
-                                          "         |'--.__\\\n" +
-                                          "        (   ^_\\^\n" +
-                                          "         |   o |\n" +
-                                          "         )\\___/\n" +
-                                          "     .--'`:._]\n" +
-                                          "    /  \\      '-." +
-                                          "\nIl tuo biglietto " + tickets.getId() + " è valido."
-                                  );
-                                  System.out.println(" ");
-                                  break;
-                              case 2:
-                                  System.out.println("  " +
-                                          "      _.-\"` `'-.\n" +
-                                          "       '._ __{}_(\n" +
-                                          "         |'--.__\\\n" +
-                                          "        (   ^_\\^\n" +
-                                          "         |   o |\n" +
-                                          "         )\\___/\n" +
-                                          "     .--'`:._]\n" +
-                                          "    /  \\      '-." +
-                                          "\nL'abbonamento " + card.getId_tessera() + " risulta attivo."
-                                  );
-                                  System.out.println(" ");
-                                  break;
-                              case 3:
-                                  System.out.println("  " +
-                                          "      _.-\"` `'-.\n" +
-                                          "       '._ __{}_(\n" +
-                                          "         |'--.__\\\n" +
-                                          "        (   -_\\-\n" +
-                                          "         |   0 |\n" +
-                                          "         )\\___/\n" +
-                                          "     .--'`:._]\n" +
-                                          "    /  \\      '-.  "
+                            System.out.println();
+                            int presenzaBiglietto = scan.nextInt();
+                            switch (presenzaBiglietto) {
+                                case 1:
+                                    System.out.println("  " +
+                                            "      _.-\"` `'-.\n" +
+                                            "       '._ __{}_(\n" +
+                                            "         |'--.__\\\n" +
+                                            "        (   ^_\\^\n" +
+                                            "         |   o |\n" +
+                                            "         )\\___/\n" +
+                                            "     .--'`:._]\n" +
+                                            "    /  \\      '-." +
+                                            "\nIl tuo biglietto " + ticket.getId() + " è valido."
+                                    );
+                                    System.out.println(" ");
+                                    break;
+                                case 2:
+                                    System.out.println("  " +
+                                            "      _.-\"` `'-.\n" +
+                                            "       '._ __{}_(\n" +
+                                            "         |'--.__\\\n" +
+                                            "        (   ^_\\^\n" +
+                                            "         |   o |\n" +
+                                            "         )\\___/\n" +
+                                            "     .--'`:._]\n" +
+                                            "    /  \\      '-." +
+                                            "\nL'abbonamento " + card.getId_tessera() + " risulta attivo."
+                                    );
+                                    System.out.println(" ");
+                                    break;
+                                case 3:
+                                    System.out.println("  " +
+                                            "      _.-\"` `'-.\n" +
+                                            "       '._ __{}_(\n" +
+                                            "         |'--.__\\\n" +
+                                            "        (   -_\\-\n" +
+                                            "         |   0 |\n" +
+                                            "         )\\___/\n" +
+                                            "     .--'`:._]\n" +
+                                            "    /  \\      '-.  "
 
-                                  );
-                                  userDAO.attemptEscape();
-                                  System.out.println("   ");
-                                  break;
-                          }
-                      }else{
-                                System.out.println(" ");
-                                System.out.println("Che fortuna non devo timbrare il biglietto!"
-                                         );
+                                    );
+                                    userDAO.attemptEscape();
+                                    System.out.println("   ");
+                                    break;
+                            }
+                        } else {
+                            System.out.println(" ");
+                            System.out.println("Che fortuna non devo timbrare il biglietto!"
+                            );
                         }
                     }
                 }
