@@ -43,18 +43,12 @@ public class CardDAO {
 
 
     public void updateCardSub(UUID cardID, Subscriptions newSub) {
-        try {
-            EntityTransaction transaction = em.getTransaction();
-            TravelDAO travelDAO = new TravelDAO(em);
-            transaction.begin();
-            Card card = em.find(Card.class, cardID);
-            travelDAO.delete(card.getTravelDocument());
-            card.setTravelDocument(newSub);
-
-            transaction.commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        Card card = em.find(Card.class, cardID);
+        em.persist(newSub);
+        card.setTravelDocument(newSub);
+        transaction.commit();
     }
 
 
