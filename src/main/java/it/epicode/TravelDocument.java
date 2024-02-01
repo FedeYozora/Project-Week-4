@@ -19,7 +19,7 @@ public abstract class TravelDocument {
     private Sellers sold_from;
     private LocalDate dateOfEmission;
     private Double price;
-    @OneToOne(mappedBy = "travelDocument")
+    @OneToOne(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "travelDocument")
     private Card card;
 
 

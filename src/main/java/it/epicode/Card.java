@@ -1,26 +1,30 @@
 package it.epicode;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table (name = "card")
+@Table(name = "card")
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_tessera", nullable = false)
     private UUID id_tessera;
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
-    @Column(name = "date_of_emission",nullable = false)
+    @Column(name = "date_of_emission", nullable = false)
     private LocalDate dateOfEmission;
-    @Column(name = "date_of_expiration",nullable = false)
+    @Column(name = "date_of_expiration", nullable = false)
     private LocalDate dateOfExpiration;
-    @OneToOne
-    @JoinColumn(name = "travel_document_id")
+    @OneToOne(cascade = {CascadeType.REMOVE}, orphanRemoval = true)
+    @JoinColumn(name = "subscription_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private TravelDocument travelDocument;
 
     public Card() {
@@ -30,12 +34,12 @@ public class Card {
         this.user = user;
         this.dateOfEmission = dateOfEmission;
         this.dateOfExpiration = dateOfEmission.plusDays(365);
-        if(travelDocument instanceof Subscriptions){
+        if (travelDocument instanceof Subscriptions) {
             this.travelDocument = travelDocument;
-        }else{
+        } else {
             System.out.println("errore");
         }
-        }
+    }
 
     public UUID getId_tessera() {
         return id_tessera;
