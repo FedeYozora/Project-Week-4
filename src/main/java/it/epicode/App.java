@@ -586,11 +586,14 @@ public class App {
                         switch (scanSelection14) {
                             case 1:
                             case 2:
-                                SubType tipoSub;
+                                String tipoSub;
+                                SubType typeSub;
                                 if (scanSelection14 == 1) {
-                                    tipoSub = SubType.WEEKLY;
+                                    tipoSub = "ABBONAMENTO SETTIMANALE";
+                                    typeSub = SubType.WEEKLY;
                                 } else {
-                                    tipoSub = SubType.MONTHLY;
+                                    tipoSub = "ABBONAMENTO MENSILE";
+                                    typeSub = SubType.MONTHLY;
                                 }
                                 System.out.println("________________________________________\n" +
                                         "|                                       |\n" +
@@ -618,10 +621,9 @@ public class App {
                                     System.exit(0);
                                 }
                                 User fu1 = travelDAO.findUserByCardId(UUID.fromString(scanSelection15));
-                                Subscriptions fs1 = travelDAO.findSubByUserId(fu1.getId());
 
                                 Subscriptions subscriptionUser = new Subscriptions(seller2, LocalDate.now(),
-                                        19.99, tipoSub);
+                                        19.99, typeSub);
                                 cardDAO.updateCardSub(UUID.fromString(scanSelection15), subscriptionUser);
 
                                 System.out.println("     ||CARD AGGIORNATA CON SUCCESSO||\n" +
@@ -631,12 +633,12 @@ public class App {
                                         "|   || " + fu1.getName() + "      ||" + fu1.getSurname() + "  |\n" +
                                         "|                                       |\n" +
                                         "|                                       |\n" +
-                                        "|          || " + fs1.getSubType() + "           |\n" +
+                                        "|      || " + tipoSub + "           |\n" +
                                         "|                                       |\n" +
-                                        "|      ." + fs1.getDateOfEmission() + " / ." + fs1.getDateOfExpiration() + "   |\n" +
+                                        "|      ." + subscriptionUser.getDateOfEmission() + " / ." + subscriptionUser.getDateOfExpiration() + "        |\n" +
                                         "|                                       |\n" +
                                         "|                                       |\n" +
-                                        "(  " + seller.getSellerId() + " )\n" +
+                                        "|  " + seller.getSellerId() + " |\n" +
                                         "|_______________________________________|\n");
                                 break;
                             case 0:
