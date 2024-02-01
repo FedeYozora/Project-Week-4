@@ -76,4 +76,6 @@ public class VehicleDAO {
 //        Random random = new Random();
 //        int travelTime = random.nextInt(route.getAverageTravelTime() - 20, route.getAverageTravelTime() + 20);
 //    }
+
+
 }
