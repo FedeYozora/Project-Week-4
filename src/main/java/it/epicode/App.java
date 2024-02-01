@@ -600,7 +600,13 @@ public class App {
                 Vehicles vehicles5 = new Vehicles(VehicleType.TRAM,130);
                 Vehicles vehicles6 = new Vehicles(VehicleType.TRAM,130);
                 vehicles.setTickets(tickets);
-                vehicleDAO.save(vehicles);
+                vehicleDAO.save(vehicle1);
+                vehicleDAO.save(vehicles2);
+                vehicleDAO.save(vehicles3);
+                vehicleDAO.save(vehicles4);
+                vehicleDAO.save(vehicles5);
+                vehicleDAO.save(vehicles6);
+
 
                 Routes routes1= new Routes("Piramide","stazione Termini",2,vehicle1);
                 Routes routes2 = new Routes("Aeroporto Ciampino","stazione Tiburtina",6,vehicles2);
@@ -961,8 +967,8 @@ public class App {
                                   "      _.-\"` `'-.\n" +
                                   "       '._ __{}_(\n" +
                                   "         |'--.__\\\n" +
-                                  "        (   ^_\\^\n" +
-                                  "         |   * |\n" +
+                                  "        (   -_\\-\n" +
+                                  "         |  __ |\n" +
                                   "         )\\___/\n" +
                                   "     .--'`:._]\n" +
                                   "    /  \\      '-." +
@@ -1005,7 +1011,7 @@ public class App {
                                           "      _.-\"` `'-.\n" +
                                           "       '._ __{}_(\n" +
                                           "         |'--.__\\\n" +
-                                          "        (   ^_\\^\n" +
+                                          "        (   -_\\-\n" +
                                           "         |   0 |\n" +
                                           "         )\\___/\n" +
                                           "     .--'`:._]\n" +

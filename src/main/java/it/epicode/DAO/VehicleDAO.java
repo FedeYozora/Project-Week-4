@@ -26,7 +26,7 @@ public class VehicleDAO {
             transaction.begin();
             em.persist(vehicle);
             transaction.commit();
-            System.out.println(vehicle + "salvato correttamente");
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
