@@ -8,10 +8,8 @@ import it.epicode.enums.VehicleType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.SortedMap;
 import java.util.UUID;
 
 public class App {
@@ -24,6 +22,7 @@ public class App {
         EntityManager em = emf.createEntityManager();
         UserDAO userDAO = new UserDAO(em);
         CardDAO cardDAO = new CardDAO(em);
+        RoutesDAO routesDAO = new RoutesDAO(em);
         TravelDAO travelDAO = new TravelDAO(em);
         SellerDAO sellerDAO = new SellerDAO(em);
         VehicleDAO vehicleDAO = new VehicleDAO(em);
@@ -53,11 +52,17 @@ public class App {
         cardDAO.save(card);
         user.setCard(card);
 
-
-        Vehicles vehicles = new Vehicles(VehicleType.BUS, 30, false);
+        Vehicles vehicles = new Vehicles(VehicleType.BUS, 30);
         vehicles.setTickets(tickets);
+        vehicles.setMaintenanceStartDate(LocalDate.of(2024, 1, 15));
+        vehicles.setMaintenanceEndDate(LocalDate.of(2024, 1, 25));
+        vehicles.setInMaintenance(true);
         vehicleDAO.save(vehicles);
 
+        Routes routes = new Routes("Roma", "Milano", 30, vehicles);
+        Routes routes2 = new Routes("Roma", "Napoli", 20, vehicles);
+        routesDAO.save(routes);
+        routesDAO.save(routes2);
 //        sellerDAO.filterByService(SellerType.AUTOMATIC);
 //        cardDAO.delete(card);
 //        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a"));
@@ -65,7 +70,7 @@ public class App {
 //        travelDAO.findSubByUserId(UUID.fromString("e523079c-7656-434f-a8ba-9de5ff74af05"));
 //        vehicleDAO.findByVehicleType(VehicleType.BUS);
 //        vehicleDAO.findByVehicleType(VehicleType.TRAM);
-
+        vehicleDAO.findVehiclesInMaintenanceDuringPeriod(LocalDate.of(2024, 1, 1), LocalDate.of(2024, 2, 1));
         travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e"));
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
@@ -588,12 +593,12 @@ public class App {
                 User federico = new User("Federico", "Bonfiglio");
                 User personaggio;
 
-                Vehicles bus = new Vehicles(VehicleType.BUS, 30, false);
-                Vehicles bus2 = new Vehicles(VehicleType.BUS, 80, false);
-                Vehicles bus3 = new Vehicles(VehicleType.BUS, 70, false);
-                Vehicles tram = new Vehicles(VehicleType.TRAM, 120, false);
-                Vehicles tram2 = new Vehicles(VehicleType.TRAM, 120, false);
-                Vehicles tram3 = new Vehicles(VehicleType.TRAM, 120, false);
+                Vehicles bus = new Vehicles(VehicleType.BUS, 30);
+                Vehicles bus2 = new Vehicles(VehicleType.BUS, 80);
+                Vehicles bus3 = new Vehicles(VehicleType.BUS, 70);
+                Vehicles tram = new Vehicles(VehicleType.TRAM, 120);
+                Vehicles tram2 = new Vehicles(VehicleType.TRAM, 120);
+                Vehicles tram3 = new Vehicles(VehicleType.TRAM, 120);
 
 
                 if (scelta == 1) {

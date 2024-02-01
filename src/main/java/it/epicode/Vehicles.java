@@ -24,19 +24,10 @@ public class Vehicles {
     @Column(nullable = false)
     private int capacity;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "maintenance_records",
-            joinColumns = @JoinColumn(name = "transport_means_id")
-    )
-    @OrderColumn(name = "maintenance_order")
-    private List<MaintenanceRecord> maintenanceRecords;
-
-
-    @Column(name = "service_start_date")
-    private LocalDate serviceStartDate;
-    @Column(name = "service_end_date")
-    private LocalDate serviceEndDate;
+    @Column(name = "maintenance_start_date")
+    private LocalDate maintenanceStartDate;
+    @Column(name = "maintenance_end_date")
+    private LocalDate maintenanceEndDate;
 
     @Column(name = "in_maintenance", nullable = false)
     private boolean inMaintenance;
@@ -62,18 +53,10 @@ public class Vehicles {
     public Vehicles() {
     }
 
-    public Vehicles(VehicleType vehicleType, int capacity, boolean inMaintenance) {
+    public Vehicles(VehicleType vehicleType, int capacity) {
         this.vehicleType = vehicleType;
         this.capacity = capacity;
         this.inMaintenance = false;
-    }
-
-    public Vehicles(VehicleType vehicleType, int capacity, LocalDate serviceStartDate, LocalDate serviceEndDate, boolean inMaintenance) {
-        this.vehicleType = vehicleType;
-        this.capacity = capacity;
-        this.serviceStartDate = serviceStartDate;
-        this.serviceEndDate = serviceEndDate;
-        this.inMaintenance = inMaintenance;
     }
 
     public Long getVehicleNumber() {
@@ -114,6 +97,22 @@ public class Vehicles {
 
     public void setRoutesCompleted(int routesCompleted) {
         this.routesCompleted = routesCompleted;
+    }
+
+    public LocalDate getMaintenanceStartDate() {
+        return maintenanceStartDate;
+    }
+
+    public void setMaintenanceStartDate(LocalDate maintenanceStartDate) {
+        this.maintenanceStartDate = maintenanceStartDate;
+    }
+
+    public LocalDate getMaintenanceEndDate() {
+        return maintenanceEndDate;
+    }
+
+    public void setMaintenanceEndDate(LocalDate maintenanceEndDate) {
+        this.maintenanceEndDate = maintenanceEndDate;
     }
 
     @Override

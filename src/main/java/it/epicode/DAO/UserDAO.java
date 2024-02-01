@@ -2,9 +2,7 @@ package it.epicode.DAO;
 
 import it.epicode.User;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
 public class UserDAO {

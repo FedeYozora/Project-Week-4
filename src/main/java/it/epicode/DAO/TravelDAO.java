@@ -36,9 +36,9 @@ public class TravelDAO {
         Subscriptions sub = em.find(Subscriptions.class, cardId);
         LocalDate expDate = sub.getDateOfExpiration();
         if (today.isAfter(expDate)) {
-            System.out.printf("L'abbonamento associato alla card %s é scaduto", cardId);
+            System.out.printf("\nL'abbonamento associato alla card %s é scaduto\n", cardId);
         } else {
-            System.out.printf("L'abbonamento associato alla card %s é attivo, con scadenza %s", cardId, expDate);
+            System.out.printf("\nL'abbonamento associato alla card %s é attivo, con scadenza %s\n", cardId, expDate);
         }
     }
 
@@ -48,7 +48,7 @@ public class TravelDAO {
         if (card != null) {
             System.out.println("Sub trovata: " + card.getTravelDocument());
         } else {
-            System.out.printf("L'utente %s non ha abbonamenti", userId);
+            System.out.printf("\nL'utente %s non ha abbonamenti\n", userId);
         }
     }
 
@@ -58,7 +58,7 @@ public class TravelDAO {
         if (user != null) {
             System.out.println("Utente trovato: " + user.getName() + " " + user.getSurname());
         } else {
-            System.out.printf("L'utente con tessera %s non é stato trovato", cardId);
+            System.out.printf("\nL'utente con tessera %s non é stato trovato\n", cardId);
         }
     }
 }
