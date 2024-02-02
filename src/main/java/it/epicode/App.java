@@ -1121,7 +1121,7 @@ public class App {
                                 int sceltaTram = scan.nextInt();
                                 switch (sceltaTram) {
                                     case 1:
-                                        System.out.println("Hai scelto il FakerTaxi La tua tratta è:");
+                                        System.out.println("Hai scelto il " + vehicles4.getVehicleNumber() + " La tua tratta è:");
                                         System.out.println(routes4.getRouteStart() + " - " + routes4.getRouteEnd());
                                         System.out.println("   ,',                                   ,',\n" +
                                                 "     ', ,'                                 ', ,'\n" +
@@ -1202,7 +1202,7 @@ public class App {
                                         }
                                         break;
                                     case 2:
-                                        System.out.println("Hai scelto il Tram.Random La tua tratta è:");
+                                        System.out.println("Hai scelto il " + vehicles5.getVehicleNumber() + " La tua tratta è:");
                                         System.out.println(routes5.getRouteStart() + " - " + routes5.getRouteEnd());
                                         System.out.println("   ,',                                   ,',\n" +
                                                 "     ', ,'                                 ', ,'\n" +
@@ -1281,7 +1281,7 @@ public class App {
                                         }
                                         break;
                                     case 3:
-                                        System.out.println("Hai scelto il SwitchTram La tua tratta è:");
+                                        System.out.println("Hai scelto il " + vehicles6.getVehicleNumber() + " La tua tratta è:");
                                         System.out.println(routes6.getRouteStart() + " - " + routes6.getRouteEnd());
                                         System.out.println("   ,',                                   ,',\n" +
                                                 "     ', ,'                                 ', ,'\n" +
