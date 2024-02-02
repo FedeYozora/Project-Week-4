@@ -129,7 +129,6 @@ public class VehicleDAO {
             Vehicles vehicle = em.find(Vehicles.class, vehicleID);
             vehicle.setRoutesCompleted(vehicle.getRoutesCompleted() + 1);
             Random random = new Random();
-            System.out.println(average);
             int travelTime = Math.max(1, (average - 5) + random.nextInt((average + 5) - (average - 5) + 1));
             transaction.commit();
             System.out.printf("Il %s numero %s ha completato la tratta %s - %s in %s minuti"

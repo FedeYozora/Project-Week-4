@@ -30,7 +30,6 @@ public class App {
         Scanner scan = new Scanner(System.in);
 
 
-
         User user = new User("Pippo", "Paperino");
         userDAO.save(user);
 
@@ -52,9 +51,6 @@ public class App {
 
         Subscriptions subscription = new Subscriptions(seller, LocalDate.now(), 19.99, SubType.WEEKLY);
         travelDAO.save(subscription);
-
-//        Subscriptions subscription2 = new Subscriptions(seller, LocalDate.now(), 150.00, SubType.MONTHLY);
-//        travelDAO.save(subscription2);
 
         Tickets ticket = new Tickets(seller, LocalDate.now(), 2.00);
         travelDAO.save(ticket);
@@ -96,12 +92,19 @@ public class App {
         Routes routes4 = new Routes("Stazione Centrale", "Viale Bligny", 2, vehicles4);
         Routes routes5 = new Routes("Duomo", "SanSiro", 2, vehicles5);
         Routes routes6 = new Routes("Piazza Castello", "Ospedale Maggiore", 4, vehicles6);
-        vehicleDAO.doRoute(routes1,vehicle1.getVehicleNumber());
+        routesDAO.save(routes1);
+        routesDAO.save(routes2);
+        routesDAO.save(routes3);
+        routesDAO.save(routes4);
+        routesDAO.save(routes5);
+        routesDAO.save(routes6);
+
+        vehicleDAO.doRoute(routes1, vehicle1.getVehicleNumber());
         vehicleDAO.doRoute(routes2, vehicles2.getVehicleNumber());
-        vehicleDAO.doRoute(routes3,vehicles3.getVehicleNumber());
-        vehicleDAO.doRoute(routes4,vehicles3.getVehicleNumber());
-        vehicleDAO.doRoute(routes5,vehicles3.getVehicleNumber());
-        vehicleDAO.doRoute(routes6,vehicles3.getVehicleNumber());
+        vehicleDAO.doRoute(routes3, vehicles3.getVehicleNumber());
+        vehicleDAO.doRoute(routes4, vehicles3.getVehicleNumber());
+        vehicleDAO.doRoute(routes5, vehicles3.getVehicleNumber());
+        vehicleDAO.doRoute(routes6, vehicles3.getVehicleNumber());
 
         System.out.println("\n");
 //        sellerDAO.filterByService(SellerType.AUTOMATIC); //FILTRO DEI VENDITORI SE SONO DISTRIBUTORI AUTOMATICI E MOSTRA UNA LISTA DI SOLO QUELLI IN SERVIZIO
@@ -145,8 +148,6 @@ public class App {
                 "              _______________   _____________\n" +
                 "     __________________  ___________    ____ì");
 
-
-        
 
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
@@ -822,8 +823,6 @@ public class App {
                         "  \\ \\ |________| / /\n" +
                         "   \\ \\|");
                 int scelta = scan.nextInt();
-
-
 
 
                 if (scelta == 1) {
