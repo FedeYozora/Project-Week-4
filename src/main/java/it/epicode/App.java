@@ -28,8 +28,18 @@ public class App {
         VehicleDAO vehicleDAO = new VehicleDAO(em);
         Scanner scan = new Scanner(System.in);
 
-        User user = new User("Gianni", "Cabiddu");
+
+
+        User user = new User("pippo", "paperino");
         userDAO.save(user);
+
+        User gianni = new User("Gianni", "Cabiddu");
+        User daniele = new User("Daniele", "Cagnoni");
+        User federico = new User("Federico", "Bonfiglio");
+        userDAO.save(gianni);
+        userDAO.save(daniele);
+        userDAO.save(federico);
+        User personaggio;
 
         Sellers seller = new Sellers(SellerType.AUTOMATIC);
         seller.setInService(true);
@@ -53,18 +63,42 @@ public class App {
         user.setCard(card);
 
 
-        Vehicles vehicle = new Vehicles(VehicleType.BUS, 30);
-        vehicle.setTickets(ticket);
-        vehicle.setMaintenanceStartDate(LocalDate.of(2024, 1, 15));
-        vehicle.setMaintenanceEndDate(LocalDate.of(2024, 1, 25));
-        vehicle.setInMaintenance(true);
-        vehicleDAO.save(vehicle);
+//        Vehicles vehicle = new Vehicles(VehicleType.BUS, 30);
+//        vehicle.setTickets(ticket);
+//        vehicle.setMaintenanceStartDate(LocalDate.of(2024, 1, 15));
+//        vehicle.setMaintenanceEndDate(LocalDate.of(2024, 1, 25));
+//        vehicle.setInMaintenance(true);
+//        vehicleDAO.save(vehicle);
+//
+//        Routes routes = new Routes("Roma", "Milano", 30, vehicle);
+//        Routes routesDue = new Routes("Roma", "Napoli", 20, vehicle);
+//        routesDAO.save(routes);
+//        routesDAO.save(routesDue);
 
-        Routes routes = new Routes("Roma", "Milano", 30, vehicle);
-        Routes routesDue = new Routes("Roma", "Napoli", 20, vehicle);
-        routesDAO.save(routes);
-        routesDAO.save(routesDue);
 
+        Vehicles vehicle1 = new Vehicles(VehicleType.BUS, 50);
+        Vehicles vehicles2 = new Vehicles(VehicleType.BUS, 60);
+        Vehicles vehicles3 = new Vehicles(VehicleType.BUS, 75);
+        Vehicles vehicles4 = new Vehicles(VehicleType.TRAM, 130);
+        Vehicles vehicles5 = new Vehicles(VehicleType.TRAM, 130);
+        Vehicles vehicles6 = new Vehicles(VehicleType.TRAM, 130);
+        vehicleDAO.save(vehicle1);
+        vehicleDAO.save(vehicles2);
+        vehicleDAO.save(vehicles3);
+        vehicleDAO.save(vehicles4);
+        vehicleDAO.save(vehicles5);
+        vehicleDAO.save(vehicles6);
+
+        Routes routes1 = new Routes("Piramide", "stazione Termini", 2, vehicle1);
+        Routes routes2 = new Routes("Aeroporto Ciampino", "stazione Tiburtina", 6, vehicles2);
+        Routes routes3 = new Routes("Tivoli", "stazione Termini", 5, vehicles3);
+        Routes routes4 = new Routes("Stazione Centrale", "Viale Bligny", 2, vehicles4);
+        Routes routes5 = new Routes("Duomo", "SanSiro", 2, vehicles5);
+        Routes routes6 = new Routes("Piazza Castello", "Ospedale Maggiore", 4, vehicles6);
+        vehicleDAO.doRoute(routes1,251L);
+
+
+        System.out.println(" ");
 //        sellerDAO.filterByService(SellerType.AUTOMATIC); //FILTRO DEI VENDITORI SE SONO DISTRIBUTORI AUTOMATICI E MOSTRA UNA LISTA DI SOLO QUELLI IN SERVIZIO
 //        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a")); //CONTROLLO ABBONAMENTO SE VALIDO IN BASE A CODICE TESSERA DELL'UTENTE
 //        travelDAO.findSubByUserId(UUID.fromString("e523079c-7656-434f-a8ba-9de5ff74af05")); //RICERCA DI ABBONAMENTO TRAMITE USER ID
@@ -75,7 +109,7 @@ public class App {
 //        vehicleDAO.returnVehicleFromMaintenance(1L, 7); // RITORNO IN SERVIZIO DEL VEICOLO
 //        vehicleDAO.doRoute(route, 1L); // COUNTER INCREMENTALE DI UNA ROUTE EFFETTUATA DA UN VEICOLO
 //        travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e")); // RICERCA DI UN UTENTE UTILIZZANDO IL SUO ID TESSERA
-
+//          travelDAO.checkValidityByTicketId(UUID.fromString("0688e69f-61dd-41ee-98cd-e8165dfef492"));
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
         System.out.println("2. Distributore automatico");
@@ -667,32 +701,8 @@ public class App {
             case 3:
                 System.out.println("Scegli un personaggio: \n1. Gianni \n2. Daniele \n3. Federico \n");
                 int scelta = scan.nextInt();
-                User gianni = new User("Gianni", "Cabiddu");
-                User daniele = new User("Daniele", "Cagnoni");
-                User federico = new User("Federico", "Bonfiglio");
-                User personaggio;
-
-                Vehicles vehicle1 = new Vehicles(VehicleType.BUS, 50);
-                Vehicles vehicles2 = new Vehicles(VehicleType.BUS, 60);
-                Vehicles vehicles3 = new Vehicles(VehicleType.BUS, 75);
-                Vehicles vehicles4 = new Vehicles(VehicleType.TRAM, 130);
-                Vehicles vehicles5 = new Vehicles(VehicleType.TRAM, 130);
-                Vehicles vehicles6 = new Vehicles(VehicleType.TRAM, 130);
-                vehicle1.setTickets(ticket);
-                vehicleDAO.save(vehicle1);
-                vehicleDAO.save(vehicles2);
-                vehicleDAO.save(vehicles3);
-                vehicleDAO.save(vehicles4);
-                vehicleDAO.save(vehicles5);
-                vehicleDAO.save(vehicles6);
 
 
-                Routes routes1 = new Routes("Piramide", "stazione Termini", 2, vehicle1);
-                Routes routes2 = new Routes("Aeroporto Ciampino", "stazione Tiburtina", 6, vehicles2);
-                Routes routes3 = new Routes("Tivoli", "stazione Termini", 5, vehicles3);
-                Routes routes4 = new Routes("Stazione Centrale", "Viale Bligny", 2, vehicles4);
-                Routes routes5 = new Routes("Duomo", "SanSiro", 2, vehicles5);
-                Routes routes6 = new Routes("Piazza Castello", "Ospedale Maggiore", 4, vehicles6);
 
 
                 if (scelta == 1) {

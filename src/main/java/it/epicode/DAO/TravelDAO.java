@@ -1,9 +1,6 @@
 package it.epicode.DAO;
 
-import it.epicode.Card;
-import it.epicode.Subscriptions;
-import it.epicode.TravelDocument;
-import it.epicode.User;
+import it.epicode.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -51,6 +48,21 @@ public class TravelDAO {
             System.out.printf("\nL'abbonamento associato alla card %s é scaduto\n", cardId);
         } else {
             System.out.printf("\nL'abbonamento associato alla card %s é attivo, con scadenza %s\n", cardId, expDate);
+        }
+    }
+
+    public void checkValidityByTicketId(UUID ticketId) {
+        LocalDate today = LocalDate.now();
+        Tickets ticket = em.find(Tickets.class, ticketId);
+        if (ticket.getValidationDate() == null) {
+            System.out.printf("\nLa data di validazione del biglietto %s non è impostata. Impossibile verificare la validità.\n", ticketId);
+            return;
+        }
+        LocalDate validationDate = ticket.getValidationDate();
+        if (validationDate == null) {
+            System.out.printf("\nIl biglietto %s è stato validato.\n", ticketId);
+        } else {
+            System.out.printf("\nIl biglietto %s non è ancora stato validato.\n", ticketId);
         }
     }
 

@@ -136,8 +136,6 @@ public class VehicleDAO {
 
             System.out.printf("Il %s numero %s ha completato la tratta %s - %s in %s minuti"
                     , vehicle.getVehicleType(), vehicle.getVehicleNumber(), route.getRouteStart(), route.getRouteEnd(), travelTime);
-
-
         } catch (
                 Exception e) {
             System.out.println(e.getMessage());
