@@ -113,7 +113,9 @@ public class App {
 //        vehicleDAO.returnVehicleFromMaintenance(1L, 7); // RITORNO IN SERVIZIO DEL VEICOLO
 //        vehicleDAO.doRoute(route, 1L); // COUNTER INCREMENTALE DI UNA ROUTE EFFETTUATA DA UN VEICOLO
 //        travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e")); // RICERCA DI UN UTENTE UTILIZZANDO IL SUO ID TESSERA
-//        travelDAO.checkValidityByTicketId(UUID.fromString("0688e69f-61dd-41ee-98cd-e8165dfef492")); //CONTROLLO VALIDITA BIGLIETTO
+
+        travelDAO.checkValidityByTicketId(UUID.fromString("0688e69f-61dd-41ee-98cd-e8165dfef492")); //CONTROLLO VALIDITA BIGLIETTO
+
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
         System.out.println("2. Distributore automatico");
@@ -830,6 +832,7 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
+
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");

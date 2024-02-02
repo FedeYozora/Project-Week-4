@@ -51,18 +51,19 @@ public class TravelDAO {
         }
     }
 
+
     public void checkValidityByTicketId(UUID ticketId) {
-        LocalDate today = LocalDate.now();
-        Tickets ticket = em.find(Tickets.class, ticketId);
-        if (ticket.getValidationDate() == null) {
-            System.out.printf("\nLa data di validazione del biglietto %s non è impostata. Impossibile verificare la validità.\n", ticketId);
-            return;
-        }
-        LocalDate validationDate = ticket.getValidationDate();
-        if (validationDate == null) {
-            System.out.printf("\nIl biglietto %s è stato validato.\n", ticketId);
-        } else {
-            System.out.printf("\nIl biglietto %s non è ancora stato validato.\n", ticketId);
+        try {
+            Tickets ticket = em.find(Tickets.class, ticketId);
+            Vehicles vehicle = ticket.getVehicles();
+
+            if (ticket.getValidationDate() == null) {
+                System.out.println("Il biglietto " + ticketId + " non è ancora stato validato.");
+            } else {
+                System.out.println("Il biglietto " + ticketId + " è stato validato sul veicolo " + vehicle.getVehicleNumber());
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Il biglietto con l'ID " + ticketId + " non esiste.");
         }
     }
 
