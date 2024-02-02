@@ -36,6 +36,8 @@ public class Tickets extends TravelDocument {
         return validated;
     }
 
+
+
     public void setValidated(boolean validated) {
         this.validated = validated;
     }

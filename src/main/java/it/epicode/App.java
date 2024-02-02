@@ -5,6 +5,7 @@ import it.epicode.enums.SellerType;
 import it.epicode.enums.SubType;
 import it.epicode.enums.VehicleType;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -75,6 +76,26 @@ public class App {
 //        vehicleDAO.returnVehicleFromMaintenance(1L, 7); // RITORNO IN SERVIZIO DEL VEICOLO
 //        vehicleDAO.doRoute(route, 1L); // COUNTER INCREMENTALE DI UNA ROUTE EFFETTUATA DA UN VEICOLO
 //        travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e")); // RICERCA DI UN UTENTE UTILIZZANDO IL SUO ID TESSERA
+
+        System.out.println("\n" +
+                "                _______     ^^^ \n" +
+                "               |xxxxxxx|  _^^^^^_\n" +
+                "               |xxxxxxx| | [][]  |\n" +
+                "            ______xxxxx| |[][][] |    \n" +
+                "           |++++++|xxxx| | [][][]|     \n" +
+                "           |++++++|xxxx| |[][][] |\n" +
+                "           |++++++|_________ [][]|                             \n" +
+                "           |++++++|=|=|=|=|=| [] |\n" +
+                "     ██  █████  ██    ██  █████           ██  ██████  ██    ██ ██████  ███    ██ ███████ ██    ██          ██  ██████  ██    ██ ██████  ██ ██████  ███████ \n" +
+                "     ██ ██   ██ ██    ██ ██   ██          ██ ██    ██ ██    ██ ██   ██ ████   ██ ██       ██  ██           ██ ██    ██  ██  ██  ██   ██ ██ ██   ██ ██      \n" +
+                "     ██ ███████ ██    ██ ███████          ██ ██    ██ ██    ██ ██████  ██ ██  ██ █████     ████            ██ ██    ██   ████   ██████  ██ ██   ██ █████   \n" +
+                "██   ██ ██   ██  ██  ██  ██   ██     ██   ██ ██    ██ ██    ██ ██   ██ ██  ██ ██ ██         ██        ██   ██ ██    ██    ██    ██   ██ ██ ██   ██ ██      \n" +
+                " █████  ██   ██   ████   ██   ██      █████   ██████   ██████  ██   ██ ██   ████ ███████    ██         █████   ██████     ██    ██   ██ ██ ██████  ███████                                                                                                                                                                                                                                                                            \n" +
+                "           |++++++|=|=|=|=|=|[][]|\n" +
+                "___________|++HH++|  _HHHH__|   ________\n" +
+                "         _______________   _____________\n" +
+                "__________________  ___________    ____");
+
 
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
@@ -747,6 +768,7 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                ticket.setValidated(true);
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -816,6 +838,7 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                ticket.setValidated(true);
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -884,6 +907,7 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                ticket.setValidated(true);
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -967,6 +991,8 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                ticket.setValidated(true);
+
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -977,6 +1003,9 @@ public class App {
                                             default:
                                                 System.out.println("Scelta non valida.");
                                                 break;
+
+
+
                                         }
                                         break;
                                     case 2:
@@ -994,8 +1023,9 @@ public class App {
                                         switch (sceltatimbro5) {
 
                                             case 1:
-                                                System.out.println(personaggio.getName() + " timbra il biglietto");
-                                                break;
+                                                    System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                    ticket.setValidated(true);
+                                                    break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
                                                 break;
@@ -1022,6 +1052,7 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                ticket.setValidated(true);
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -1056,17 +1087,31 @@ public class App {
                             int presenzaBiglietto = scan.nextInt();
                             switch (presenzaBiglietto) {
                                 case 1:
-                                    System.out.println("  " +
-                                            "      _.-\"` `'-.\n" +
-                                            "       '._ __{}_(\n" +
-                                            "         |'--.__\\\n" +
-                                            "        (   ^_\\^\n" +
-                                            "         |   o |\n" +
-                                            "         )\\___/\n" +
-                                            "     .--'`:._]\n" +
-                                            "    /  \\      '-." +
-                                            "\nIl tuo biglietto " + ticket.getId() + " è valido."
-                                    );
+                                    if(ticket.isValidated()) {
+                                        System.out.println("  " +
+                                                "      _.-\"` `'-.\n" +
+                                                "       '._ __{}_(\n" +
+                                                "         |'--.__\\\n" +
+                                                "        (   ^_\\^\n" +
+                                                "         |   o |\n" +
+                                                "         )\\___/\n" +
+                                                "     .--'`:._]\n" +
+                                                "    /  \\      '-." +
+                                                "\nIl tuo biglietto " + ticket.getId() + " è valido."
+                                        );
+                                    }else {
+                                        System.out.println("\"  \" +\n" +
+                                                "                                            \"      _.-\\\"` `'-.\\n\" +\n" +
+                                                "                                            \"       '._ __{}_(\\n\" +\n" +
+                                                "                                            \"         |'--.__\\\\\\n\" +\n" +
+                                                "                                            \"        (   -_\\\\-\\n\" +\n" +
+                                                "                                            \"         |   0 |\\n\" +\n" +
+                                                "                                            \"         )\\\\___/\\n\" +\n" +
+                                                "                                            \"     .--'`:._]\\n\" +\n" +
+                                                "                                            \"    /  \\\\      '-.  \"");
+                                        System.out.println("Hai provato a fare il furbetto.. il biglietto è scaduto...");
+                                    }
+
                                     System.out.println(" ");
                                     break;
                                 case 2:
