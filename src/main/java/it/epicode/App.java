@@ -276,7 +276,7 @@ public class App {
                                         String scanSelection5 = scan.nextLine();
                                         if (!travelDAO.checkUserByCardId(UUID.fromString(scanSelection5))) {
                                             System.out.println("Hai inserito un numero di carta invalido o inesistente," +
-                                                    "devi ricominciare d'accapo x.x");
+                                                    "devi ricominciare da capo x.x");
                                             System.exit(0);
                                         }
                                         User fu1 = travelDAO.findUserByCardId(UUID.fromString(scanSelection5));
