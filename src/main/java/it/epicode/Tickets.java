@@ -1,5 +1,6 @@
 package it.epicode;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.mapping.ToOne;
 
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ public class Tickets extends TravelDocument {
 
     public Tickets() {
     }
+
 
     public Tickets(Sellers sold_from, LocalDate dateOfEmission, Double price) {
         super(sold_from, dateOfEmission, price);

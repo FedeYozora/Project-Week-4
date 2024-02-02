@@ -130,12 +130,10 @@ public class VehicleDAO {
             vehicle.setRoutesCompleted(vehicle.getRoutesCompleted() + 1);
             Random random = new Random();
             System.out.println(average);
-            int travelTime = (average - 5) + random.nextInt((average + 5) - (average - 5) + 1);
-
+            int travelTime = Math.max(1, (average - 5) + random.nextInt((average + 5) - (average - 5) + 1));
             transaction.commit();
-
             System.out.printf("Il %s numero %s ha completato la tratta %s - %s in %s minuti"
-                    , vehicle.getVehicleType(), vehicle.getVehicleNumber(), route.getRouteStart(), route.getRouteEnd(), travelTime);
+                    , vehicle.getVehicleType(), vehicle.getVehicleNumber(), route.getRouteStart(), route.getRouteEnd(),travelTime);
         } catch (
                 Exception e) {
             System.out.println(e.getMessage());

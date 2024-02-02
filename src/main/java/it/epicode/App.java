@@ -95,10 +95,14 @@ public class App {
         Routes routes4 = new Routes("Stazione Centrale", "Viale Bligny", 2, vehicles4);
         Routes routes5 = new Routes("Duomo", "SanSiro", 2, vehicles5);
         Routes routes6 = new Routes("Piazza Castello", "Ospedale Maggiore", 4, vehicles6);
-        vehicleDAO.doRoute(routes1,251L);
+        vehicleDAO.doRoute(routes1,vehicle1.getVehicleNumber());
+        vehicleDAO.doRoute(routes2, vehicles2.getVehicleNumber());
+        vehicleDAO.doRoute(routes3,vehicles3.getVehicleNumber());
+        vehicleDAO.doRoute(routes4,vehicles3.getVehicleNumber());
+        vehicleDAO.doRoute(routes5,vehicles3.getVehicleNumber());
+        vehicleDAO.doRoute(routes6,vehicles3.getVehicleNumber());
 
-
-        System.out.println(" ");
+        System.out.println("\n");
 //        sellerDAO.filterByService(SellerType.AUTOMATIC); //FILTRO DEI VENDITORI SE SONO DISTRIBUTORI AUTOMATICI E MOSTRA UNA LISTA DI SOLO QUELLI IN SERVIZIO
 //        travelDAO.checkValidityByCardId(UUID.fromString("220a7147-2b2d-44da-8a93-60307b1a9d2a")); //CONTROLLO ABBONAMENTO SE VALIDO IN BASE A CODICE TESSERA DELL'UTENTE
 //        travelDAO.findSubByUserId(UUID.fromString("e523079c-7656-434f-a8ba-9de5ff74af05")); //RICERCA DI ABBONAMENTO TRAMITE USER ID
@@ -109,7 +113,7 @@ public class App {
 //        vehicleDAO.returnVehicleFromMaintenance(1L, 7); // RITORNO IN SERVIZIO DEL VEICOLO
 //        vehicleDAO.doRoute(route, 1L); // COUNTER INCREMENTALE DI UNA ROUTE EFFETTUATA DA UN VEICOLO
 //        travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e")); // RICERCA DI UN UTENTE UTILIZZANDO IL SUO ID TESSERA
-//          travelDAO.checkValidityByTicketId(UUID.fromString("0688e69f-61dd-41ee-98cd-e8165dfef492"));
+//        travelDAO.checkValidityByTicketId(UUID.fromString("0688e69f-61dd-41ee-98cd-e8165dfef492")); //CONTROLLO VALIDITA BIGLIETTO
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
         System.out.println("2. Distributore automatico");
@@ -763,7 +767,7 @@ public class App {
                                                 break;
                                             case 3:
                                                 System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
-
+                                                break;
                                             default:
                                                 System.out.println("Scelta non valida.");
                                                 break;
@@ -832,7 +836,7 @@ public class App {
                                                 break;
                                             case 3:
                                                 System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
-
+                                                break;
                                             default:
                                                 System.out.println("Scelta non valida.");
                                                 break;
@@ -900,7 +904,7 @@ public class App {
                                                 break;
                                             case 3:
                                                 System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
-
+                                                break;
                                             default:
                                                 System.out.println("Scelta non valida.");
                                                 break;
@@ -983,7 +987,7 @@ public class App {
                                                 break;
                                             case 3:
                                                 System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
-
+                                                break;
                                             default:
                                                 System.out.println("Scelta non valida.");
                                                 break;
@@ -999,6 +1003,7 @@ public class App {
                                                 " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
                                                 " ,_    ______TramDom______         |=-=,_    ______           ______  jg |\n" +
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro5 = scan.nextInt();
                                         switch (sceltatimbro5) {
@@ -1032,13 +1037,14 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                travelDAO.checkValidityByTicketId(UUID.randomUUID());
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
                                                 break;
                                             case 3:
                                                 System.out.println(personaggio.getName() + " è un furfante e non timbra il biglietto");
-
+                                                break;
                                             default:
                                                 System.out.println("Scelta non valida.");
                                                 break;
@@ -1120,6 +1126,7 @@ public class App {
                 System.out.println("Hai selezionato un carattere sbagliato.. ");
                 break;
         }
-
+        em.close();
+        emf.close();
     }
 }
