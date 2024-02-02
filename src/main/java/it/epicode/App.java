@@ -40,7 +40,7 @@ public class App {
         seller2.setInService(true);
         sellerDAO.save(seller2);
 
-        Subscriptions subscription = new Subscriptions(seller, LocalDate.now(), 150.00, SubType.WEEKLY);
+        Subscriptions subscription = new Subscriptions(seller, LocalDate.now(), 19.99, SubType.WEEKLY);
         travelDAO.save(subscription);
 
 //        Subscriptions subscription2 = new Subscriptions(seller, LocalDate.now(), 150.00, SubType.MONTHLY);
@@ -101,6 +101,10 @@ public class App {
         System.out.println("1. Rivenditore autorizzato");
         System.out.println("2. Distributore automatico");
         System.out.println("3. MiniGame");
+        System.out.println("4. Ricerca di distributori automatici in servizio");
+        System.out.println("5. Ricerca di veicoli in manutenzione durante i prossimi 10 giorni");
+        System.out.println("6. Manda un veicolo in manutenzione");
+        System.out.println("7. Fai tornare in servizio un veicolo");
 
         int scanSelection = scan.nextInt();
         switch (scanSelection) {
@@ -123,8 +127,8 @@ public class App {
                         "\n" +
                         "2.Vorrei acquistare un abbonamento!\n" +
                         "\n" +
-                        "3.Mi è scaduto l'abbonamento, \n" +
-                        "vorrei caricarne un altro sulla mia card!");
+                        "3.Vorrei controllare la data di scadenza della mia tessera, \n" +
+                        "e in caso fosse scaduta rinnovarla!");
 
 
                 int scanSelection2 = scan.nextInt();
@@ -441,6 +445,11 @@ public class App {
                         }
                         break;
                     case 3:
+                        scan.nextLine();
+                        System.out.println("Inserisci il numero della tua tessera: ");
+                        String scanSelection22 = scan.nextLine();
+                        cardDAO.renewCardIfExpired(UUID.fromString(scanSelection22));
+                        break;
                     default:
                         System.out.println("Hai selezionato un carattere sbagliato...");
                         break;
@@ -1151,6 +1160,28 @@ public class App {
                         }
                     }
                 }
+            case 4:
+                sellerDAO.filterByService(SellerType.AUTOMATIC);
+                break;
+            case 5:
+                LocalDate today = LocalDate.now();
+                LocalDate maxDay = today.plusDays(10);
+                vehicleDAO.findVehiclesInMaintenanceDuringPeriod(today, maxDay);
+                break;
+            case 6:
+                scan.nextLine();
+                System.out.println("Inserisci il numero di targa del veicolo: ");
+                Long scanSelection20 = Long.valueOf(scan.nextLine());
+                vehicleDAO.sendVehicleToMaintenance(scanSelection20);
+                break;
+            case 7:
+                scan.nextLine();
+                System.out.println("Inserisci il numero di targa del veicolo da far tornare in servizio: ");
+                Long scanSelection21 = Long.valueOf(scan.nextLine());
+                System.out.println("Inserisci il numero di giorni prima del suo rientro in servizio");
+                int scanSelection22 = Integer.parseInt(scan.nextLine());
+
+                vehicleDAO.returnVehicleFromMaintenance(scanSelection21, scanSelection22);
             default:
                 System.out.println("Hai selezionato un carattere sbagliato.. ");
                 break;
