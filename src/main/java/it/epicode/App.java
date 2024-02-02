@@ -53,25 +53,13 @@ public class App {
         travelDAO.save(subscription);
 
         Tickets ticket = new Tickets(seller, LocalDate.now(), 2.00);
+        gianni.setTickets(ticket);
         travelDAO.save(ticket);
+
 
         Card card = new Card(user, LocalDate.now(), subscription);
         cardDAO.save(card);
         user.setCard(card);
-
-
-//        Vehicles vehicle = new Vehicles(VehicleType.BUS, 30);
-//        vehicle.setTickets(ticket);
-//        vehicle.setMaintenanceStartDate(LocalDate.of(2024, 1, 15));
-//        vehicle.setMaintenanceEndDate(LocalDate.of(2024, 1, 25));
-//        vehicle.setInMaintenance(true);
-//        vehicleDAO.save(vehicle);
-//
-//        Routes routes = new Routes("Roma", "Milano", 30, vehicle);
-//        Routes routesDue = new Routes("Roma", "Napoli", 20, vehicle);
-//        routesDAO.save(routes);
-//        routesDAO.save(routesDue);
-
 
         Vehicles vehicle1 = new Vehicles(VehicleType.BUS, 50);
         Vehicles vehicles2 = new Vehicles(VehicleType.BUS, 60);
@@ -98,13 +86,6 @@ public class App {
         routesDAO.save(routes4);
         routesDAO.save(routes5);
         routesDAO.save(routes6);
-
-        vehicleDAO.doRoute(routes1, vehicle1.getVehicleNumber());
-        vehicleDAO.doRoute(routes2, vehicles2.getVehicleNumber());
-        vehicleDAO.doRoute(routes3, vehicles3.getVehicleNumber());
-        vehicleDAO.doRoute(routes4, vehicles3.getVehicleNumber());
-        vehicleDAO.doRoute(routes5, vehicles3.getVehicleNumber());
-        vehicleDAO.doRoute(routes6, vehicles3.getVehicleNumber());
 
         System.out.println("\n");
 //        sellerDAO.filterByService(SellerType.AUTOMATIC); //FILTRO DEI VENDITORI SE SONO DISTRIBUTORI AUTOMATICI E MOSTRA UNA LISTA DI SOLO QUELLI IN SERVIZIO
@@ -210,14 +191,27 @@ public class App {
                                 "(_______________________________________)");
 
                         Tickets newTicket = new Tickets(seller, LocalDate.now(), 2.00);
-                        travelDAO.save(newTicket);
                         System.out.println("A chi vuoi assegnare il biglietto?");
                         System.out.println("1.Gianni");
                         System.out.println("2.Daniele");
                         System.out.println("3.Federico");
                         int scanSelection26 = scan.nextInt();
-
-
+                        switch (scanSelection26) {
+                            case 1:
+                                gianni.setTickets(newTicket);
+                                travelDAO.save(newTicket);
+                                break;
+                            case 2:
+                                daniele.setTickets(newTicket);
+                                travelDAO.save(newTicket);
+                                break;
+                            case 3:
+                                federico.setTickets(newTicket);
+                                travelDAO.save(newTicket);
+                                break;
+                            default:
+                                System.out.println("Hai selezionato un carattere sbagliato.. ");
+                        }
                         // FINE TICKET ONE USE
                         break;
 
@@ -731,7 +725,27 @@ public class App {
                         break;
                     case 3:
                         Tickets newTicket = new Tickets(seller, LocalDate.now(), 2.00);
-                        travelDAO.save(newTicket);
+                        System.out.println("A chi vuoi assegnare il biglietto?");
+                        System.out.println("1.Gianni");
+                        System.out.println("2.Daniele");
+                        System.out.println("3.Federico");
+                        int scanSelection27 = scan.nextInt();
+                        switch (scanSelection27) {
+                            case 1:
+                                gianni.setTickets(newTicket);
+                                travelDAO.save(newTicket);
+                                break;
+                            case 2:
+                                daniele.setTickets(newTicket);
+                                travelDAO.save(newTicket);
+                                break;
+                            case 3:
+                                federico.setTickets(newTicket);
+                                travelDAO.save(newTicket);
+                                break;
+                            default:
+                                System.out.println("Hai selezionato un carattere sbagliato.. ");
+                        }
                         System.out.println(" _______________________________________\n" +
                                 "(                                       )\n" +
                                 "(  JAVAUTOBUS                           )\n" +
@@ -827,13 +841,10 @@ public class App {
 
                 if (scelta == 1) {
                     personaggio = gianni;
-                    userDAO.save(gianni);
                 } else if (scelta == 2) {
                     personaggio = daniele;
-                    userDAO.save(daniele);
                 } else if (scelta == 3) {
                     personaggio = federico;
-                    userDAO.save(federico);
                 } else {
                     System.out.println("Scelta non valida");
                     personaggio = null;
@@ -877,7 +888,15 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
-                                                ticket.setValidated(true);
+                                                Tickets ticketTest = personaggio.getTickets();
+                                                ticketTest.setValidated(true);
+                                                if (ticketTest.getValidationDate() == (null)) {
+                                                    ticketTest.setValidationDate(LocalDate.now());
+                                                } else {
+                                                    ticketTest.setValidationDate(LocalDate.now().minusDays(1));
+                                                }
+                                                ticketTest.setVehicles(vehicle1);
+                                                travelDAO.update(ticketTest);
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -947,7 +966,15 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
-                                                ticket.setValidated(true);
+                                                Tickets ticketTest = personaggio.getTickets();
+                                                ticketTest.setValidated(true);
+                                                if (ticketTest.getValidationDate() == (null)) {
+                                                    ticketTest.setValidationDate(LocalDate.now());
+                                                } else {
+                                                    ticketTest.setValidationDate(LocalDate.now().minusDays(1));
+                                                }
+                                                ticketTest.setVehicles(vehicles2);
+                                                travelDAO.update(ticketTest);
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -1017,7 +1044,15 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
-                                                ticket.setValidated(true);
+                                                Tickets ticketTest = personaggio.getTickets();
+                                                ticketTest.setValidated(true);
+                                                if (ticketTest.getValidationDate() == (null)) {
+                                                    ticketTest.setValidationDate(LocalDate.now());
+                                                } else {
+                                                    ticketTest.setValidationDate(LocalDate.now().minusDays(1));
+                                                }
+                                                ticketTest.setVehicles(vehicles3);
+                                                travelDAO.update(ticketTest);
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -1142,7 +1177,15 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
-                                                ticket.setValidated(true);
+                                                Tickets ticketTest = personaggio.getTickets();
+                                                ticketTest.setValidated(true);
+                                                if (ticketTest.getValidationDate() == (null)) {
+                                                    ticketTest.setValidationDate(LocalDate.now());
+                                                } else {
+                                                    ticketTest.setValidationDate(LocalDate.now().minusDays(1));
+                                                }
+                                                ticketTest.setVehicles(vehicles4);
+                                                travelDAO.update(ticketTest);
 
                                                 break;
                                             case 2:
@@ -1217,7 +1260,15 @@ public class App {
 
                                             case 1:
                                                 System.out.println(personaggio.getName() + " timbra il biglietto");
-                                                ticket.setValidated(true);
+                                                Tickets ticketTest = personaggio.getTickets();
+                                                ticketTest.setValidated(true);
+                                                if (ticketTest.getValidationDate() == (null)) {
+                                                    ticketTest.setValidationDate(LocalDate.now());
+                                                } else {
+                                                    ticketTest.setValidationDate(LocalDate.now().minusDays(1));
+                                                }
+                                                ticketTest.setVehicles(vehicles5);
+                                                travelDAO.update(ticketTest);
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -1283,8 +1334,18 @@ public class App {
                                         switch (sceltatimbro6) {
 
                                             case 1:
-                                                System.out.println(personaggio.getName() + " timbra il biglietto");
-                                                ticket.setValidated(true);
+                                                if (personaggio.isTicket()) {
+                                                    System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                    Tickets ticketTest = personaggio.getTickets();
+                                                    ticketTest.setValidated(true);
+                                                    if (ticketTest.getValidationDate() == (null)) {
+                                                        ticketTest.setValidationDate(LocalDate.now());
+                                                    } else {
+                                                        ticketTest.setValidationDate(LocalDate.now().minusDays(1));
+                                                    }
+                                                    ticketTest.setVehicles(vehicles6);
+                                                    travelDAO.update(ticketTest);
+                                                }
                                                 break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
@@ -1319,7 +1380,7 @@ public class App {
                             int presenzaBiglietto = scan.nextInt();
                             switch (presenzaBiglietto) {
                                 case 1:
-                                    if (ticket.isValidated()) {
+                                    if (ticket.isValidated() && (ticket.getValidationDate().equals(LocalDate.now()))) {
                                         System.out.println("  " +
                                                 "      _.-\"` `'-.\n" +
                                                 "       '._ __{}_(\n" +
@@ -1332,15 +1393,15 @@ public class App {
                                                 "\nIl tuo biglietto " + ticket.getId() + " è valido."
                                         );
                                     } else {
-                                        System.out.println("\"  \" +\n" +
-                                                "                                            \"      _.-\\\"` `'-.\\n\" +\n" +
-                                                "                                            \"       '._ __{}_(\\n\" +\n" +
-                                                "                                            \"         |'--.__\\\\\\n\" +\n" +
-                                                "                                            \"        (   -_\\\\-\\n\" +\n" +
-                                                "                                            \"         |   0 |\\n\" +\n" +
-                                                "                                            \"         )\\\\___/\\n\" +\n" +
-                                                "                                            \"     .--'`:._]\\n\" +\n" +
-                                                "                                            \"    /  \\\\      '-.  \"");
+                                        System.out.println("  " +
+                                                "      _.-\"` `'-.\n" +
+                                                "       '._ __{}_(\n" +
+                                                "         |'--.__\\\n" +
+                                                "        (   ^_\\^\n" +
+                                                "         |   o |\n" +
+                                                "         )\\___/\n" +
+                                                "     .--'`:._]\n" +
+                                                "    /  \\      '-.");
                                         System.out.println("Hai provato a fare il furbetto.. il biglietto è scaduto...");
                                     }
 
@@ -1378,7 +1439,7 @@ public class App {
                             }
                         } else {
                             System.out.println(" ");
-                            System.out.println("Che fortuna non devo timbrare il biglietto!"
+                            System.out.println("Avrei potuto non timbrare..."
                             );
                         }
                     }

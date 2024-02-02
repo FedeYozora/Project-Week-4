@@ -23,7 +23,6 @@ public class CardDAO {
             transaction.begin();
             em.persist(card);
             transaction.commit();
-            System.out.println(card + "salvato correttamente");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -35,7 +34,6 @@ public class CardDAO {
             transaction.begin();
             em.remove(em.contains(card) ? card : em.merge(card));
             transaction.commit();
-            System.out.println(card + " deleted successfully");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

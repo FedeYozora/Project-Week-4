@@ -25,7 +25,6 @@ public class SellerDAO {
             transaction.begin();
             em.persist(sellers);
             transaction.commit();
-            System.out.println(sellers + "salvato correttamente");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

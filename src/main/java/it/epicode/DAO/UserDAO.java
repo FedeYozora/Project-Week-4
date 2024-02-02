@@ -21,7 +21,6 @@ public class UserDAO {
             transaction.begin();
             em.persist(user);
             transaction.commit();
-//            System.out.println(user + "salvato correttamente");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -33,7 +32,6 @@ public class UserDAO {
             transaction.begin();
             em.remove(em.contains(user) ? user : em.merge(user));
             transaction.commit();
-            System.out.println(user + " deleted successfully");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -22,7 +22,6 @@ public class TravelDAO {
             transaction.begin();
             em.persist(travel);
             transaction.commit();
-            System.out.println(travel + "salvato correttamente");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -34,10 +33,16 @@ public class TravelDAO {
             transaction.begin();
             em.remove(em.contains(travelDocument) ? travelDocument : em.merge(travelDocument));
             transaction.commit();
-            System.out.println(travelDocument + " deleted successfully");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void update(Tickets tickets) {
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.persist(tickets);
+        transaction.commit();
     }
 
     public void checkValidityByCardId(UUID cardId) {

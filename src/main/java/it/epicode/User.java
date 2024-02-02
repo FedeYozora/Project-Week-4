@@ -73,6 +73,9 @@ public class User {
         this.card = card;
     }
 
+    public boolean isTicket() {
+        return this.tickets != null;
+    }
 
     @Override
     public String toString() {
