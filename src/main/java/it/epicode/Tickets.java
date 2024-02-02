@@ -5,6 +5,7 @@ import org.hibernate.mapping.ToOne;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -13,9 +14,21 @@ public class Tickets extends TravelDocument {
 
     private LocalDate validationDate;
 
+
     @ManyToOne
     @JoinColumn(name = "vehicle_number")
     private Vehicles vehicles;
+
+    @OneToOne(mappedBy = "tickets", orphanRemoval = true)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Vehicles getVehicles() {
         return vehicles;
@@ -35,7 +48,6 @@ public class Tickets extends TravelDocument {
     public boolean isValidated() {
         return validated;
     }
-
 
 
     public void setValidated(boolean validated) {

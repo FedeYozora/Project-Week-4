@@ -169,6 +169,13 @@ public class App {
 
                         Tickets newTicket = new Tickets(seller, LocalDate.now(), 2.00);
                         travelDAO.save(newTicket);
+                        System.out.println("A chi vuoi assegnare il biglietto?");
+                        System.out.println("1.Gianni");
+                        System.out.println("2.Daniele");
+                        System.out.println("3.Federico");
+                        int scanSelection26 = scan.nextInt();
+
+
                         // FINE TICKET ONE USE
                         break;
 
@@ -987,6 +994,7 @@ public class App {
                                                 "       [  ,--.      |____||.--.  |\n" +
                                                 "       =-(( `))-----------(( `))==\n" +
                                                 "          `--'             `--'       ");
+
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro3 = scan.nextInt();
                                         switch (sceltatimbro3) {
@@ -1112,11 +1120,6 @@ public class App {
                                                 "\"|---'(O)(O)'---'\"  ---");
 
 
-
-
-
-
-
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro4 = scan.nextInt();
                                         switch (sceltatimbro4) {
@@ -1135,7 +1138,6 @@ public class App {
                                             default:
                                                 System.out.println("Scelta non valida.");
                                                 break;
-
 
 
                                         }
@@ -1193,15 +1195,14 @@ public class App {
                                                 "\"|---'(O)(O)'---'\"  ---");
 
 
-
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro5 = scan.nextInt();
                                         switch (sceltatimbro5) {
 
                                             case 1:
-                                                    System.out.println(personaggio.getName() + " timbra il biglietto");
-                                                    ticket.setValidated(true);
-                                                    break;
+                                                System.out.println(personaggio.getName() + " timbra il biglietto");
+                                                ticket.setValidated(true);
+                                                break;
                                             case 2:
                                                 System.out.println(personaggio.getName() + " non convalida perchè ha l'abbonamento");
                                                 break;
@@ -1302,7 +1303,7 @@ public class App {
                             int presenzaBiglietto = scan.nextInt();
                             switch (presenzaBiglietto) {
                                 case 1:
-                                    if(ticket.isValidated()) {
+                                    if (ticket.isValidated()) {
                                         System.out.println("  " +
                                                 "      _.-\"` `'-.\n" +
                                                 "       '._ __{}_(\n" +
@@ -1314,7 +1315,7 @@ public class App {
                                                 "    /  \\      '-." +
                                                 "\nIl tuo biglietto " + ticket.getId() + " è valido."
                                         );
-                                    }else {
+                                    } else {
                                         System.out.println("\"  \" +\n" +
                                                 "                                            \"      _.-\\\"` `'-.\\n\" +\n" +
                                                 "                                            \"       '._ __{}_(\\n\" +\n" +
@@ -1397,11 +1398,10 @@ public class App {
                         "`---._.-------------------------------------------------------------._.---'");
 
                 int scanSelection25 = scan.nextInt();
-                switch (scanSelection25){
+                switch (scanSelection25) {
                     case 1:
                         sellerDAO.filterByService(SellerType.AUTOMATIC);
                         break;
-
 
 
                     case 2:
@@ -1434,22 +1434,7 @@ public class App {
                 }
                 break;
             case 666:
-                System.out.println("  ////^\\\\\\\\\n" +
-                        "      //| ^   ^ |\\\\\n" +
-                        "     //@  U   U  @\\\\\n" +
-                        "     ///|   <   |\\\\\\\\\n" +
-                        "        |  ___  |\n" +
-                        "         \\_____/\n" +
-                        "       ____|  |____\n" +
-                        "      /    \\__/    \\\n" +
-                        "     /              \\\n" +
-                        "    /\\_/|        |\\_/\\\n" +
-                        "   / /  |        |  \\ \\\n" +
-                        "  ( <   |        |   > )\n" +
-                        "   \\ \\  |        |  / /\n" +
-                        "    \\ \\ |________| / /\n" +
-                        "     \\ \\|");
-                System.out.println("SEI STATO SQUIRTLATO");
+
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -1638,17 +1623,14 @@ public class App {
                 break;
 
 
-
             default:
                 System.out.println("Hai selezionato un carattere sbagliato.. ");
                 break;
 
 
-
         }
 
     }
-
 
 
 }

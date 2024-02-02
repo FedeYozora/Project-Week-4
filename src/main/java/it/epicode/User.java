@@ -21,6 +21,18 @@ public class User {
     @JoinColumn(name = "card_id")
     private Card card;
 
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "tickets_id")
+    private Tickets tickets;
+
+    public Tickets getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Tickets tickets) {
+        this.tickets = tickets;
+    }
+
     public User() {
     }
 
@@ -60,6 +72,7 @@ public class User {
     public void setCard(Card card) {
         this.card = card;
     }
+
 
     @Override
     public String toString() {
