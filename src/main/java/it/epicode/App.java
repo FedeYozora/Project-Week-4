@@ -76,35 +76,43 @@ public class App {
 //        vehicleDAO.returnVehicleFromMaintenance(1L, 7); // RITORNO IN SERVIZIO DEL VEICOLO
 //        vehicleDAO.doRoute(route, 1L); // COUNTER INCREMENTALE DI UNA ROUTE EFFETTUATA DA UN VEICOLO
 //        travelDAO.findUserByCardId(UUID.fromString("2fc9fe08-9a02-45fb-bf1f-7b22c3b5649e")); // RICERCA DI UN UTENTE UTILIZZANDO IL SUO ID TESSERA
-
         System.out.println("\n" +
-                "                _______     ^^^ \n" +
-                "               |xxxxxxx|  _^^^^^_\n" +
-                "               |xxxxxxx| | [][]  |\n" +
-                "            ______xxxxx| |[][][] |    \n" +
-                "           |++++++|xxxx| | [][][]|     \n" +
-                "           |++++++|xxxx| |[][][] |\n" +
-                "           |++++++|_________ [][]|                             \n" +
-                "           |++++++|=|=|=|=|=| [] |\n" +
-                "     ██  █████  ██    ██  █████           ██  ██████  ██    ██ ██████  ███    ██ ███████ ██    ██          ██  ██████  ██    ██ ██████  ██ ██████  ███████ \n" +
-                "     ██ ██   ██ ██    ██ ██   ██          ██ ██    ██ ██    ██ ██   ██ ████   ██ ██       ██  ██           ██ ██    ██  ██  ██  ██   ██ ██ ██   ██ ██      \n" +
-                "     ██ ███████ ██    ██ ███████          ██ ██    ██ ██    ██ ██████  ██ ██  ██ █████     ████            ██ ██    ██   ████   ██████  ██ ██   ██ █████   \n" +
-                "██   ██ ██   ██  ██  ██  ██   ██     ██   ██ ██    ██ ██    ██ ██   ██ ██  ██ ██ ██         ██        ██   ██ ██    ██    ██    ██   ██ ██ ██   ██ ██      \n" +
-                " █████  ██   ██   ████   ██   ██      █████   ██████   ██████  ██   ██ ██   ████ ███████    ██         █████   ██████     ██    ██   ██ ██ ██████  ███████                                                                                                                                                                                                                                                                            \n" +
-                "           |++++++|=|=|=|=|=|[][]|\n" +
-                "___________|++HH++|  _HHHH__|   ________\n" +
-                "         _______________   _____________\n" +
-                "__________________  ___________    ____");
+                "                                  ^\n" +
+                "                     _______     ^^^ \n" +
+                "                    |xxxxxxx|  _^^^^^_\n" +
+                "                    |xxxxxxx| | [][]  |\n" +
+                "                 ______xxxxx| |[][][] |    \n" +
+                "                |++++++|xxxx| | [][][]|     \n" +
+                "                |++++++|xxxx| |[][][] |\n" +
+                "                |++++++|_________ [][]|                             \n" +
+                "                |++++++|=|=|=|=|=| [] |\n" +
+                "       ██  █████  ██    ██  █████     |\n" +
+                "       ██ ██   ██ ██    ██ ██   ██ [] |\n" +
+                "       ██ ███████ ██    ██ ███████  []|\n" +
+                "  ██   ██ ██   ██  ██  ██  ██   ██    |             \n" +
+                "   █████  ██   ██   ████   ██   ██    | \n" +
+                "     ██  ██████  ██    ██ ██████  ███    ██ ███████ ██    ██ \n" +
+                "     ██ ██    ██ ██    ██ ██   ██ ████   ██ ██       ██  ██  \n" +
+                "     ██ ██    ██ ██    ██ ██████  ██ ██  ██ █████     ████   \n" +
+                "██   ██ ██    ██ ██    ██ ██   ██ ██  ██ ██ ██         ██    \n" +
+                " █████   ██████   ██████  ██   ██ ██   ████ ███████    ██   \n" +
+                "                  ██  ██████  ██    ██ ██████  ██ ██████  ███████ \n" +
+                "                  ██ ██    ██  ██  ██  ██   ██ ██ ██   ██ ██      \n" +
+                "                  ██ ██    ██   ████   ██████  ██ ██   ██ █████   \n" +
+                "             ██   ██ ██    ██    ██    ██   ██ ██ ██   ██ ██      \n" +
+                "              █████   ██████     ██    ██   ██ ██ ██████  ███████                                                                                                                                                                                                                                                                        \n" +
+                "                |++++++|=|=|=|=|=|[][]|\n" +
+                "     ___________|++HH++|  _HHHH__|   ________\n" +
+                "              _______________   _____________\n" +
+                "     __________________  ___________    ____ì");
 
 
         System.out.println("Dove vuoi andare?");
         System.out.println("1. Rivenditore autorizzato");
         System.out.println("2. Distributore automatico");
         System.out.println("3. MiniGame");
-        System.out.println("4. Ricerca di distributori automatici in servizio");
-        System.out.println("5. Ricerca di veicoli in manutenzione durante i prossimi 10 giorni");
-        System.out.println("6. Manda un veicolo in manutenzione");
-        System.out.println("7. Fai tornare in servizio un veicolo");
+        System.out.println("4. Utilities");
+
 
         int scanSelection = scan.nextInt();
         switch (scanSelection) {
@@ -642,7 +650,7 @@ public class App {
                                 String scanSelection15 = scan.nextLine();
                                 if (!travelDAO.checkUserByCardId(UUID.fromString(scanSelection15))) {
                                     System.out.println("Hai inserito un numero di carta invalido o inesistente," +
-                                            "devi ricominciare d'accapo x.x");
+                                            "devi ricominciare da capo x.x");
                                     System.exit(0);
                                 }
                                 User fu1 = travelDAO.findUserByCardId(UUID.fromString(scanSelection15));
@@ -695,7 +703,76 @@ public class App {
 
                 break;
             case 3:
-                System.out.println("Scegli un personaggio: \n1. Gianni \n2. Daniele \n3. Federico \n");
+                System.out.println("Scegli un personaggio:");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("-------------------------");
+                System.out.println("1.GIANNI");
+                System.out.println("       _______\n" +
+                        "      |vvvvvvv|\n" +
+                        "      | -   - |\n" +
+                        "     @ (^) (^) @\n" +
+                        "      |   <   |\n" +
+                        "      | ///\\\\\\|\n" +
+                        "       \\_____/\n" +
+                        "     ____|  |____\n" +
+                        "    /    \\__/    \\\n" +
+                        "   /              \\\n" +
+                        "  /\\_/|        |\\_/\\\n" +
+                        " / /  |        |  \\ \\\n" +
+                        "( <   |        |   > )\n" +
+                        " \\ \\  |        |  / /\n" +
+                        "  \\ \\ |________| / /\n" +
+                        "   \\ \\|");
+                System.out.println("-------------------------");
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("2.DANIELE");
+                System.out.println("        ////^\\\\\\\\\n" +
+                        "      //| ^   ^ |\\\\\n" +
+                        "     //@  U   U  @\\\\\n" +
+                        "     ///|   <   |\\\\\\\\\n" +
+                        "        |  ___  |\n" +
+                        "         \\_____/\n" +
+                        "       ____|  |____\n" +
+                        "      /    \\__/    \\\n" +
+                        "     /              \\\n" +
+                        "    /\\_/|        |\\_/\\\n" +
+                        "   / /  |        |  \\ \\\n" +
+                        "  ( <   |        |   > )\n" +
+                        "   \\ \\  |        |  / /\n" +
+                        "    \\ \\ |________| / /\n" +
+                        "     \\ \\|");
+                System.out.println("-------------------------");
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("3.FEDERICO");
+                System.out.println("       _______\n" +
+                        "      |       |\n" +
+                        "  ____|_______|\n" +
+                        "      | ^   ^ |\n" +
+                        "     @ (o) (o) @\n" +
+                        "      |   <   |\n" +
+                        "      |  ___  |\n" +
+                        "       \\_____/\n" +
+                        "     ____|  |____\n" +
+                        "    /    \\__/    \\\n" +
+                        "   /              \\\n" +
+                        "  /\\_/|        |\\_/\\\n" +
+                        " / /  |        |  \\ \\\n" +
+                        "( <   |        |   > )\n" +
+                        " \\ \\  |        |  / /\n" +
+                        "  \\ \\ |________| / /\n" +
+                        "   \\ \\|");
                 int scelta = scan.nextInt();
                 User gianni = new User("Gianni", "Cabiddu");
                 User daniele = new User("Daniele", "Cagnoni");
@@ -994,6 +1071,52 @@ public class App {
                                                 " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
                                                 " ,_    ______ FakerTaxi ______     |=-=,_    ______           ______  jg |\n" +
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                        System.out.println("\n" +
+                                                "\"   \n" +
+                                                "\"|', ,'                                 \n" +
+                                                "\"| '--------------------------.     ,----'--------------------------.\n" +
+                                                "\"| ```|```|```|```|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                                "\"| ---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                                "\"|  ______ FakerTaxi ______     |=-=,_    ______           ______  jg |\n" +
+                                                "\"| '(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'\"");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("\n" +
+                                                "\"|                                 \n" +
+                                                "\"|-------------.     ,----'--------------------------.\n" +
+                                                "\"|`|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                                "\"|-'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                                "\"|axi ______     |=-=,_    ______           ______  jg |\n" +
+                                                "\"|---'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'\"");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("   " +
+                                                "\"|                                 \n" +
+                                                "\"|-------------.    -----    \n" +
+                                                "\"|`|```|```|``|``|       ----   \n" +
+                                                "\"|-'---'---'--'--|     --    \n" +
+                                                "\"|    ______  jg |       --------    \n" +
+                                                "\"|---'(O)(O)'---'\"  ---");
+
+
+
+
+
+
+
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro4 = scan.nextInt();
                                         switch (sceltatimbro4) {
@@ -1027,6 +1150,50 @@ public class App {
                                                 " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
                                                 " ,_    ______TramDom______         |=-=,_    ______           ______  jg |\n" +
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+
+
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                        System.out.println("\n" +
+                                                "\"   \n" +
+                                                "\"|', ,'                                 \n" +
+                                                "\"| '--------------------------.     ,----'--------------------------.\n" +
+                                                "\"| ```|```|```|```|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                                "\"| ---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                                "\"|  ______ TramDom   ______     |=-=,_    ______           ______  jg |\n" +
+                                                "\"| '(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'\"");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("\n" +
+                                                "\"|                                 \n" +
+                                                "\"|-------------.     ,----'--------------------------.\n" +
+                                                "\"|`|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                                "\"|-'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                                "\"|om  ______     |=-=,_    ______           ______  jg |\n" +
+                                                "\"|---'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'\"");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("   " +
+                                                "\"|                                 \n" +
+                                                "\"|-------------.    -----    \n" +
+                                                "\"|`|```|```|``|``|       ----   \n" +
+                                                "\"|-'---'---'--'--|     --    \n" +
+                                                "\"|    ______  jg |       --------    \n" +
+                                                "\"|---'(O)(O)'---'\"  ---");
+
+
+
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro5 = scan.nextInt();
                                         switch (sceltatimbro5) {
@@ -1055,6 +1222,45 @@ public class App {
                                                 " |---'---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
                                                 " ,_    ______SwitchTram ______     |=-=,_    ______           ______  jg |\n" +
                                                 "  '---'(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                        System.out.println("\n" +
+                                                "\"   \n" +
+                                                "\"|', ,'                                 \n" +
+                                                "\"| '--------------------------.     ,----'--------------------------.\n" +
+                                                "\"| ```|```|```|```|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                                "\"| ---'---'---'---'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                                "\"|  ______ SwitchTram _____     |=-=,_    ______           ______  jg |\n" +
+                                                "\"| '(O)(O)'---------'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'\"");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("\n" +
+                                                "\"|                                 \n" +
+                                                "\"|-------------.     ,----'--------------------------.\n" +
+                                                "\"|`|```|```|``|` |    /''|```|```|```|```|```|```|``|``|\n" +
+                                                "\"|-'---'---'--'--|   |---'---'---'---'---'---'---'--'--|\n" +
+                                                "\"|ram ______     |=-=,_    ______           ______  jg |\n" +
+                                                "\"|---'(O)(O)'---'     '---'(O)(O)'---------'(O)(O)'---'\"");
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        System.out.println("   " +
+                                                "\"|                                 \n" +
+                                                "\"|-------------.    -----    \n" +
+                                                "\"|`|```|```|``|``|       ----   \n" +
+                                                "\"|-'---'---'--'--|     --    \n" +
+                                                "\"|    ______  jg |       --------    \n" +
+                                                "\"|---'(O)(O)'---'\"  ---");
                                         System.out.println("Vuoi timbrare il biglietto? \n1. Si \n2. Abbonamento \n3. ??? ");
                                         int sceltatimbro6 = scan.nextInt();
                                         switch (sceltatimbro6) {
@@ -1161,31 +1367,288 @@ public class App {
                     }
                 }
             case 4:
-                sellerDAO.filterByService(SellerType.AUTOMATIC);
-                break;
-            case 5:
-                LocalDate today = LocalDate.now();
-                LocalDate maxDay = today.plusDays(10);
-                vehicleDAO.findVehiclesInMaintenanceDuringPeriod(today, maxDay);
-                break;
-            case 6:
-                scan.nextLine();
-                System.out.println("Inserisci il numero di targa del veicolo: ");
-                Long scanSelection20 = Long.valueOf(scan.nextLine());
-                vehicleDAO.sendVehicleToMaintenance(scanSelection20);
-                break;
-            case 7:
-                scan.nextLine();
-                System.out.println("Inserisci il numero di targa del veicolo da far tornare in servizio: ");
-                Long scanSelection21 = Long.valueOf(scan.nextLine());
-                System.out.println("Inserisci il numero di giorni prima del suo rientro in servizio");
-                int scanSelection22 = Integer.parseInt(scan.nextLine());
+                System.out.println("   ________________________________________________\n" +
+                        "            /                                                \\\n" +
+                        "           |    _________________________________________     |\n" +
+                        "           |   |                                         |    |\n" +
+                        "           |   |  C:\\> _                                 |    |\n" +
+                        "           |   |  1.Ricerca distributori automatici      |    |\n" +
+                        "           |   |              in servizio                |    |\n" +
+                        "           |   |                                         |    |\n" +
+                        "           |   |  2.Ricerca di veicoli in manutenzione   |    |\n" +
+                        "           |   |       nei prossimi 10 giorni            |    |\n" +
+                        "           |   |                                         |    |\n" +
+                        "           |   |  3.Manda un veicolo in manutenzione     |    |\n" +
+                        "           |   |                                         |    |\n" +
+                        "           |   |  4.Fai tornare in servizio un veicolo   |    |\n" +
+                        "           |   |                                         |    |\n" +
+                        "           |   |                                         |    |\n" +
+                        "           |   |_________________________________________|    |\n" +
+                        "           |                                                  |\n" +
+                        "            \\_________________________________________________/\n" +
+                        "                   \\___________________________________/\n" +
+                        "                ___________________________________________\n" +
+                        "             _-'    .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.  --- `-_\n" +
+                        "          _-'.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.  .-.-.`-_\n" +
+                        "       _-'.-.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-`__`. .-.-.-.`-_\n" +
+                        "    _-'.-.-.-.-. .-----.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-----. .-.-.-.-.`-_\n" +
+                        " _-'.-.-.-.-.-. .---.-. .-------------------------. .-.---. .---.-.-.-.`-_\n" +
+                        ":-------------------------------------------------------------------------:\n" +
+                        "`---._.-------------------------------------------------------------._.---'");
 
-                vehicleDAO.returnVehicleFromMaintenance(scanSelection21, scanSelection22);
+                int scanSelection25 = scan.nextInt();
+                switch (scanSelection25){
+                    case 1:
+                        sellerDAO.filterByService(SellerType.AUTOMATIC);
+                        break;
+
+
+
+                    case 2:
+                        LocalDate today = LocalDate.now();
+                        LocalDate maxDay = today.plusDays(10);
+                        vehicleDAO.findVehiclesInMaintenanceDuringPeriod(today, maxDay);
+                        break;
+
+                    case 3:
+                        scan.nextLine();
+                        System.out.println("Inserisci il numero di targa del veicolo: ");
+                        Long scanSelection20 = Long.valueOf(scan.nextLine());
+                        vehicleDAO.sendVehicleToMaintenance(scanSelection20);
+                        break;
+
+
+                    case 4:
+                        scan.nextLine();
+                        System.out.println("Inserisci il numero di targa del veicolo da far tornare in servizio: ");
+                        Long scanSelection21 = Long.valueOf(scan.nextLine());
+                        System.out.println("Inserisci il numero di giorni prima del suo rientro in servizio");
+                        int scanSelection22 = Integer.parseInt(scan.nextLine());
+
+                        vehicleDAO.returnVehicleFromMaintenance(scanSelection21, scanSelection22);
+                        break;
+
+                    default:
+                        System.out.println("Hai selezionato un carattere sbagliato.. ");
+                        break;
+                }
+                break;
+            case 666:
+                System.out.println("  ////^\\\\\\\\\n" +
+                        "      //| ^   ^ |\\\\\n" +
+                        "     //@  U   U  @\\\\\n" +
+                        "     ///|   <   |\\\\\\\\\n" +
+                        "        |  ___  |\n" +
+                        "         \\_____/\n" +
+                        "       ____|  |____\n" +
+                        "      /    \\__/    \\\n" +
+                        "     /              \\\n" +
+                        "    /\\_/|        |\\_/\\\n" +
+                        "   / /  |        |  \\ \\\n" +
+                        "  ( <   |        |   > )\n" +
+                        "   \\ \\  |        |  / /\n" +
+                        "    \\ \\ |________| / /\n" +
+                        "     \\ \\|");
+                System.out.println("SEI STATO SQUIRTLATO");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⠤⠤⠤⠤⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠶⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠢⣄⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠁⠀⠀⠀⠀⢀⣀⡐⢄⠀⠀⠀⠀⠀⠀⠈⠳⣄⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡞⠁⠀⠀⠀⠀⠀⡜⠁⠀⣿⡌⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡾⠀⠀⠀⠀⠀⠀⣸⣷⣤⣾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠊⣼⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⢤⡀⠀⠀⠀⢰⡇⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⡜⣼⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡎⠀⠉⠲⣄⣀⣼⡇⠀⠀⠀⠀⠀⠀⠻⠿⣿⣟⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠉⠉⠁⠀⡏⠑⠌⠓⢬⣧⠀⠀⠀⠀⠘⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⠿⡀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣇⠀⠀⠀⠇⠀⠀⠀⠀⠙⣆⠀⠀⠀⠀⠀⠈⠉⠓⠒⠲⠤⢤⣀⠀⠂⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⢀⣠⠤⠖⠒⠒⠒⠦⢤⡀⠀⠀⠀⠀⠀⢸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠈⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠲⠤⠤⠒⠋⢉⠟⠀⠀⠀⠀\n" +
+                        "⠀⠀⢀⡴⠋⠁⠀⠀⠀⠀⠀⠀⠀⠙⢦⠀⠀⠀⢠⡞⠹⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠋⠀⠀⠀⠀⠀\n" +
+                        "⠀⣠⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢇⠀⢠⡟⠀⠀⠹⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏⠈⠑⠢⢤⣀⣀⠀⠀⠀⠀⢀⣀⡤⠖⠯⣀⠀⠀⠀⠀⠀⠀\n" +
+                        "⢀⡟⠀⠀⠀⠀⠠⠴⠤⣀⠀⠀⠀⠀⠀⢸⣠⡟⠀⠀⠀⠀⢹⣄⠀⠀⠀⠀⠀⠀⢀⣼⡁⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⢻⠀⠀⠀⠀⠀⠉⠢⣄⣀⡀⠀\n" +
+                        "⢸⡇⠀⠀⠀⠀⠀⠀⠀⠘⡆⠀⠀⠀⠀⢈⣿⡇⠀⠀⠀⠀⢸⠉⢢⣀⡀⢀⣀⣴⠟⠀⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡆⠀⠀⠀⠀⠀⠀⠀⠀⢇⡀\n" +
+                        "⠘⣇⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⢸⡇⣷⠀⠀⠀⢀⡞⠀⢰⠏⠉⠉⠁⢸⡀⠀⠀⠀⠈⠓⠶⠤⣤⣄⣀⣠⡤⠴⡇⠀⠀⠀⠀⠀⠀⠀⠀⡔⠁\n" +
+                        "⠀⠹⣆⠀⠀⠀⠀⠀⢀⡼⠁⠀⠀⠀⠀⢸⠁⠸⡆⠀⣠⠞⠀⢀⡞⠀⠀⠀⠀⠘⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⠃⠀⠀⢰⣧⣀⣀⡀⠀⢀⣀⣠⠴⠃⠀\n" +
+                        "⠀⠀⠹⡓⠦⠤⠤⠖⠋⠀⠀⠀⠀⠀⠀⢸⠀⠀⠹⡴⠁⠀⢠⠞⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⡞⠀⠀⠀⣸⠀⠀⠉⠉⠉⠉⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠘⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⢸⢁⡠⠴⢧⡀⠀⠀⠀⠀⣀⠔⠳⣄⠀⠀⠀⠀⠀⠀⡼⠁⠀⠀⢠⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠑⢄⠀⠀⠀⠀⠀⠀⠀⠀⠘⣇⣠⡿⠋⠀⠀⠀⠙⢦⣀⡠⠞⠁⠀⠀⠈⠙⠶⣤⣀⡀⣰⠃⠀⠀⣠⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠙⢦⣀⠀⠀⠀⠀⠀⠀⣸⠏⠀⠀⠀⠀⠀⠀⠈⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣹⠋⠉⠉⣹⠏⠙⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠲⢤⣄⣀⣠⡏⠀⠀⠀⠀⠀⠀⠀⠀⠈⣇⠀⠀⠀⠀⠀⠀⠀⠀⡰⠃⢀⣤⠞⠁⠀⠀⠘⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡽⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣻⠶⠤⠤⠤⠤⠤⢤⣞⡥⠖⠋⠀⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠟⠒⠀⠀⠒⠒⠺⢯⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠃⠀⠀⠀⠀⠀⠀⠀⠀⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⢄⣈⠆⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⢄⡀⠀⠀⠀⠀⠀⠀⢀⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣄⠀⠀⠀⠀⢀⣠⠴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢇⣀⡤⠖⢄⠀⣰⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠒⠒⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                        "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠈⠙⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+
+
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("SQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLSSQUIRTOLS");
+
+                break;
+
+
+
             default:
                 System.out.println("Hai selezionato un carattere sbagliato.. ");
                 break;
+
+
+
         }
 
     }
+
+
+
 }

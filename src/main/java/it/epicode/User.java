@@ -16,6 +16,7 @@ public class User {
     private String name;
     private String surname;
 
+
     @OneToOne
     @JoinColumn(name = "card_id")
     private Card card;
